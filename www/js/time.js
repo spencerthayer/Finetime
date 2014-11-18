@@ -79,6 +79,9 @@ function setCSSGradientByIndex(nInx) {
     if (hour > -4 && hour < 5) {
         $('.starfield').show();
     }
+    if (hour > 9 && hour < 16) {
+        $('.clouds').show();
+    }
 /////////////////////
 // GEO LOCATION
 /////////////////////
@@ -143,12 +146,13 @@ function showWeather(response) {
     var lat = response.coord.lat;
     var lon = response.coord.lon;
     var weatherDesc = response.weather[0].description;
-    var temp = kelvinToFDegrees(response.main.temp) +
-        "&#186;";
+    var temp = kelvinToFDegrees(response.main.temp);
+    var degree = "&#186;";
     var locationName = response.name;
     var geolocation = lat + ', ' + lon;
     $("#verb").html(weatherDesc);
     $("#temp").html(temp);
+    $("#degree").html(degree);
     $("#city").html(locationName);
     $("#geolocation").html(geolocation);
     console.log(response);

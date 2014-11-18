@@ -1,0 +1,9 @@
+{
+  "name": "Finetime",
+  "author": "Spencer Thayer",
+  "version": "0.0.1",
+  "description": "An IOS/Android clock.",
+  "repository": "https://github.com/spencerthayer/Finetime.git",
+  "logo": "https://raw.githubusercontent.com/spencerthayer/TorchNoteJS/master/public/img/TorchChat-square.png",
+  "keywords": ["node", "express", "socket", "ionic"]
+}
