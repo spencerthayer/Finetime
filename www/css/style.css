@@ -23,6 +23,7 @@ html, body {
     overflow: hidden;
 }
 /**************/
+.clear { clear: both; }
 #info {
     text-align: right;
     margin-top: 0 auto;
@@ -32,13 +33,23 @@ html, body {
     z-index: 10;
 }
 #time {
-    font-size: 250%;
+    font-size: 350%;
+    margin-bottom: -.1em;
 }
 #hour {}
 #minute {}
-#second {}
-#meridian {
+.hand {
+    float: right;
+    position: relative;
+    margin-top: .5em;
+}
+#second {
+    display: block;
     font-size: 25%;
+}
+#meridian {
+    display: block;
+    font-size: 15%;
 }
 .colon {
     position: relative;
@@ -47,19 +58,25 @@ html, body {
 }
 #date {
     font-size: 100%;
-    font-weight: 300;
+    font-weight: 100;
+    margin-bottom: -.3em;
 }
 #verb {
     font-size: 50%;
 }
 #city {
-    font-size: 100%;
+    font-size: 75%;
+    padding-top: .75em;
+    margin:0;
+    margin-bottom: -.5em;
 }
 #geolocation {
     font-size: 25%;
 }
 #temp {
-    font-size: 300%;
+    float: right;
+    font-size: 250%;
+    margin-left: .3em;
 }
 /**************/
 .starfield {
