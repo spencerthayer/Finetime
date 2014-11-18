@@ -1,5 +1,4 @@
 #Finetime 0.0.1 [DEMO](http://torchnote.heroku.com)
-========
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/spencerthayer/Finetime)
 
 An IOS/Android Clock.
