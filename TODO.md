@@ -1,5 +1,8 @@
 # ToDo
 
+## Critical
+- [ ] Heroku deployment debug.
+
 ## DESIGN
 - [x] Make text dependent on browser sizing.
 - [x] Starfield only active between 9pm-4am. (**Line 74** */js/time.js*)
