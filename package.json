@@ -1,7 +1,7 @@
 {
-  "name": "finetime",
+  "name": "Finetime",
   "version": "1.0.0",
-  "description": "finetime: An Ionic project",
+  "description": "Finetime",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
