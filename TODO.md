@@ -18,7 +18,6 @@
 - [ ] Build alarm CRUD:
  - [ ] Slide up and down timer.
  - [ ] Daily repeating alarms.
-     - ### Fields
       - Time [HH:MM]
       - Repeat: MON TUE WEN THU FRI SAT SUN
       - Active [True/False]
