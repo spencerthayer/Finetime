@@ -8,6 +8,7 @@
 ## Scripts
 - [ ] Better GPS detection.
 - [ ] Better GPD failure fallback.
+- [ ] Countdown timer "HH:MM until alarm."
 
 ## UI/UX
 - [ ] Build sidebar menues.
@@ -16,7 +17,11 @@
 ## MVC
 - [ ] Build alarm CRUD:
  - [ ] Slide up and down timer.
- - [ ] Daily repeating alarems.
+ - [ ] Daily repeating alarms.
+     - ### Fields
+      - Time [HH:MM]
+      - Repeat: MON TUE WEN THU FRI SAT SUN
+      - Active [True/False]
 - [ ] Build alarm sounds DB.
 
 ## Content
