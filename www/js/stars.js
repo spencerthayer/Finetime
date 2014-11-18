@@ -4,7 +4,6 @@ window.onload = function() {
 };
 
 function start() {
-
     //Helpers
     function lineToAngle(x1, y1, length, radians) {
         var x2 = x1 + length * Math.cos(radians),

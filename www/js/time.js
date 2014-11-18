@@ -72,6 +72,14 @@ function setCSSGradientByIndex(nInx) {
     console.log(d.format('MMMM Do YYYY [\n]h:mm:ss a'));
 }
 /////////////////////
+// ACTIVATE STARFIELD
+/////////////////////
+    var dt = new Date();
+    var hour = dt.getHours();
+    if (hour > -4 && hour < 4) {
+        $('.starfield').show();
+    }
+/////////////////////
 // GEO LOCATION
 /////////////////////
 function getLocation() {
@@ -89,7 +97,7 @@ function getLocation() {
         );
     } else {
         showLocation(defaultLocation);
-        alert("Geolocation is not supported by this browser");
+        alert("Geolocation is not working!");
     }
 }
 function showLocation(position) {
@@ -104,8 +112,7 @@ function getWeather(lat, lon, callback) {
     var api = "http://api.openweathermap.org/data/2.5/weather";
     api += "?lat=" + lat;
     api += "&lon=" + lon;
-
-    $("#weatherId").html("Loading Weather Info...");
+    $("#weatherId").html("Loading weather!");
     $.ajax({
         url: api,
         dataType: 'jsonp',

@@ -27,7 +27,10 @@ html, body {
 #time {
     font-size: 250%;
 }
-#hour {} #minute {} #second {} #meridian {
+#hour {}
+#minute {}
+#second {}
+#meridian {
     font-size: 25%;
 }
 .colon {
@@ -59,5 +62,6 @@ html, body {
     right: 0;
     bottom: 0;
     margin: 0;
+    display: none;
 }
 /**************/
