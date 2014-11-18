@@ -2,7 +2,7 @@
 
 ## DESIGN
 - [ ] Center for Safari.
-- [ ] Starfield only active between 9pm-4am.
+- [ ] Starfield only active between 9pm-4am. (**Line 74** */js/time.js*)
 - [ ] Starfield sparkles in Safari, not Firefox & Chrome.
 - [ ] Text shadow should follow path of sun no mouse.
 
