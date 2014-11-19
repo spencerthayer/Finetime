@@ -1,7 +1,6 @@
 # ToDo
 
 ## Critical
-- [ ] Heroku deployment debug.
 
 ## DESIGN
 - [x] Make text dependent on browser sizing.
@@ -9,6 +8,9 @@
 - [x] Safari browser display is totally fucked update and not absolutely centered.
 - [ ] Starfield sparkles in Safari, not Firefox & Chrome.
 - [ ] Text shadow should follow path of sun no mouse.
+
+## Server
+- [x] Heroku deployment debug.
 
 ## Scripts
 - [ ] Better GPS detection.
