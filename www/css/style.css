@@ -88,9 +88,9 @@ html, body {
 }
 #degree {
     float: right;
-    font-size: 100%;
+    font-size: 150%;
     position: relative;
-    margin-top: 2.5vmin;
+    margin-top: 2vmin;
 }
 #geolocation {
     font-size: 25%;
