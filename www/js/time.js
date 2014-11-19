@@ -1,3 +1,7 @@
+/**** 
+UGH! TIME.JS STARTED JUST FOR TIME CALCULATION.
+I HAVE TO BREAK THIS UP INTO DIFFERENT JS FILES.
+****/      
 /////////////////////
 // GRADIENT COLORS
 /////////////////////
