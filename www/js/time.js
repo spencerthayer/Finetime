@@ -66,8 +66,9 @@ function setCSSGradientByIndex(nInx) {
     $("#hour").html(d.format('hh'));
     $("#minute").html(d.format('mm'));
     $("#second").html(d.format('ss'));
-    $("#meridian").html(d.format('a'));
-    $("#date").html(d.format('MMMM Do, YYYY'));
+    $("#meridian").html(d.format('a')); 
+    $("#date").html(d.format('dddd, MMMM Do'));
+    //$("#date").html(d.format('MMMM Do, YYYY'));
     // CONSOLE out put for DEBUGGING ONLY
     console.log(d.format('MMMM Do YYYY [\n]h:mm:ss a'));
 }

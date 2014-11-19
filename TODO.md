@@ -2,11 +2,11 @@
 
 ## Critical
 - [ ] Heroku deployment debug.
-- [ ] Safari browser display is totally fucked update and not absolutely centered.
 
 ## DESIGN
 - [x] Make text dependent on browser sizing.
 - [x] Starfield only active between 9pm-4am. (**Line 74** */js/time.js*)
+- [x] Safari browser display is totally fucked update and not absolutely centered.
 - [ ] Starfield sparkles in Safari, not Firefox & Chrome.
 - [ ] Text shadow should follow path of sun no mouse.
 
