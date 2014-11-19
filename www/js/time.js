@@ -11,7 +11,7 @@ var grads = [
   [{color:"4a4969",position:0},{color:"7072ab",position:50},{color:"cd82a0",position:100}],
   [{color:"757abf",position:0},{color:"8583be",position:60},{color:"eab0d1",position:100}],
   [{color:"82addb",position:0},{color:"ebb2b1",position:100}],
-  [{color:"94c5f8",position:1},{color:"a6e6ff",position:70},{color:"b1b5ea",position:100}],
+  [{color:"94c5f8",position:0},{color:"a6e6ff",position:70},{color:"b1b5ea",position:100}],
   [{color:"b7eaff",position:0},{color:"94dfff",position:100}],
   [{color:"9be2fe",position:0},{color:"67d1fb",position:100}],
   [{color:"90dffe",position:0},{color:"38a3d1",position:100}],
