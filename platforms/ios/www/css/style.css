@@ -1,0 +1,132 @@
+/*
+61838C
+9FD3BC
+394B61
+343645
+281D2D
+*/
+@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
+html, body {
+    font-family: Lato, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+    color: #FFF;
+    font-size: 9vmin;
+    line-height: 100%;
+    font-weight: 100;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+/**************/
+.left   { float: left; }
+.right  { float: right; }
+.clear  { clear: both; }
+/**************/
+#info {
+    text-align: right;
+    margin-top: 0 auto;
+    margin-right: 0 auto;
+    margin-bottom: 0 auto;
+    margin-left: 0 auto;
+    z-index: 10;
+}
+#time {
+    margin-bottom: 2vmin;
+}
+#hour {
+    font-size: 400%;
+}
+#minute {
+    font-size: 400%;
+}
+.hand {
+    float: right;
+    position: relative;
+}
+#second {
+    display: block;
+    font-size: 100%;
+}
+#meridian {
+    display: block;
+    font-size: 100%;
+}
+.colon {
+    position: relative;
+    display: inline-block;
+    font-size: 100%;
+}
+#date {
+    font-size: 100%;
+    margin-bottom: 2vmin;
+}
+#city {
+    font-size: 75%;
+    position: relative;
+}
+#verb {
+    font-size: 50%;
+    position: relative;
+    margin-top: -2vmin;
+}
+#temp {
+    float: right;
+    font-size: 250%;
+    margin-top: 5.5vmin;
+    margin-left: 1vmin;
+}
+#degree {
+    float: right;
+    font-size: 100%;
+    position: relative;
+    margin-top: 2vmin;
+}
+#geolocation {
+    font-size: 25%;
+    display: none;
+}
+/**************/
+.starfield, .clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    width:100%;
+    height:100%;
+    display: none;
+}
+/**************/
+.clouds {
+    background:transparent url(http://www.script-tutorials.com/demos/360/images/clouds3.png) repeat top center;
+    z-index:3;
+    -moz-animation:move-clouds-back 200s linear infinite;
+    -ms-animation:move-clouds-back 200s linear infinite;
+    -o-animation:move-clouds-back 200s linear infinite;
+    -webkit-animation:move-clouds-back 200s linear infinite;
+    animation:move-clouds-back 200s linear infinite;
+}
+@keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-webkit-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-moz-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-ms-keyframes move-clouds-back {
+    from {background-position: 0;}
+    to {background-position:10000px 0;}
+}

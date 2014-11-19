@@ -76,7 +76,7 @@ function setCSSGradientByIndex(nInx) {
 /////////////////////
     var dt = new Date();
     var hour = dt.getHours();
-    if (hour > 0 && hour < 5 || hour > 19 && hour < 24) {
+    if (hour > -4 && hour < 5) {
         $('.starfield').show();
     }
     if (hour > 9 && hour < 16) {
