@@ -86,7 +86,7 @@ function skyconditions() {
     if (hour > -0.1 && hour < 5 || hour > 19 && hour < 24) {
         $(".starfield").show();
     }
-    if (hour > 6 && hour < 16) {
+    if (hour > 6 && hour < 18) {
         $(".sun").show();
     }
     window.setTimeout("skyconditions();", 1000*10);
