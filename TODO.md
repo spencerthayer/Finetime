@@ -1,6 +1,7 @@
 # ToDo
 
 ## Critical
+- [ ] Stars do not redraw when IOS viewport flips to horizontal and vise versa.
 
 ## DESIGN
 - [x] Make text dependent on browser sizing.
