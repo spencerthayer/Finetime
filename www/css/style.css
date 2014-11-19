@@ -6,12 +6,14 @@
 281D2D
 */
 @import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900");
-html, body {
+* {
     font-family: Lato, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
-    color: #FFF;
     font-size: 9vmin;
     line-height: 100%;
     font-weight: 100;
+    color: #FFF;
+}
+html, body {
     width: 100%;
     min-width: 100%;
     height: 100%;
@@ -28,13 +30,31 @@ html, body {
 .right  { float: right; }
 .clear  { clear: both; }
 /**************/
+#clock {
+    margin: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    height: 70vmin;
+    width: 97.5vmin;
+}
 #info {
+    text-align: right;
+/*
+	background: #ffdb4c;
+    position: absolute;
     text-align: right;
     margin-top: 0 auto;
     margin-right: 0 auto;
     margin-bottom: 0 auto;
     margin-left: 0 auto;
     z-index: 10;
+    height: 70vmin;
+    width: 100vmin;
+    left: -50vmin;   
+*/
 }
 #time {
     margin-bottom: 2vmin;
@@ -45,9 +65,10 @@ html, body {
 #minute {
     font-size: 400%;
 }
-.hand {
+#side {
     float: right;
     position: relative;
+    top: 5vmin;
 }
 #second {
     display: block;
@@ -69,23 +90,24 @@ html, body {
 #city {
     font-size: 75%;
     position: relative;
+    padding-top: 4vmin;
 }
 #verb {
     font-size: 50%;
     position: relative;
-    margin-top: -2vmin;
+    margin-top: 2vmin;
 }
 #temp {
     float: right;
     font-size: 250%;
-    margin-top: 5.5vmin;
-    margin-left: 1vmin;
+    margin-top: 0vmin;
+    margin-left: 4vmin;
 }
 #degree {
     float: right;
     font-size: 100%;
     position: relative;
-    margin-top: 2vmin;
+    margin-top: 2.5vmin;
 }
 #geolocation {
     font-size: 25%;
