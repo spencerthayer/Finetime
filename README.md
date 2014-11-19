@@ -1,7 +1,4 @@
-#Finetime 0.0.1 [DEMO](http://finesttime.heroku.com)
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/spencerthayer/Finetime)
-
-[![Finetime](https://raw.githubusercontent.com/spencerthayer/Finetime/master/www/img/favicon.png?raw=true "TorchNoteJS")](http://finesttime.heroku.com)
+[![Finetime](https://raw.githubusercontent.com/spencerthayer/Finetime/master/www/img/favicon.png?raw=true "TorchNoteJS")](http://finesttime.heroku.com) #Finetime 0.0.1 [DEMO](http://finesttime.heroku.com) [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/spencerthayer/Finetime)
 
 An IOS/Android Clock.
 
