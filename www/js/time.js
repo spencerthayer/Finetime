@@ -73,16 +73,19 @@ function setCSSGradientByIndex(nInx) {
     console.log(d.format('MMMM Do YYYY [\n]h:mm:ss a'));
 }
 /////////////////////
-// ACTIVATE STARFIELD
+// ACTIVATE SUN & STARFIELD
 /////////////////////
+function skyconditions() {
     var dt = new Date();
     var hour = dt.getHours();
     if (hour > -0.1 && hour < 5 || hour > 19 && hour < 24) {
-        $('.starfield').show();
+        $(".starfield").show();
     }
-    if (hour > 9 && hour < 16) {
-        $('.clouds').show();
+    if (hour > 6 && hour < 16) {
+        $(".sun").show();
     }
+    window.setTimeout("skyconditions();", 1000*10);
+}
 /////////////////////
 // GEO LOCATION
 /////////////////////
@@ -160,23 +163,9 @@ function showWeather(response) {
     console.log(result);
 }
 /////////////////////
-// WEATHER ICON
+// WEATHER CONDITIONS
 /////////////////////
 
-/////////////////////
-// XXX
-/////////////////////
-var d = moment();
-var h = updateTime();
-var inx = -1;
-var defaultLocation = {
-    coords: {
-        latitude: 0.000,
-        longitude: 0.000
-    }
-};
-setCSSGradientByIndex(h);
-getLocation();
 /////////////////////
 // CLOCK SPEED
 /////////////////////
@@ -192,7 +181,6 @@ var interval2 = setInterval(function () {
 // FORCE UPDATE
 /////////////////////
 $("#info").click(function () {
-    updateBasedOnNow();
 });
 /////////////////////
 // SHADOW
@@ -207,9 +195,24 @@ $(document).on('mousemove', function(e) {
   var deltaY = textCenterTop - my;
   var shadowBlur = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
   shadowObject.css({
-    "text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,0,.5)",
-    "-webkit-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,0,.5)",
-    "-moz-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,0,.5)",
-    "-o-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,0,.5)"
+    "text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
+    "-webkit-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
+    "-moz-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
+    "-o-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)"
   });
 });
+/////////////////////
+// XXX
+/////////////////////
+var d = moment();
+var h = updateTime();
+var inx = -1;
+var defaultLocation = {
+    coords: {
+        latitude: 0.000,
+        longitude: 0.000
+    }
+};
+setCSSGradientByIndex(h);
+getLocation(h);
+skyconditions();
