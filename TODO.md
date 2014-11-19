@@ -2,6 +2,7 @@
 
 ## Critical
 - [ ] Stars do not redraw when IOS viewport flips to horizontal and vise versa.
+- [ ] Starfield does not turn off or on between 9pm-4am without refresh. (**Line 74** */js/time.js*)
 
 ## DESIGN
 - [x] Make text dependent on browser sizing.
