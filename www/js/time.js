@@ -73,8 +73,6 @@ function setCSSGradientByIndex(nInx) {
     $("#second").html(d.format('ss'));
     $("#meridian").html(d.format('a')); 
     $("#date").html(d.format('dddd, MMMM Do'));
-    //$("#date").html(d.format('MMMM Do, YYYY'));
-    // CONSOLE out put for DEBUGGING ONLY
     console.log(d.format('MMMM Do YYYY [\n]h:mm:ss a'));
 }
 /////////////////////
@@ -83,13 +81,13 @@ function setCSSGradientByIndex(nInx) {
 function skyconditions() {
     var dt = new Date();
     var hour = dt.getHours();
-    if (hour > -0.1 && hour < 5 || hour > 19 && hour < 24) {
+    if (hour > -0.1 && hour < 5 || hour > 19 && hour < 25) {
         $(".starfield").show();
     }
     if (hour > 6 && hour < 18) {
         $(".sun").show();
     }
-    window.setTimeout("skyconditions();", 1000*10);
+    window.setTimeout("skyconditions()", 1000*10);
 }
 /////////////////////
 // GEO LOCATION

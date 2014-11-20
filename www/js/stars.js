@@ -63,16 +63,16 @@ function start() {
     };
 
     //Canvas and settings
-    var canvas = document.getElementById("canvas"),
+    var canvas = document.getElementById("starfield"),
         context = canvas.getContext("2d"),
         width = canvas.width = window.innerWidth,
         height = canvas.height = window.innerHeight,
         stars = [],
         shootingStars = [],
         layers = [
-            { speed: 0.015, scale: 0.2, count: 320 },
-            { speed: 0.03, scale: 0.5, count: 50 },
-            { speed: 0.05, scale: 0.75, count: 30 }
+            { speed: 0.02, scale: 0.2, count: 300 },
+            { speed: 0.04, scale: 0.4, count: 50 },
+            { speed: 0.06, scale: 0.6, count: 50 }
         ],
         starsAngle = 145,
         shootingStarSpeed = {
@@ -192,8 +192,8 @@ function start() {
 
         context.fillStyle = "rgba(255, 255, 255, " + p.opacity + ")";
         // context.beginPath();
-        // context.arc(x, y, p.radius, 0, Math.PI * 2, false);
-        // context.fill();
+        //context.arc(x, y, p.radius, 0, Math.PI * 2, false);
+        //context.fill();
         var starLength = 5;
         context.beginPath();
         context.moveTo(x - 1, y + 1);
