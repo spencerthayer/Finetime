@@ -139,19 +139,40 @@ button {
 }
 </style>
 </head>
-<script name="variables">
+<script name="gps.js">
+// GPS Data
+if (navigator.geolocation) {
+    var gpsLat = null;
+    var gpsLng = null;
+    navigator.geolocation.getCurrentPosition(
+        function (position) {
+            loadWeather(position.coords.latitude+','+position.coords.longitude);
+            gpsLat = position.coords.latitude;
+            gpsLng = position.coords.longitude;
+            console.log(position);
+            }
+        );
+    }
+</script>
+<script name="variables.js">
 var datetime    = new Date();
 var latitude    = Math.abs(geoplugin_latitude());
 var longitude   = Math.abs(geoplugin_longitude());
+//var latitude  = Math.abs(gpsLat);
+//var longitude = Math.abs(gpsLng);
 var city        = geoplugin_city();
 var region      = geoplugin_regionName();
 var regionCode  = geoplugin_regionCode();
 var country     = geoplugin_countryName();
-//var unit        = "imperial"; //metric|imperial
-var unit            = "f" //fahrenheit|celsius 
+//  Settings
+var unit        = "f";//(f)fahrenheit|(c)celsius 
+var hour24      = true;//Boolean
+var showWeather = true;//Boolean
+var show
+
 var degreesConversion = 180 / Math.PI;
 </script>
-<script name="skyvariables">
+<script name="skyproperties.js">
 //  sunPosition
 var sunPosition                 = SunCalc.getPosition(datetime, latitude, longitude);
     var sunAltitude             = sunPosition.altitude * degreesConversion;
@@ -238,7 +259,57 @@ var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longi
     var moonRise                = moonTimes.rise.toLocaleString();
     var moonSet                 = moonTimes.set.toLocaleString();
 </script>
-<script name="skydata">
+<script name="weather.js">
+function loadWeather(location, woeid) {
+  $.simpleWeather({
+    location: location,
+    woeid: woeid,
+    unit: unit,
+    success: function(weather) {
+        var weatherCode         = weather.code;
+        var weatherTemp         = weather.temp;
+        var weatherUnit         = weather.units.temp;
+        var weatherCity         = weather.city;
+        var weatherRegion       = weather.region;
+        var weatherCurrently    = weather.currently;
+        var weatherAltTemp      = weather.alt.temp;
+        var weatherLink         = weather.link;
+        var degree = "&#186;";
+        $("#weatherCode").html(weatherCode);
+        $("#weatherTemp").html(weatherTemp);
+        $("#weatherUnit").html(weatherUnit);
+        $("#weatherCity").html(weatherCity);
+        $("#weatherRegion").html(weatherRegion);
+        $("#weatherCurrently").html(weatherCurrently);
+        $("#weatherAltTemp").html(weatherAltTemp);
+        $("#weatherLink").html(weatherLink);
+        $("#degree").html(degree);
+//        html = '<h2><i class="icon-'+weatherCode+'"></i> '+weatherTemp+'&deg;'+weatherUnit+'</h2>';
+//        html += '<ul><li>'+weatherCity+', '+weatherRegion+'</li>';
+//        html += '<li class="currently">'+weatherCurrently+'</li>';
+//        html += '<li>'+weatherAltTemp+'&deg;C</li></ul>';  
+//        $("#weather").html(html);
+        console.log(weather);
+        },
+    error: function(error) { console.log(error); }
+  });
+}loadWeather();
+</script>
+<script>
+    document.write("<h1>"+latitude+", "+longitude+"</h1>");
+    document.write("<h2>"+datetime+"</h2>");
+    //
+    document.write("<div id=\"weatherCode\"></div>");
+    document.write("<div id=\"weatherTemp\"></div>");
+    document.write("<div id=\"degree\"></div>");
+    document.write("<div id=\"weatherUnit\"></div>");
+    document.write("<div id=\"weatherCity\"></div>");
+    document.write("<div id=\"weatherRegion\"></div>");
+    document.write("<div id=\"weatherCurrently\"></div>");
+    document.write("<div id=\"weatherAltTemp\"></div>");
+    document.write("<div id=\"degree\"></div>");
+    document.write("<div id=\"weatherLink\"></div>");
+    //
     document.write("<p>sunPosition:<br/>" + sunAltitude + "<br/>" + sunAzimuth + "</p>");
     document.write("<p>nauticalDawn:<br/>" + nauticalDawnTime + "<br/>" + nauticalDawnAltitude + "<br/>" + nauticalDawnAzimuth + "</p>");
     document.write("<p>dawn:<br/>" + dawnTime + "<br/>" + dawnAltitude + "<br/>" + dawnAzimuth + "</p>");
@@ -256,43 +327,6 @@ var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longi
     document.write("<p>moonPosition:<br/>" + moonAltitude + "<br/>" + moonAzimuth + "<br/>" + moonDistance + "</p>");
     document.write("<p>moonLumens:<br/>" + moonAngle + "<br/>" + moonFraction + "<br/>" + moonPhase + "</p>");  
     document.write("<p>moonTimes:<br/>" + "Rise:" + moonRise + "<br/>" + "Set:" + moonSet + "</p>");
-</script>
-<script name="weather">
-// GPS Data
-/**/
-$(function() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    loadWeather(position.coords.latitude+','+position.coords.longitude);
-  });
-});
-/**/
-//var location = latitude+','+longitude;
-//var woeid = null;
-function loadWeather(location, woeid) {
-  $.simpleWeather({
-    location: location,
-    woeid: woeid,
-    unit: unit,
-    success: function(weather) {
-        var weatherCode         = weather.code;
-        var weatherTemp         = weather.temp;
-        var weatherUnit         = weather.units.temp;
-        var weatherCity         = weather.city;
-        var weatherRegion       = weather.region;
-        var weatherCurrently    = weather.currently;
-        var weatherAltTemp      = weather.alt.temp;
-//        html = '<h2><i class="icon-'+weatherCode+'"></i> '+weatherTemp+'&deg;'+weatherUnit+'</h2>';
-//        html += '<ul><li>'+weatherCity+', '+weatherRegion+'</li>';
-//        html += '<li class="currently">'+weatherCurrently+'</li>';
-//        html += '<li>'+weatherAltTemp+'&deg;C</li></ul>';  
-//        $("#weather").html(html);
-    },
-    error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
-    }
-  });
-}loadWeather();
-//document.write("<div id=\"weather\"></div>");
 </script>
 </body>
 </html>
