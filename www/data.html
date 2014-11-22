@@ -103,7 +103,6 @@ if (navigator.geolocation) {
             }
         );
     } else {
-        showLocation(defaultLocation);
         alert("Geolocation is not working!");
     }
 </script>
@@ -121,7 +120,7 @@ var country     = geoplugin_countryName();
 var unit        = "f";//(f)fahrenheit|(c)celsius 
 var hour24      = true;//Boolean
 var showWeather = true;//Boolean
-var show
+var showTimeDay = true;//Boolean
 
 var degreesConversion = 180 / Math.PI;
 </script>
