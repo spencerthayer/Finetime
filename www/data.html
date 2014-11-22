@@ -30,12 +30,13 @@
     font-style: normal;
 }
 i {
-  color: #fff;
-  font-family: weather;
-  font-size: 150px;
-  font-weight: normal;
-  font-style: normal;
-  line-height: 1.0;
+    color: #000;
+    font-family: weather;
+    font-size: 25vmin;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0; padding: 0;
+    line-height: 20%;
 }
 .icon-0:before { content: ":"; }
 .icon-1:before { content: "p"; }
@@ -227,14 +228,11 @@ function loadWeather(location, woeid) {
         var weatherAltTemp      = weather.alt.temp;
         var weatherLink         = weather.link;
         var degree = "&#186;";
-        $("#weatherCode").html(weatherCode);
-        $("#weatherTemp").html(weatherTemp);
-        $("#weatherUnit").html(weatherUnit);
-        $("#weatherCity").html(weatherCity);
-        $("#weatherRegion").html(weatherRegion);
+        $("#weatherCode").html("<i class=\"icon-"+weatherCode+"\"></i>");
+        $("#weatherTemp").html(weatherTemp+degree);
+        $("#weatherCity").html(weatherCity+", "+weatherRegion);
         $("#weatherCurrently").html(weatherCurrently);
-        $("#weatherAltTemp").html(weatherAltTemp);
-        $("#weatherLink").html(weatherLink);
+        $("#weatherAltTemp").html(weatherAltTemp+degree);
         $("#degree").html(degree);
 //        html = '<h2><i class="icon-'+weatherCode+'"></i> '+weatherTemp+'&deg;'+weatherUnit+'</h2>';
 //        html += '<ul><li>'+weatherCity+', '+weatherRegion+'</li>';
@@ -253,14 +251,10 @@ function loadWeather(location, woeid) {
     //
     document.write("<div id=\"weatherCode\"></div>");
     document.write("<div id=\"weatherTemp\"></div>");
-    document.write("<div id=\"degree\"></div>");
     document.write("<div id=\"weatherUnit\"></div>");
     document.write("<div id=\"weatherCity\"></div>");
-    document.write("<div id=\"weatherRegion\"></div>");
     document.write("<div id=\"weatherCurrently\"></div>");
     document.write("<div id=\"weatherAltTemp\"></div>");
-    document.write("<div id=\"degree\"></div>");
-    document.write("<div id=\"weatherLink\"></div>");
     //
     document.write("<p>sunPosition:<br/>" + sunAltitude + "<br/>" + sunAzimuth + "</p>");
     document.write("<p>nauticalDawn:<br/>" + nauticalDawnTime + "<br/>" + nauticalDawnAltitude + "<br/>" + nauticalDawnAzimuth + "</p>");
