@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <title>Finetime</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- ICONS -->
@@ -16,7 +16,6 @@
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
     <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
-    <script language="JavaScript" src="https://raw.githubusercontent.com/mourner/suncalc/master/suncalc.js"></script>
     <!-- STYLES -->
 <style type="text/css" name="weather.css">
 @font-face {
@@ -89,77 +88,74 @@ i {
 </style>
 </head>
 <body style="padding: 45px 25px;font: 13px Open Sans, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;background: #1192d3;">
-<script name="gps.js">
-// GPS Data
-if (navigator.geolocation) {
-    var timeoutVal = 10 * 1000 * 1000;
-    var gpsLat = null;
-    var gpsLng = null;
-    navigator.geolocation.getCurrentPosition(
-        function (position) {
-            loadWeather(position.coords.latitude+','+position.coords.longitude);
-            gpsLat = position.coords.latitude;
-            gpsLng = position.coords.longitude;
-            console.log(position);
-            }
-        );
-    } else {
-        alert("Geolocation is not working!");
-    }
-</script>
-<script name="variables.js">
-var datetime    = new Date();
-var latitude    = Math.abs(geoplugin_latitude());
-var longitude   = Math.abs(geoplugin_longitude());
-//var latitude  = Math.abs(gpsLat);
-//var longitude = Math.abs(gpsLng);
-var city        = geoplugin_city();
-var region      = geoplugin_regionName();
-var regionCode  = geoplugin_regionCode();
-var country     = geoplugin_countryName();
-//  Settings
-var unit        = "f";//(f)fahrenheit|(c)celsius 
-var hour24      = true;//Boolean
-var showWeather = true;//Boolean
-var showTimeDay = true;//Boolean
-
-var degreesConversion = 180 / Math.PI;
-</script>
-
-
-<script src="/js/skyproperties.js"></script>
-<script src="/js/weather.js"></script>
 
 
 
-<script>
-    document.write("<h1>"+latitude+", "+longitude+"</h1>");
-    document.write("<h2>"+datetime+"</h2>");
-    //
-    document.write("<div id=\"weatherCode\"></div>");
-    document.write("<div id=\"weatherTemp\"></div>");
-    document.write("<div id=\"weatherUnit\"></div>");
-    document.write("<div id=\"weatherCity\"></div>");
-    document.write("<div id=\"weatherCurrently\"></div>");
-    document.write("<div id=\"weatherAltTemp\"></div>");
-    //
-    document.write("<p>sunPosition:<br/>" + sunAltitude + "<br/>" + sunAzimuth + "</p>");
-    document.write("<p>nauticalDawn:<br/>" + nauticalDawnTime + "<br/>" + nauticalDawnAltitude + "<br/>" + nauticalDawnAzimuth + "</p>");
-    document.write("<p>dawn:<br/>" + dawnTime + "<br/>" + dawnAltitude + "<br/>" + dawnAzimuth + "</p>");
-    document.write("<p>sunrise:<br/>" + sunriseTime + "<br/>" + sunriseAltitude + "<br/>" + sunriseAzimuth + "</p>");
-    document.write("<p>sunriseEnd:<br/>" + sunriseEndTime + "<br/>" + sunriseEndAltitude + "<br/>" + sunriseEndAzimuth + "</p>");
-    document.write("<p>solarNoon:<br/>" + solarNoonTime + "<br/>" + solarNoonAltitude + "<br/>" + solarNoonAzimuth + "</p>");
-    document.write("<p>goldenHour:<br/>" + goldenHourTime + "<br/>" + goldenHourAltitude + "<br/>" + goldenHourAzimuth + "</p>");
-    document.write("<p>sunsetStart:<br/>" + sunsetStartTime + "<br/>" + sunsetStartAltitude + "<br/>" + sunsetStartAzimuth + "</p>");
-    document.write("<p>sunset:<br/>" + sunsetTime + "<br/>" + sunsetAltitude + "<br/>" + sunsetAzimuth + "</p>");
-    document.write("<p>dusk:<br/>" + duskTime + "<br/>" + duskAltitude + "<br/>" + duskAzimuth + "</p>");
-    document.write("<p>nauticalDusk:<br/>" + nauticalDuskTime + "<br/>" + nauticalDuskAltitude + "<br/>" + nauticalDuskAzimuth + "</p>");
-    document.write("<p>night:<br/>" + nightTime + "<br/>" + nightAltitude + "<br/>" + nightAzimuth + "</p>");
-    document.write("<p>nadir:<br/>" + nadirTime + "<br/>" + nadirAltitude + "<br/>" + nadirAzimuth + "</p>");
-    document.write("<p>nightEnd:<br/>" + nightEndTime + "<br/>" + nightEndAltitude + "<br/>" + nightEndAzimuth + "</p>");
-    document.write("<p>moonPosition:<br/>" + moonAltitude + "<br/>" + moonAzimuth + "<br/>" + moonDistance + "</p>");
-    document.write("<p>moonLumens:<br/>" + moonAngle + "<br/>" + moonFraction + "<br/>" + moonPhase + "</p>");  
-    document.write("<p>moonTimes:<br/>" + "Rise:" + moonRise + "<br/>" + "Set:" + moonSet + "</p>");
-</script>
+
+<script src="lib/ionic/js/ionic.js"></script>
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic/js/ionic-angular.js"></script>
+
+
+
+<script src="lib/SunCalc/suncalc.js"></script>
+<script src="js/gps.js"></script>
+<script src="js/variables.js"></script>
+<script src="js/skyproperties.js"></script>
+<script src="js/weather.js"></script>
+
+
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
+
+
+
+
+
+
+<div ng-app="Finetime">
+    <div ng-controller="DataCtrl">
+
+        <h1>latitude: {{latitude}}, longitude: {{longitude}}</h1>
+        <h2>{{datetime}}</h2>
+
+
+        <div id="weatherCode"></div>
+        <div id="weatherTemp"></div>
+        <div id="weatherUnit"></div>
+        <div id="weatherCity"></div>
+        <div id="weatherCurrently"></div>
+        <div id="weatherAltTemp"></div>
+
+
+        <p>sunPosition:<br/> {{sunAltitude}} <br/> {{sunAzimuth}} </p>
+        <p>nauticalDawn:<br/> {{nauticalDawnTime}} <br/> {{nauticalDawnAltitude}} <br/> {{nauticalDawnAzimuth}} </p>
+        <p>dawn:<br/> {{dawnTime}} <br/> {{dawnAltitude}} <br/> {{dawnAzimuth}} </p>
+        <p>sunrise:<br/> {{sunriseTime}} <br/> {{sunriseAltitude}} <br/> {{sunriseAzimuth}} </p>
+        <p>sunriseEnd:<br/> {{sunriseEndTime}} <br/> {{sunriseEndAltitude}} <br/> {{sunriseEndAzimuth}} </p>
+        <p>solarNoon:<br/> {{solarNoonTime}} <br/> {{solarNoonAltitude}} <br/> {{solarNoonAzimuth}} </p>
+        <p>goldenHour:<br/> {{goldenHourTime}} <br/> {{goldenHourAltitude}} <br/> {{goldenHourAzimuth}} </p>
+        <p>sunsetStart:<br/> {{sunsetStartTime}} <br/> {{sunsetStartAltitude}} <br/> {{sunsetStartAzimuth}} </p>
+        <p>sunset:<br/> {{sunsetTime}} <br/> {{sunsetAltitude}} <br/> {{sunsetAzimuth}} </p>
+        <p>dusk:<br/> {{duskTime}} <br/> {{duskAltitude}} <br/> {{duskAzimuth}} </p>
+        <p>nauticalDusk:<br/> {{nauticalDuskTime}} <br/> {{nauticalDuskAltitude}} <br/> {{nauticalDuskAzimuth}} </p>
+        <p>night:<br/> {{nightTime}} <br/> {{nightAltitude}} <br/> {{nightAzimuth}} </p>
+        <p>nadir:<br/> {{nadirTime}} <br/> {{nadirAltitude}} <br/> {{nadirAzimuth}} </p>
+        <p>nightEnd:<br/> {{nightEndTime}} <br/> {{nightEndAltitude}} <br/> {{nightEndAzimuth}} </p>
+        <p>moonPosition:<br/> {{moonAltitude}} <br/> {{moonAzimuth}} <br/> {{moonDistance}} </p>
+        <p>moonLumens:<br/> {{moonAngle}} <br/> {{moonFraction}} <br/> {{moonPhase}} </p>)
+        <p>moonTimes:<br/> Rise: {{moonRise}} <br/> Set: {{moonSet}} </p>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -19,12 +19,6 @@ function loadWeather(location, woeid) {
         $("#weatherCurrently").html(weatherCurrently);
         $("#weatherAltTemp").html(weatherAltTemp+degree);
         $("#degree").html(degree);
-//        html = '<h2><i class="icon-'+weatherCode+'"></i> '+weatherTemp+'&deg;'+weatherUnit+'</h2>';
-//        html += '<ul><li>'+weatherCity+', '+weatherRegion+'</li>';
-//        html += '<li class="currently">'+weatherCurrently+'</li>';
-//        html += '<li>'+weatherAltTemp+'&deg;C</li></ul>';  
-//        $("#weather").html(html);
-        console.log(weather);
         },
     error: function(error) { console.log(error); }
   });
