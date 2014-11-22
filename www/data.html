@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <title>Finetime</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- ICONS -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="apple-touch-icon" href="img/favicon.png"/>
+    <link rel="apple-touch-icon-precomposed" href="img/favicon.png"/>
+    <!-- SCRIPTS -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
+    <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
+    <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
+    <script language="JavaScript" src="https://raw.githubusercontent.com/mourner/suncalc/master/suncalc.js"></script>
+    <!-- STYLES -->
+    <style type="text/css" name="weather">
+body {
+  padding: 45px 25px;
+  font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: #1192d3;
+}
+
+@font-face {
+    font-family: 'weather';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#weather {
+  width: 500px;
+  margin: 0px auto;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+i {
+  color: #fff;
+  font-family: weather;
+  font-size: 150px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.0;
+}
+
+.icon-0:before { content: ":"; }
+.icon-1:before { content: "p"; }
+.icon-2:before { content: "S"; }
+.icon-3:before { content: "Q"; }
+.icon-4:before { content: "S"; }
+.icon-5:before { content: "W"; }
+.icon-6:before { content: "W"; }
+.icon-7:before { content: "W"; }
+.icon-8:before { content: "W"; }
+.icon-9:before { content: "I"; }
+.icon-10:before { content: "W"; }
+.icon-11:before { content: "I"; }
+.icon-12:before { content: "I"; }
+.icon-13:before { content: "I"; }
+.icon-14:before { content: "I"; }
+.icon-15:before { content: "W"; }
+.icon-16:before { content: "I"; }
+.icon-17:before { content: "W"; }
+.icon-18:before { content: "U"; }
+.icon-19:before { content: "Z"; }
+.icon-20:before { content: "Z"; }
+.icon-21:before { content: "Z"; }
+.icon-22:before { content: "Z"; }
+.icon-23:before { content: "Z"; }
+.icon-24:before { content: "E"; }
+.icon-25:before { content: "E"; }
+.icon-26:before { content: "3"; }
+.icon-27:before { content: "a"; }
+.icon-28:before { content: "A"; }
+.icon-29:before { content: "a"; }
+.icon-30:before { content: "A"; }
+.icon-31:before { content: "6"; }
+.icon-32:before { content: "1"; }
+.icon-33:before { content: "6"; }
+.icon-34:before { content: "1"; }
+.icon-35:before { content: "W"; }
+.icon-36:before { content: "1"; }
+.icon-37:before { content: "S"; }
+.icon-38:before { content: "S"; }
+.icon-39:before { content: "S"; }
+.icon-40:before { content: "M"; }
+.icon-41:before { content: "W"; }
+.icon-42:before { content: "I"; }
+.icon-43:before { content: "W"; }
+.icon-44:before { content: "a"; }
+.icon-45:before { content: "S"; }
+.icon-46:before { content: "U"; }
+.icon-47:before { content: "S"; }
+
+#weather h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+#weather ul {
+  margin: 0;
+  padding: 0;
+}
+
+#weather li {
+  background: #fff;
+  background: rgba(255,255,255,0.90);
+  padding: 20px;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+#weather .currently {
+  margin: 0 20px;
+}
+
+button {
+  display: block;
+  margin: 15px auto;
+  width: 140px;
+  padding: 5px;
+  background: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+}
+</style>
+</head>
+<script name="variables">
+var datetime    = new Date();
+var latitude    = Math.abs(geoplugin_latitude());
+var longitude   = Math.abs(geoplugin_longitude());
+var city        = geoplugin_city();
+var region      = geoplugin_regionName();
+var regionCode  = geoplugin_regionCode();
+var country     = geoplugin_countryName();
+//var unit        = "imperial"; //metric|imperial
+var unit            = "f" //fahrenheit|celsius 
+var degreesConversion = 180 / Math.PI;
+</script>
+<script name="skyvariables">
+//  sunPosition
+var sunPosition                 = SunCalc.getPosition(datetime, latitude, longitude);
+    var sunAltitude             = sunPosition.altitude * degreesConversion;
+    var sunAzimuth              = sunPosition.azimuth * degreesConversion;
+//  getTimes
+var times                       = SunCalc.getTimes(datetime, latitude, longitude);
+//  nauticalDawn
+var nauticalDawnTime            = times.nauticalDawn.toLocaleString();
+    var nauticalDawnPos         = SunCalc.getPosition(times.nauticalDawn, latitude, longitude);
+    var nauticalDawnAltitude    = nauticalDawnPos.altitude * degreesConversion;
+    var nauticalDawnAzimuth     = nauticalDawnPos.azimuth * degreesConversion;
+//  dawn
+var dawnTime                    = times.dawn.toLocaleString();
+    var dawnPos                 = SunCalc.getPosition(times.dawn, latitude, longitude);
+    var dawnAltitude            = dawnPos.altitude * degreesConversion;
+    var dawnAzimuth             = dawnPos.azimuth * degreesConversion;
+//  sunrise
+var sunriseTime                 = times.sunrise.toLocaleString();
+    var sunrisePos              = SunCalc.getPosition(times.sunrise, latitude, longitude);
+    var sunriseAltitude         = sunrisePos.altitude * degreesConversion;
+    var sunriseAzimuth          = sunrisePos.azimuth * degreesConversion;
+//  sunriseEnd
+var sunriseEndTime              = times.sunriseEnd.toLocaleString();
+    var sunriseEndPos           = SunCalc.getPosition(times.sunriseEnd, latitude, longitude);
+    var sunriseEndAltitude      = sunriseEndPos.altitude * degreesConversion;
+    var sunriseEndAzimuth       = sunriseEndPos.azimuth * degreesConversion;
+//  solarNoon
+var solarNoonTime               = times.solarNoon.toLocaleString();
+    var solarNoonPos            = SunCalc.getPosition(times.solarNoon, latitude, longitude);
+    var solarNoonAltitude       = solarNoonPos.altitude * degreesConversion;
+    var solarNoonAzimuth        = solarNoonPos.azimuth * degreesConversion;
+//  goldenHour
+var goldenHourTime              = times.goldenHour.toLocaleString();
+    var goldenHourPos           = SunCalc.getPosition(times.goldenHour, latitude, longitude);
+    var goldenHourAltitude      = goldenHourPos.altitude * degreesConversion;
+    var goldenHourAzimuth       = goldenHourPos.azimuth * degreesConversion;
+//  sunsetStart
+var sunsetStartTime             = times.sunsetStart.toLocaleString();
+    var sunsetStartPos          = SunCalc.getPosition(times.sunsetStart, latitude, longitude);
+    var sunsetStartAltitude     = sunsetStartPos.altitude * degreesConversion;
+    var sunsetStartAzimuth      = sunsetStartPos.azimuth * degreesConversion;
+//  sunset
+var sunsetTime                  = times.sunset.toLocaleString();
+    var sunsetPos               = SunCalc.getPosition(times.sunset, latitude, longitude);
+    var sunsetAltitude          = sunsetPos.altitude * degreesConversion;
+    var sunsetAzimuth           = sunsetPos.azimuth * degreesConversion;
+//  dusk
+var duskTime                    = times.dusk.toLocaleString();
+    var duskPos                 = SunCalc.getPosition(times.dusk, latitude, longitude);
+    var duskAltitude            = duskPos.altitude * degreesConversion;
+    var duskAzimuth             = duskPos.azimuth * degreesConversion;
+//  nauticalDusk
+var nauticalDuskTime            = times.nauticalDusk.toLocaleString();
+    var nauticalDuskPos         = SunCalc.getPosition(times.nauticalDusk, latitude, longitude);
+    var nauticalDuskAltitude    = nauticalDuskPos.altitude * degreesConversion;
+    var nauticalDuskAzimuth     = nauticalDuskPos.azimuth * degreesConversion;
+//  night
+var nightTime                   = times.night.toLocaleString();
+    var nightPos                = SunCalc.getPosition(times.night, latitude, longitude);
+    var nightAltitude           = nightPos.altitude * degreesConversion;
+    var nightAzimuth            = nightPos.azimuth * degreesConversion;
+//  nadir
+var nadirTime                   = times.nadir.toLocaleString();
+    var nadirPos                = SunCalc.getPosition(times.nadir, latitude, longitude);
+    var nadirAltitude           = nadirPos.altitude * degreesConversion;
+    var nadirAzimuth            = nadirPos.azimuth * degreesConversion;
+//  nightEnd
+var nightEndTime                = times.nightEnd.toLocaleString();
+    var nightEndPos             = SunCalc.getPosition(times.nightEnd, latitude, longitude);
+    var nightEndAltitude        = nightEndPos.altitude * degreesConversion;
+    var nightEndAzimuth         = nightEndPos.azimuth * degreesConversion;
+//  moonPosition
+var moonPosition                = SunCalc.getMoonPosition(datetime, latitude, longitude);
+    var moonAltitude            = moonPosition.altitude * degreesConversion;
+    var moonAzimuth             = moonPosition.azimuth * degreesConversion;
+    var moonDistance            = moonPosition.distance + "km";
+//  moonLumens
+var moonLumens                  = SunCalc.getMoonIllumination(datetime);
+    var moonAngle               = moonLumens.angle;
+    var moonFraction    = moonLumens.fraction;
+    var moonPhase       = moonLumens.phase * degreesConversion;
+//  moonTimes
+var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longitude);
+    var moonRise                = moonTimes.rise.toLocaleString();
+    var moonSet                 = moonTimes.set.toLocaleString();
+</script>
+<script name="skydata">
+    document.write("<p>sunPosition:<br/>" + sunAltitude + "<br/>" + sunAzimuth + "</p>");
+    document.write("<p>nauticalDawn:<br/>" + nauticalDawnTime + "<br/>" + nauticalDawnAltitude + "<br/>" + nauticalDawnAzimuth + "</p>");
+    document.write("<p>dawn:<br/>" + dawnTime + "<br/>" + dawnAltitude + "<br/>" + dawnAzimuth + "</p>");
+    document.write("<p>sunrise:<br/>" + sunriseTime + "<br/>" + sunriseAltitude + "<br/>" + sunriseAzimuth + "</p>");
+    document.write("<p>sunriseEnd:<br/>" + sunriseEndTime + "<br/>" + sunriseEndAltitude + "<br/>" + sunriseEndAzimuth + "</p>");
+    document.write("<p>solarNoon:<br/>" + solarNoonTime + "<br/>" + solarNoonAltitude + "<br/>" + solarNoonAzimuth + "</p>");
+    document.write("<p>goldenHour:<br/>" + goldenHourTime + "<br/>" + goldenHourAltitude + "<br/>" + goldenHourAzimuth + "</p>");
+    document.write("<p>sunsetStart:<br/>" + sunsetStartTime + "<br/>" + sunsetStartAltitude + "<br/>" + sunsetStartAzimuth + "</p>");
+    document.write("<p>sunset:<br/>" + sunsetTime + "<br/>" + sunsetAltitude + "<br/>" + sunsetAzimuth + "</p>");
+    document.write("<p>dusk:<br/>" + duskTime + "<br/>" + duskAltitude + "<br/>" + duskAzimuth + "</p>");
+    document.write("<p>nauticalDusk:<br/>" + nauticalDuskTime + "<br/>" + nauticalDuskAltitude + "<br/>" + nauticalDuskAzimuth + "</p>");
+    document.write("<p>night:<br/>" + nightTime + "<br/>" + nightAltitude + "<br/>" + nightAzimuth + "</p>");
+    document.write("<p>nadir:<br/>" + nadirTime + "<br/>" + nadirAltitude + "<br/>" + nadirAzimuth + "</p>");
+    document.write("<p>nightEnd:<br/>" + nightEndTime + "<br/>" + nightEndAltitude + "<br/>" + nightEndAzimuth + "</p>");
+    document.write("<p>moonPosition:<br/>" + moonAltitude + "<br/>" + moonAzimuth + "<br/>" + moonDistance + "</p>");
+    document.write("<p>moonLumens:<br/>" + moonAngle + "<br/>" + moonFraction + "<br/>" + moonPhase + "</p>");  
+    document.write("<p>moonTimes:<br/>" + "Rise:" + moonRise + "<br/>" + "Set:" + moonSet + "</p>");
+</script>
+<script name="weather">
+// GPS Data
+/**/
+$(function() {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    loadWeather(position.coords.latitude+','+position.coords.longitude);
+  });
+});
+/**/
+//var location = latitude+','+longitude;
+//var woeid = null;
+function loadWeather(location, woeid) {
+  $.simpleWeather({
+    location: location,
+    woeid: woeid,
+    unit: unit,
+    success: function(weather) {
+        var weatherCode         = weather.code;
+        var weatherTemp         = weather.temp;
+        var weatherUnit         = weather.units.temp;
+        var weatherCity         = weather.city;
+        var weatherRegion       = weather.region;
+        var weatherCurrently    = weather.currently;
+        var weatherAltTemp      = weather.alt.temp;
+//        html = '<h2><i class="icon-'+weatherCode+'"></i> '+weatherTemp+'&deg;'+weatherUnit+'</h2>';
+//        html += '<ul><li>'+weatherCity+', '+weatherRegion+'</li>';
+//        html += '<li class="currently">'+weatherCurrently+'</li>';
+//        html += '<li>'+weatherAltTemp+'&deg;C</li></ul>';  
+//        $("#weather").html(html);
+    },
+    error: function(error) {
+      $("#weather").html('<p>'+error+'</p>');
+    }
+  });
+}loadWeather();
+//document.write("<div id=\"weather\"></div>");
+</script>
+</body>
+</html>

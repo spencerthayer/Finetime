@@ -71,8 +71,8 @@ function start() {
         shootingStars = [],
         layers = [
             { speed: 0.02, scale: 0.2, count: 300 },
-            { speed: 0.04, scale: 0.4, count: 50 },
-            { speed: 0.06, scale: 0.6, count: 50 }
+            { speed: 0.03, scale: 0.4, count: 50 },
+            { speed: 0.04, scale: 0.6, count: 50 }
         ],
         starsAngle = 145,
         shootingStarSpeed = {

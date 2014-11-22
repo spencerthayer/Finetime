@@ -24,12 +24,18 @@
 - [ ] Slide up and down brightness.
 
 ## MVC
-- [ ] Build alarm CRUD:
+- [ ] Build “Alarm” CRUD:
  - [ ] Slide up and down timer.
  - [ ] Daily repeating alarms.
       - Time [HH:MM]
       - Repeat: MON TUE WEN THU FRI SAT SUN
       - Active [True/False]
+- [ ] Build “Settings” CRUD:
+ - 24 Hour : Boolean
+ - Stars : Numeric (10:100)
+ - Brightness : Numeric (10:100)
+ - Lock Landscape : Boolean
+ - Show Weather : Boolean
 - [ ] Build alarm sounds DB.
 
 ## Content
