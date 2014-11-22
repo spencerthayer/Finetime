@@ -77,8 +77,8 @@ var moonPosition                = SunCalc.getMoonPosition(datetime, latitude, lo
 //  moonLumens
 var moonLumens                  = SunCalc.getMoonIllumination(datetime);
     var moonAngle               = moonLumens.angle;
-    var moonFraction    = moonLumens.fraction;
-    var moonPhase       = moonLumens.phase * degreesConversion;
+    var moonFraction            = moonLumens.fraction;
+    var moonPhase               = moonLumens.phase * degreesConversion;
 //  moonTimes
 var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longitude);
     var moonRise                = moonTimes.rise.toLocaleString();
