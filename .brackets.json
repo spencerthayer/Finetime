@@ -1,5 +1,7 @@
 {
     "jscodehints.detectedExclusions": [
-        "www/js/time.js"
+        "www/js/time.js",
+        "/Users/ramseybarghouti/Documents/Spencer/Finetime/www/js/services.js",
+        "/Users/ramseybarghouti/Documents/Spencer/Finetime/www/js/controllers.js"
     ]
 }
