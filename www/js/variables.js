@@ -13,4 +13,6 @@ var hour24      = true;//Boolean
 var showWeather = true;//Boolean
 var showTimeDay = true;//Boolean
 
-var degreesConversion = 180 / Math.PI;
+//var degreesConversion = 180 / Math.PI;
+
+var degreesConversion = 1;
