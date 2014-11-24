@@ -26,12 +26,12 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         /**/
         var effectController  = {
             turbidity: 0.1,
-            reileigh: .035526207982661595 ,
+            reileigh: -.035526207982661595 ,
             mieCoefficient: 1,
             mieDirectionalG: 0.95,
             luminance: 1,
-            inclination: -.3,
-            azimuth: .25,					
+            inclination: .11492851836516281 ,
+            azimuth: .01902063632856053 ,					
             sun: !true
             }
         var distance = 400000;
