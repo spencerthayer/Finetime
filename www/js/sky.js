@@ -1,5 +1,5 @@
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
-    var container, camera, scene, renderer, sky, sunSphere;
+    var container, camera, scene, renderer, sky, sunSphere, sunAltitude, sunAzimuth;
     //controls, 
     //stats,
     init();
@@ -26,12 +26,12 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         /**/
         var effectController  = {
             turbidity: 0.1,
-            reileigh: -.05,
+            reileigh: .035526207982661595 ,
             mieCoefficient: 1,
             mieDirectionalG: 0.95,
             luminance: 1,
-            inclination: .2,
-            azimuth: 0.35,					
+            inclination: -.3,
+            azimuth: .25,					
             sun: !true
             }
         var distance = 400000;
@@ -41,7 +41,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
             uniforms.reileigh.value = effectController.reileigh;
             uniforms.luminance.value = effectController.luminance;
             uniforms.mieCoefficient.value = effectController.mieCoefficient;
-            uniforms.mieDirectionalG.value = effectController.mieDirectionalG;
+            uniforms.mieDirectionalG.vaue = effectController.mieDirectionalG;
 
             var theta = Math.PI * (effectController.inclination - 0.5);
             var phi = 2 * Math.PI * (effectController.azimuth - 0.5);
@@ -50,7 +50,7 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
             sunSphere.position.y = distance * Math.sin(phi) * Math.sin(theta); 
             sunSphere.position.z = distance * Math.sin(phi) * Math.cos(theta); 
 
-            sunSphere.visible = effectController.sun;
+            //sunSphere.visible = effectController.sun;
 
             sky.uniforms.sunPosition.value.copy(sunSphere.position);
             }
@@ -67,42 +67,25 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         /**/
         guiChanged();
         camera.lookAt(sunSphere.position)
-    }
-
-
+        }
     function init() {
-
         camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 2000000 );
         camera.position.z = 2000;
-
         camera.position.y = 100;
         camera.setLens(20);
-
         scene = new THREE.Scene();
-
         var size = 500;
-
-        var geometryLines = new THREE.BoxGeometry( size, size, size );
-
-        var geometryPlane = new THREE.PlaneGeometry( size * 0, size * 0, 0, 0);
-        geometryPlane.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
-
-
-        var materialLines = new THREE.MeshBasicMaterial( { wireframe: true } );
-
-        meshLines = new THREE.Mesh( geometryLines, materialLines );
-
-        // scene.add( meshLines );
-
-        scene.add( new THREE.Mesh( geometryPlane, materialLines ) );
-
+//        var geometryLines = new THREE.BoxGeometry( size, size, size );
+//        var geometryPlane = new THREE.PlaneGeometry( size * 0, size * 0, 0, 0);
+//        geometryPlane.applyMatrix( new THREE.Matrix4().makeRotationX( - Math.PI / 2 ) );
+//        var materialLines = new THREE.MeshBasicMaterial( { wireframe: true } );
+//        meshLines = new THREE.Mesh( geometryLines, materialLines );
+//        scene.add( meshLines );
+//        scene.add( new THREE.Mesh( geometryPlane, materialLines ) );
         initSky();
-
         renderer = new THREE.WebGLRenderer( { antialias: true } );
         renderer.setSize( window.innerWidth, window.innerHeight );
-
         document.body.appendChild( renderer.domElement );
-
         controls = new THREE.TrackballControls( camera, renderer.domElement );
         /** /
         stats = new Stats();
@@ -113,40 +96,22 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
         document.body.appendChild( stats.domElement );
         /**/
         //
-
-        window.addEventListener( 'resize', onWindowResize, false );
-
-
-    }
-
+        window.addEventListener( 'resize', onWindowResize, true );
+        }
     function onWindowResize() {
-
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-
         renderer.setSize( window.innerWidth, window.innerHeight );
-
         render();
-
-    }
-
+        }
     var time = 0;
-
     function animate() {
-
         time = Date.now();
-
         requestAnimationFrame( animate );
-
         controls.update();
-
         render();
-
-    }
-
+        }
     function render() {
-
         renderer.render( scene, camera );
         stats.update();
-
-    }
+        }
