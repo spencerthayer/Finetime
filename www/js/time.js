@@ -54,9 +54,6 @@ function updateTime() {
 function updateBasedOnNow() {
     setCSSGradientByIndex(updateTime());
 }
-/////////////////////
-// SET TIME
-/////////////////////
 function setCSSGradientByIndex(nInx) {
     if (nInx != inx) {
         inx = nInx;
@@ -65,8 +62,11 @@ function setCSSGradientByIndex(nInx) {
         // convert data to gradient
         var css = toCSSGradient(data);
         // update the background
-        $("#gradient").css("background", css);
+        $("body").css("background", css);
     }
+/////////////////////
+// SET TIME
+/////////////////////
     d.hours(inx);
     $("#hour").html(d.format('hh'));
     $("#minute").html(d.format('mm'));

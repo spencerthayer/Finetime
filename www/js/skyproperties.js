@@ -1,6 +1,3 @@
-
-//var degreesConversion = 180 / Math.PI;
-var degreesConversion = 1 / Math.PI;
 //  sunPosition
 var sunPosition                 = SunCalc.getPosition(datetime, latitude, longitude);
     var sunAltitude             = sunPosition.altitude * degreesConversion;
@@ -80,8 +77,8 @@ var moonPosition                = SunCalc.getMoonPosition(datetime, latitude, lo
 //  moonLumens
 var moonLumens                  = SunCalc.getMoonIllumination(datetime);
     var moonAngle               = moonLumens.angle;
-    var moonFraction            = moonLumens.fraction;
-    var moonPhase               = moonLumens.phase * degreesConversion;
+    var moonFraction    = moonLumens.fraction;
+    var moonPhase       = moonLumens.phase * degreesConversion;
 //  moonTimes
 var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longitude);
     var moonRise                = moonTimes.rise.toLocaleString();

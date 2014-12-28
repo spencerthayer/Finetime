@@ -11,37 +11,122 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="apple-touch-icon" href="img/favicon.png"/>
     <link rel="apple-touch-icon-precomposed" href="img/favicon.png"/>
-    <!-- CDN JAVASCRIPT -->
+    <!-- SCRIPTS -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
     <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
+    <!-- STYLES -->
+<style type="text/css" name="weather.css">
+@font-face {
+    font-family: 'weather';
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+i {
+    color: #000;
+    font-family: weather;
+    font-size: 25vmin;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0; padding: 0;
+    line-height: 20%;
+}
+.icon-0:before { content: ":"; }
+.icon-1:before { content: "p"; }
+.icon-2:before { content: "S"; }
+.icon-3:before { content: "Q"; }
+.icon-4:before { content: "S"; }
+.icon-5:before { content: "W"; }
+.icon-6:before { content: "W"; }
+.icon-7:before { content: "W"; }
+.icon-8:before { content: "W"; }
+.icon-9:before { content: "I"; }
+.icon-10:before { content: "W"; }
+.icon-11:before { content: "I"; }
+.icon-12:before { content: "I"; }
+.icon-13:before { content: "I"; }
+.icon-14:before { content: "I"; }
+.icon-15:before { content: "W"; }
+.icon-16:before { content: "I"; }
+.icon-17:before { content: "W"; }
+.icon-18:before { content: "U"; }
+.icon-19:before { content: "Z"; }
+.icon-20:before { content: "Z"; }
+.icon-21:before { content: "Z"; }
+.icon-22:before { content: "Z"; }
+.icon-23:before { content: "Z"; }
+.icon-24:before { content: "E"; }
+.icon-25:before { content: "E"; }
+.icon-26:before { content: "3"; }
+.icon-27:before { content: "a"; }
+.icon-28:before { content: "A"; }
+.icon-29:before { content: "a"; }
+.icon-30:before { content: "A"; }
+.icon-31:before { content: "6"; }
+.icon-32:before { content: "1"; }
+.icon-33:before { content: "6"; }
+.icon-34:before { content: "1"; }
+.icon-35:before { content: "W"; }
+.icon-36:before { content: "1"; }
+.icon-37:before { content: "S"; }
+.icon-38:before { content: "S"; }
+.icon-39:before { content: "S"; }
+.icon-40:before { content: "M"; }
+.icon-41:before { content: "W"; }
+.icon-42:before { content: "I"; }
+.icon-43:before { content: "W"; }
+.icon-44:before { content: "a"; }
+.icon-45:before { content: "S"; }
+.icon-46:before { content: "U"; }
+.icon-47:before { content: "S"; }
+</style>
 </head>
-<body style="background:#FFF;">
-    <canvas id="starfield" class="starfield"></canvas>
-    <div id="clock">
-        <div id="info">
-            <div id="time">
-                <span id="hour"></span><span class="colon">:</span><span id="minute"></span>
-                <div id="side">
-                    <span id="second"></span>
-                    <span id="meridian"></span>
-                </div>
-            </div>
-            <div id="date"></div>
-            <div id="weather">
-                <div id="weatherTemp"></div>
-                <div id="weatherCity"></div>
-                <div id="weatherCode"></div>
-                <div id="weatherCurrently"></div>
-            </div>
-        </div>
-    </div>
-<div ng-app="Finetime" style="position:absolute;top:10px;left:500px;z-index:100;display:block;">
+<body style="padding: 45px 25px;font: 13px Open Sans, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;background: #1192d3;">
+
+
+
+
+<script src="lib/ionic/js/ionic.js"></script>
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/ionic/js/ionic-angular.js"></script>
+
+
+
+<script src="lib/SunCalc/suncalc.js"></script>
+<script src="js/gps.js"></script>
+<script src="js/variables.js"></script>
+<script src="js/skyproperties.js"></script>
+<script src="js/weather.js"></script>
+
+
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
+
+
+
+
+
+
+<div ng-app="Finetime">
     <div ng-controller="DataCtrl">
 
         <h1>latitude: {{latitude}}<br> longitude: {{longitude}}</h1>
         <h2>{{datetime}}</h2>
+
+
+        <div id="weatherCode"></div>
+        <div id="weatherTemp"></div>
+        <div id="weatherUnit"></div>
+        <div id="weatherCity"></div>
+        <div id="weatherCurrently"></div>
+        <div id="weatherAltTemp"></div>
 
 
         <p>
@@ -146,18 +231,14 @@
         </p>
     </div>
 </div>
-<!-- JAVASCRIPT -->
-<script src="lib/ionic/js/ionic.js"></script>
-<script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/ionic/js/ionic-angular.js"></script>
-<script src="js/variables.js"></script>
-<script src="js/gps.js"></script>
-<!--<script src="js/time.js"></script>-->
-<script src="lib/SunCalc/suncalc.js"></script>
-<script src="js/skyproperties.js"></script>
-<script src="js/weather.js"></script>
-<script src="js/app.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
