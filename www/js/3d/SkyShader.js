@@ -46,7 +46,6 @@ THREE.ShaderLib['sky'] = {
 
 	fragmentShader: [
 
-
 		"uniform sampler2D skySampler;",
 		"uniform vec3 sunPosition;",
 		"varying vec3 vWorldPosition;",
@@ -66,7 +65,6 @@ THREE.ShaderLib['sky'] = {
 		"uniform float reileigh;",
 		"uniform float mieCoefficient;",
 		"uniform float mieDirectionalG;",
-
 
 		"vec3 sunDirection = normalize(sunPosition);",
 		"float reileighCoefficient = reileigh;",
@@ -247,7 +245,7 @@ THREE.Sky = function () {
 		side: THREE.BackSide
 	} );
 
-	var skyGeo = new THREE.SphereGeometry( 450000, 32, 15 );
+	var skyGeo = new THREE.SphereGeometry( 5120, 24, 24);
 	var skyMesh = new THREE.Mesh( skyGeo, skyMat );
 
 

@@ -1,5 +1,7 @@
+var testDeg = 0.25;
 if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     var container, camera, scene, renderer, sky, sunSphere, sunAltitude, sunAzimuth;
+
     //controls, 
     //stats,
     init();
@@ -23,15 +25,21 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
             luminance: 1,
             inclination: 0.51,
             azimuth: 0.125,	
-        /**/
-        var effectController  = {
+        /** /
             turbidity: 0.1,
             reileigh: -.035526207982661595 ,
             mieCoefficient: 1,
             mieDirectionalG: 0.95,
             luminance: 1,
-            inclination: .11492851836516281 ,
-            azimuth: .01902063632856053 ,					
+        /**/
+        var effectController  = {
+            turbidity: 5,
+            reileigh: 1,
+            mieCoefficient: 0.01,
+            mieDirectionalG: 1,
+            luminance: 1,
+            inclination: 0.2, // 0 High 1 Low
+            azimuth: 0.18, // Facing front,					
             sun: !true
             }
         var distance = 400000;
@@ -71,8 +79,8 @@ if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
     function init() {
         camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 2000000 );
         camera.position.z = 2000;
-        camera.position.y = 100;
-        camera.setLens(20);
+        camera.position.y = -1000;
+        camera.setLens(18);
         scene = new THREE.Scene();
         var size = 500;
 //        var geometryLines = new THREE.BoxGeometry( size, size, size );

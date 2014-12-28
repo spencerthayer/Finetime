@@ -18,17 +18,13 @@
     <script language="JavaScript" src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
     <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
     <script language="JavaScript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
-    <!-- 3D -->
-    <script language="JavaScript" src="js/3d/three.min.js"></script>
-    <script language="JavaScript" src="js/3d/TrackballControls.js"></script>
-    <script language="JavaScript" src="js/3d/SkyShader.js"></script>
-    <script language="JavaScript" src="js/3d/Detector.js"></script>
-    <script language="JavaScript" src="js/3d/dat.gui.min.js"></script>
-    <script language="JavaScript" src="js/3d/stats.min.js"></script>
 </head>
 <body>
+    <canvas id="gradient" class="gradient"></canvas>
     <canvas id="starfield" class="starfield"></canvas>
+<!--    <canvas id="sun" class="sun"></canvas>-->
     <div id="clock">
+        <h1><script>document.write(sunAzimuth);</script></h1>
         <div id="info">
             <div id="time">
                 <span id="hour"></span><span class="colon">:</span><span id="minute"></span>
@@ -46,129 +42,28 @@
             </div>
         </div>
     </div>
-    <script language="JavaScript" src="js/sky.js"></script>
-<div ng-app="Finetime" style="position:absolute;top:10px;left:10px;z-index:100;display:none;">
-    <div ng-controller="DataCtrl">
-
-        <h1>latitude: {{latitude}}<br> longitude: {{longitude}}</h1>
-        <h2>{{datetime}}</h2>
-
-
-        <p>
-            sunPosition:
-            <br/> {{sunAltitude}} 
-            <br/> {{sunAzimuth}} 
-        </p>
-        <p>
-            nauticalDawn:
-            <br/> {{nauticalDawnTime}} 
-            <br/> {{nauticalDawnAltitude}} 
-            <br/> {{nauticalDawnAzimuth}} 
-        </p>
-        <p>
-            dawn:
-            <br/> {{dawnTime}} 
-            <br/> {{dawnAltitude}} 
-            <br/> {{dawnAzimuth}} 
-        </p>
-        <p>
-            sunrise:
-            <br/> {{sunriseTime}} 
-            <br/> {{sunriseAltitude}} 
-            <br/> {{sunriseAzimuth}} 
-        </p>
-        <p>
-            sunriseEnd:
-            <br/> {{sunriseEndTime}} 
-            <br/> {{sunriseEndAltitude}} 
-            <br/> {{sunriseEndAzimuth}} 
-        </p>
-        <p>
-            solarNoon:
-            <br/> {{solarNoonTime}} 
-            <br/> {{solarNoonAltitude}} 
-            <br/> {{solarNoonAzimuth}} 
-        </p>
-        <p>
-            goldenHour:
-            <br/> {{goldenHourTime}} 
-            <br/> {{goldenHourAltitude}} 
-            <br/> {{goldenHourAzimuth}} 
-        </p>
-        <p>
-            sunsetStart:
-            <br/> {{sunsetStartTime}} 
-            <br/> {{sunsetStartAltitude}} 
-            <br/> {{sunsetStartAzimuth}} 
-        </p>
-        <p>
-            sunset:
-            <br/> {{sunsetTime}} 
-            <br/> {{sunsetAltitude}} 
-            <br/> {{sunsetAzimuth}} 
-        </p>
-        <p>
-            dusk:
-            <br/> {{duskTime}} 
-            <br/> {{duskAltitude}} 
-            <br/> {{duskAzimuth}} 
-        </p>
-        <p>
-            nauticalDusk:
-            <br/> {{nauticalDuskTime}} 
-            <br/> {{nauticalDuskAltitude}} 
-            <br/> {{nauticalDuskAzimuth}} 
-        </p>
-        <p>
-            night:
-            <br/> {{nightTime}} 
-            <br/> {{nightAltitude}} 
-            <br/> {{nightAzimuth}} 
-        </p>
-        <p>
-            nadir:
-            <br/> {{nadirTime}} 
-            <br/> {{nadirAltitude}} 
-            <br/> {{nadirAzimuth}} 
-        </p>
-        <p>
-            nightEnd:
-            <br/> {{nightEndTime}} 
-            <br/> {{nightEndAltitude}} 
-            <br/> {{nightEndAzimuth}} 
-        </p>
-        <p>
-            moonPosition:
-            <br/> {{moonAltitude}} 
-            <br/> {{moonAzimuth}} 
-            <br/> {{moonDistance}} 
-        </p>
-        <p>
-            moonLumens:
-            <br/> {{moonAngle}} 
-            <br/> {{moonFraction}} 
-            <br/> {{moonPhase}} 
-        </p>
-        <p>
-            moonTimes:
-            <br/> Rise: {{moonRise}} 
-            <br/> Set: {{moonSet}} 
-        </p>
-    </div>
-</div>
 <!-- JAVASCRIPT -->
-<script src="lib/ionic/js/ionic.js"></script>
-<script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/ionic/js/ionic-angular.js"></script>
-<script src="js/variables.js"></script>
-<script src="js/gps.js"></script>
-<script src="js/time.js"></script>
-<script src="lib/SunCalc/suncalc.js"></script>
-<script src="js/skyproperties.js"></script>
-<script src="js/weather.js"></script>
-<script src="js/app.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
-<script src="js/stars.js"></script>
+    <!-- 3D -->
+        <script language="JavaScript" src="js/3d/three.min.js"></script>
+        <script language="JavaScript" src="js/3d/TrackballControls.js"></script>
+        <script language="JavaScript" src="js/3d/SkyShader.js"></script>
+        <script language="JavaScript" src="js/3d/Detector.js"></script>
+        <script language="JavaScript" src="js/3d/dat.gui.min.js"></script>
+        <script language="JavaScript" src="js/3d/stats.min.js"></script>
+    <!---->
+    <script language="JavaScript" src="js/sky.js"></script>
+    <script src="lib/ionic/js/ionic.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic/js/ionic-angular.js"></script>
+    <script src="js/variables.js"></script>
+    <script src="js/gps.js"></script>
+    <script src="js/time.js"></script>
+    <script src="lib/SunCalc/suncalc.js"></script>
+    <script src="js/skyproperties.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/stars.js"></script>
 </body>
 </html>

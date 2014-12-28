@@ -65,7 +65,7 @@ function setCSSGradientByIndex(nInx) {
         // convert data to gradient
         var css = toCSSGradient(data);
         // update the background
-        $("body").css("background", css);
+        $("#gradient").css("background", css);
     }
     d.hours(inx);
     $("#hour").html(d.format('hh'));

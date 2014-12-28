@@ -1,6 +1,6 @@
 
 //var degreesConversion = 180 / Math.PI;
-var degreesConversion = .5 / Math.PI;
+var degreesConversion = 1 / Math.PI;
 //  sunPosition
 var sunPosition                 = SunCalc.getPosition(datetime, latitude, longitude);
     var sunAltitude             = sunPosition.altitude * degreesConversion;
