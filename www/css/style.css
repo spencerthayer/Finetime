@@ -11,7 +11,6 @@
     font-size: 9vmin;
     line-height: 100%;
     font-weight: 100;
-    color: #FFF;
 }
 html, body {
     width: 100%; min-width: 100%;
@@ -34,6 +33,7 @@ html, body {
     top: 0px; left: 0px; bottom: 0px; right: 0px;
     height: 70vmin;
     width: 100vmin;
+    color: #FFF;
 }
 #info {
     text-align: right;

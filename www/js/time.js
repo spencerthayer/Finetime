@@ -38,7 +38,6 @@ var grads = [
 function toCSSGradient(data) {
     var css = "linear-gradient(to bottom, ";
     var len = data.length;
-
     for (var i = 0; i < len; i++) {
         var item = data[i];
         css += " #" + item.color + " " + item.position + "%";
@@ -50,6 +49,7 @@ function updateTime() {
     d = moment();
     d.local();
     return d.hours();
+    /** /return d.seconds();/**/
 }
 function updateBasedOnNow() {
     setCSSGradientByIndex(updateTime());
@@ -81,11 +81,21 @@ function setCSSGradientByIndex(nInx) {
 function skyconditions() {
     var dt = new Date();
     var hour = dt.getHours();
-    if (hour > -0.1 && hour < 5 || hour > 19 && hour < 25) {
+    if (hour > -0.1 && hour < 5 || hour > 20 && hour < 25) {
         $(".starfield").show();
+    } else {
+        $(".starfield").hide();
     }
     if (hour > 6 && hour < 18) {
         $(".sun").show();
+    } else {
+        $(".sun").hide();
+    }
+    if (hour > 6 && hour < 14) {
+        $(".sun").show();
+        $("#clock").css("color", "#515175")
+    } else {
+        $("#clock").css("color", "#FFF")
     }
     window.setTimeout("skyconditions()", 1000*10);
 }
