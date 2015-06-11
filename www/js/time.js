@@ -93,7 +93,7 @@ function skyconditions() {
     }
     if (hour > 6 && hour < 14) {
         $(".sun").show();
-        $("#clock").css("color", "#515175")
+        $("#clock").css("color", "#20202c")
     } else {
         $("#clock").css("color", "#FFF")
     }
