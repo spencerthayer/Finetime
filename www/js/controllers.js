@@ -1,6 +1,7 @@
 angular.module('Finetime.controllers', [])
 
 .controller('DataCtrl', function($scope){
+    
 	$scope.latitude = latitude;
 	$scope.longitude = longitude;
 	$scope.datetime = datetime;
@@ -70,6 +71,10 @@ angular.module('Finetime.controllers', [])
 
 	$scope.moonRise = moonRise ;
 	$scope.moonSet = moonSet;
-
+    
+    multiplier = 100;
+    $scope.sunx = multiplier * (Math.cos(sunAltitude) * Math.cos(sunAzimuth));
+    $scope.suny = multiplier * (Math.cos(sunAltitude) * Math.sin(sunAzimuth));
+    $scope.sunz = multiplier * (Math.sin(sunAltitude));
 
 });

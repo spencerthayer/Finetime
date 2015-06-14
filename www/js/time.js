@@ -1,8 +1,83 @@
-/**** 
-UGH! TIME.JS STARTED JUST FOR TIME CALCULATION.
-I HAVE TO BREAK THIS UP INTO DIFFERENT JS FILES.
-BUT I AM SOOOOO LAZY. SOMEONE ELSE SHOULD DO IT.
-****/      
+/////////////////////
+// GLOBALS
+/////////////////////
+var datetime    = new Date();
+    var hour = datetime.getHours();
+//var city        = geoplugin_city();
+//var region      = geoplugin_regionName();
+//var regionCode  = geoplugin_regionCode();
+//var country     = geoplugin_countryName();
+//  Settings
+//var unit        = "f";//(f)fahrenheit|(c)celsius 
+//var hour24      = true;//Boolean
+//var showWeather = true;//Boolean
+//var showTimeDay = true;//Boolean
+
+//var degreesConversion = 180 / Math.PI;
+
+
+/////////////////////
+// GEO LOCATION
+/////////////////////
+function getLocation() {
+    if (navigator.geolocation) {
+        var timeoutVal = 10 * 1000 * 1000;
+        navigator.geolocation.getCurrentPosition(
+            showLocation,
+            function () {
+                showLocation(defaultLocation);
+            }, {
+                enableHighAccuracy: true,
+                timeout: timeoutVal,
+                maximumAge: 0
+            }
+        );
+    } else {
+        showLocation(defaultLocation);
+        alert("Geolocation is not working!");
+    }
+}
+function showLocation(position) {
+    console.log(position);
+//    getSunInfo(position.coords.latitude, position.coords.longitude, position.coords.altitude);
+    getWeather(position.coords.latitude, position.coords.longitude, showWeather);
+}
+/////////////////////
+// GET WEATHER
+/////////////////////
+function getWeather(lat, lon, callback) {
+    var api = "http://api.openweathermap.org/data/2.5/weather";
+    api += "?lat=" + lat;
+    api += "&lon=" + lon;
+    $("#weatherId").html("Loading weather!");
+    $.ajax({
+        url: api,
+        dataType: 'jsonp',
+        success: callback
+    });
+}
+/////////////////////
+// WEATHER OUTPUT
+/////////////////////
+function kelvinToFDegrees(kelvin) {
+    return Math.round((1.8 * (kelvin - 273) + 32));
+}
+function showWeather(response) {
+    var lat = response.coord.lat;
+    var lon = response.coord.lon;
+    var weatherDesc = response.weather[0].description;
+    var temp = kelvinToFDegrees(response.main.temp);
+    var degree = "&#186;";
+    var locationName = response.name;
+    var geolocation = lat + ', ' + lon;
+    $("#verb").html(weatherDesc);
+    $("#temp").html(temp);
+    $("#degree").html(degree);
+    $("#city").html(locationName);
+    $("#geolocation").html(geolocation);
+    console.log(response);
+    console.log(result);
+}
 /////////////////////
 // GRADIENT COLORS
 /////////////////////
@@ -79,8 +154,6 @@ function setCSSGradientByIndex(nInx) {
 // ACTIVATE SUN & STARFIELD
 /////////////////////
 function skyconditions() {
-    var dt = new Date();
-    var hour = dt.getHours();
     if (hour > -0.1 && hour < 5 || hour > 20 && hour < 25) {
         $(".starfield").show();
     } else {
@@ -91,7 +164,7 @@ function skyconditions() {
     } else {
         $(".sun").hide();
     }
-    if (hour > 6 && hour < 14) {
+    if (hour > 5 && hour < 9) {
         $(".sun").show();
         $("#clock").css("color", "#20202c")
     } else {
@@ -100,101 +173,19 @@ function skyconditions() {
     window.setTimeout("skyconditions()", 1000*10);
 }
 /////////////////////
-// GEO LOCATION
-/////////////////////
-function getLocation() {
-    if (navigator.geolocation) {
-        var timeoutVal = 10 * 1000 * 1000;
-        navigator.geolocation.getCurrentPosition(
-            showLocation,
-            function () {
-                showLocation(defaultLocation);
-            }, {
-                enableHighAccuracy: true,
-                timeout: timeoutVal,
-                maximumAge: 0
-            }
-        );
-    } else {
-        showLocation(defaultLocation);
-        alert("Geolocation is not working!");
-    }
-}
-function showLocation(position) {
-    console.log(position);
-    getSunInfo(position.coords.latitude, position.coords.longitude);
-    getWeather(position.coords.latitude, position.coords.longitude, showWeather);
-}
-/////////////////////
-// GET WEATHER
-/////////////////////
-function getWeather(lat, lon, callback) {
-    var api = "http://api.openweathermap.org/data/2.5/weather";
-    api += "?lat=" + lat;
-    api += "&lon=" + lon;
-    $("#weatherId").html("Loading weather!");
-    $.ajax({
-        url: api,
-        dataType: 'jsonp',
-        success: callback
-    });
-}
-/////////////////////
 // GET SUN POSITION
 /////////////////////
-function getSunInfo(lat, lng) {
-    var data = new Date();
-    var di = SunCalc.getDayInfo(data, lat, lng);
-    var sunrisePos = SunCalc.getSunPosition(di.sunrise.start, lat, lng);
-    var sunsetPos = SunCalc.getSunPosition(di.sunset.end, lat, lng);
-    var sR = moment(di.sunrise.start);
-    var sS = moment(di.sunset.end);
-    var daylightHours = sS.diff(sR, 'hours');
-    console.log("getDayInfo", di);
-    console.log("daylightHours", daylightHours);
-}
-/////////////////////
-// WEATHER OUTPUT
-/////////////////////
-function kelvinToFDegrees(kelvin) {
-    return Math.round((1.8 * (kelvin - 273) + 32));
-}
-function showWeather(response) {
-    var lat = response.coord.lat;
-    var lon = response.coord.lon;
-    var weatherDesc = response.weather[0].description;
-    var temp = kelvinToFDegrees(response.main.temp);
-    var degree = "&#186;";
-    var locationName = response.name;
-    var geolocation = lat + ', ' + lon;
-    $("#verb").html(weatherDesc);
-    $("#temp").html(temp);
-    $("#degree").html(degree);
-    $("#city").html(locationName);
-    $("#geolocation").html(geolocation);
-    console.log(response);
-    console.log(result);
-}
-/////////////////////
-// WEATHER CONDITIONS
-/////////////////////
-
-/////////////////////
-// CLOCK SPEED
-/////////////////////
-// TIME POLLING
-var interval = setInterval(function () {
-    updateBasedOnNow();
-}, 1 * 60 );
-// GEO POLLING
-var interval2 = setInterval(function () {
-    getLocation();
-}, 1000 * 60 * 60 );
-/////////////////////
-// FORCE UPDATE
-/////////////////////
-$("#info").click(function () {
-});
+//function getSunInfo(lat, lng) {
+//    var data = new Date();
+//    var di = SunCalc.getDayInfo(data, lat, lng);
+//    var sunrisePos = SunCalc.getSunPosition(di.sunrise.start, lat, lng);
+//    var sunsetPos = SunCalc.getSunPosition(di.sunset.end, lat, lng);
+//    var sR = moment(di.sunrise.start);
+//    var sS = moment(di.sunset.end);
+//    var daylightHours = sS.diff(sR, 'hours');
+//    console.log("getDayInfo", di);
+//    console.log("daylightHours", daylightHours);
+//}
 /////////////////////
 // SHADOW
 /////////////////////
@@ -229,3 +220,16 @@ var defaultLocation = {
 setCSSGradientByIndex(h);
 getLocation(h);
 skyconditions();
+
+/////////////////////
+// TIME POLLING
+/////////////////////
+var interval1 = setInterval(function () {
+    updateBasedOnNow();
+}, 1000 / 2 );
+/////////////////////
+// GEO POLLING
+/////////////////////
+var interval2 = setInterval(function () {
+    getLocation();
+}, 1000 * 2 );
