@@ -76,7 +76,7 @@ function showWeather(response) {
     $("#city").html(locationName);
     $("#geolocation").html(geolocation);
     console.log(response);
-    console.log(result);
+//    console.log(result);
 }
 /////////////////////
 // GRADIENT COLORS
@@ -219,7 +219,7 @@ var defaultLocation = {
 };
 setCSSGradientByIndex(h);
 getLocation(h);
-skyconditions();
+//skyconditions();
 
 /////////////////////
 // TIME POLLING
