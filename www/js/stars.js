@@ -1,7 +1,7 @@
 //"use strict";
-window.onload = function() {
-    setTimeout(starfield, 200);
-};
+//window.onload = function() {
+//    setTimeout(starfield, 200);
+//};
 function starfield() {
     //Helpers
     function lineToAngle(x1, y1, length, radians) {

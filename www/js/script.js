@@ -6,12 +6,12 @@ Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
 }
+datetime= new Date()./*FOR*/addHours(4)/*DEBUGGING*/;
 function zeropadder(n) {
   return (parseInt(n,10) < 10 ? '0' : '')+n;
 }
 function updateTime(){
-    datetime= new Date().addHours(0);
-        var hh = datetime.getHours();
+        hh = datetime.getHours();
         var mm = datetime.getMinutes();
         var ss = datetime.getSeconds();
         var meridian = (hh >= 12?'pm':'am');
@@ -57,7 +57,6 @@ function geoSuccess(position) {
         getSky();
         getStellar();
         sound();
-//    return;
 }
 function geoError() {
     console.log("WARNING: NO GPS DATA RETURNED!");
@@ -180,6 +179,11 @@ function getSky() {
 function getStellar() {
     var r                           = 1.75;
     var x                           = 1;
+    var hx = hh % 12 || 12;
+    //var meridian = (hh >= 12?'pm':'am');
+    var stellarOpacity                  = .8
+                                        //if(hh >= 12) { (hh-12)/hh*10; } else { (hh-12)/hh*-10; };
+    console.log("SUNOP:"+ hh +" / "+ hx +" / "+ stellarOpacity);
     //  sunPosition
     var sunPosition                 = SunCalc.getPosition(datetime, lat, lon);
         var sunAltitude180          = sunPosition.altitude * 180 / Math.PI;
@@ -188,9 +192,7 @@ function getStellar() {
         var sunAzimuth360           = (sunPosition.azimuth * 180 / Math.PI + 180) % 360;
         sunx = r * sunAzimuth180;
         suny = r * sunAltitude180;
-//      sunO = ( Math.abs( Math.sin(sunPosition.azimuth) / Math.sin(sunPosition.altitude) ) *5);
-//      sunz = sunAltitude360 * (Math.cos(sunAzimuth360) + Math.i(Math.sin(sunAzimuth360)) );
-//        function() {
+    // LAUNCH SOL
             if(datetime >= sunRise && datetime <= sunSet) {
                 $("#sun").velocity(
                     {
@@ -200,11 +202,10 @@ function getStellar() {
                 );
                 $("#sun").velocity(
                     {
-                        opacity: .8,
+                        opacity: stellarOpacity,
                     }
                 );
             } else { };
-//        };
     //  moonPosition
     var moonPosition                = SunCalc.getMoonPosition(datetime, lat, lon);
         var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
@@ -215,26 +216,31 @@ function getStellar() {
         var moonx                   = x * moonAzimuth180*-2;
         var moony                   = r * moonAltitude180*-2;
         console.log("dawnTime: " + dawnTime);
-            if(datetime <= duskTime && datetime <= sunriseEndTime) {
-                $("#moon").velocity(
-                    {
-                        translateX: moonx + "%",
-                        translateY: moony + "%",
-                    }
-                );
-                $("#moon").velocity(
-                    {
-                        opacity: .8
-                    }
-                );
-//                setInterval(function() {
-//                   $("#moon").toggleClass("moonlight01");
-//                   $("#moon").toggleClass("moonlight02");
-//                }, 1000);
-            } else {};
-
-    $("#starfield").show();
-
+    // LAUNCH MOON
+        if(datetime >= duskTime /*&& datetime <= sunriseEndTime*/) {
+            $("#moon").velocity(
+                {
+                    translateX: moonx + "%",
+                    translateY: moony + "%",
+                }
+            );
+            $("#moon").velocity(
+                {
+                    opacity: stellarOpacity
+                }
+            );
+        } else {};
+     // LAUNCH STARFIELD
+        if (datetime >= nauticalDuskTime /*&& datetime <= dawnTime*/) {
+            $(".starfield").show();
+            starfield();
+        } else {
+            $(".starfield").hide();
+        }
+    //window.onload = function() {
+    //    setTimeout(starfield, 200);
+    //};
+    //$("#starfield").show();
     shadowMove();
     return;
 }
@@ -267,11 +273,7 @@ function shadowMove() {
 // ACTIVATE SUN & STARFIELD
 /////////////////////
 //function skyconditions() {
-//    if (hour > -0.1 && hour < 5 || hour > 20 && hour < 25) {
-//        $(".starfield").show();
-//    } else {
-//        $(".starfield").hide();
-//    }
+
 //    if (hour > 6 && hour < 18) {
 //        $(".sun").show();
 //    } else {
@@ -290,7 +292,7 @@ function shadowMove() {
 // GRADIENT BACKGROUND
 // gradient.js
 /**/////////////////////
-var datetime= new Date();
+//var datetime= new Date();
     var hh = datetime.getHours();
     var mm = datetime.getMinutes();
     var ss = datetime.getSeconds();
@@ -310,7 +312,7 @@ function init() {
         "left": "0px",
         "bottom": "0px",
         "right": "0px",
-        "z-index": "-1"
+        "z-index": "0"
     });
     layer2.style.opacity = 0;
     document.body.appendChild (layer1);
@@ -379,6 +381,7 @@ setInterval(function(){
     getSky();
     getWeather();
 },(1000*60)*10);
+//"use strict";
 /**/////////////////////
 // CONSOLE
 /**/////////////////////

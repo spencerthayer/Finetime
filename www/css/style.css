@@ -21,7 +21,7 @@ html, body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-/*    background: #000019;*/
+    background: #999;
     color: #fff;
 }
 /**************/
@@ -36,7 +36,7 @@ html, body {
     top: 0px; left: 0px; bottom: 0px; right: 0px;
     height: 70vmin;
     width: 100vmin;
-    z-index: 10;
+    z-index: 1;
 }
 #time {
     margin-bottom: 2vmin;
@@ -118,6 +118,7 @@ html, body {
     display: none;
 }
 /**************/
+
 #sun {
 /*    display: none;*/
 /*    visibility: hidden;*/
@@ -134,6 +135,7 @@ html, body {
     background: linear-gradient(to bottom, #ff8 50%,#fe8 100%);
     border-radius:100%;
     box-shadow:0 0 10vw #ff9;
+    box-shadow: inset 0vw 0vw 5vw 1vw #fe8, 0px 0px 8vw 3vw #ff9;
 }
 #moon {
 /*    display: none;*/
@@ -148,18 +150,9 @@ html, body {
     width:10vw;
     height:10vw;
     z-index: 3;
-/*
-    background: linear-gradient(to bottom, #eef 75%,#fff 100%);
-    border-radius:100%;
-    box-shadow:0 0 5vw #eee;
-*/
-}
-#moon {
-    width: 10vw;
-    height: 10vw; 
     background: #ffffff;
     border-radius: 100%;
-    box-shadow: inset 0vw 0vw 5vw 1vw #6D8F94, 0px 0px 8vw 3vw rgba(143, 189, 255, .7);
+    box-shadow: inset 0vw 0vw 5vw 1vw #ccc, 0px 0px 8vw 3vw rgba(143, 189, 255, .7);
 }
 /*
 .moonlight01 {
