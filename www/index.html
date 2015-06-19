@@ -7,111 +7,23 @@
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
     <title>Finetime</title>
     <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="css/weather.css" media="screen" type="text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <!-- ICONS -->
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="apple-touch-icon" href="img/favicon.png"/>
     <link rel="apple-touch-icon-precomposed" href=" img/favicon.png"/>
     <!--link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css"-->
-    <script>
-/////////////////////
-//SUN CALC
-/////////////////////
-/**
-var sunPosition                 = SunCalc.getPosition(datetime, latitude, longitude);
-    var sunAltitude             = sunPosition.altitude * degreesConversion;
-    var sunAzimuth              = sunPosition.azimuth * degreesConversion;
-//  getTimes
-var times                       = SunCalc.getTimes(datetime, latitude, longitude);
-//  nauticalDawn
-var nauticalDawnTime            = times.nauticalDawn.toLocaleString();
-    var nauticalDawnPos         = SunCalc.getPosition(times.nauticalDawn, latitude, longitude);
-    var nauticalDawnAltitude    = nauticalDawnPos.altitude * degreesConversion;
-    var nauticalDawnAzimuth     = nauticalDawnPos.azimuth * degreesConversion;
-//  dawn
-var dawnTime                    = times.dawn.toLocaleString();
-    var dawnPos                 = SunCalc.getPosition(times.dawn, latitude, longitude);
-    var dawnAltitude            = dawnPos.altitude * degreesConversion;
-    var dawnAzimuth             = dawnPos.azimuth * degreesConversion;
-//  sunrise
-var sunriseTime                 = times.sunrise.toLocaleString();
-    var sunrisePos              = SunCalc.getPosition(times.sunrise, latitude, longitude);
-    var sunriseAltitude         = sunrisePos.altitude * degreesConversion;
-    var sunriseAzimuth          = sunrisePos.azimuth * degreesConversion;
-//  sunriseEnd
-var sunriseEndTime              = times.sunriseEnd.toLocaleString();
-    var sunriseEndPos           = SunCalc.getPosition(times.sunriseEnd, latitude, longitude);
-    var sunriseEndAltitude      = sunriseEndPos.altitude * degreesConversion;
-    var sunriseEndAzimuth       = sunriseEndPos.azimuth * degreesConversion;
-//  solarNoon
-var solarNoonTime               = times.solarNoon.toLocaleString();
-    var solarNoonPos            = SunCalc.getPosition(times.solarNoon, latitude, longitude);
-    var solarNoonAltitude       = solarNoonPos.altitude * degreesConversion;
-    var solarNoonAzimuth        = solarNoonPos.azimuth * degreesConversion;
-//  goldenHour
-var goldenHourTime              = times.goldenHour.toLocaleString();
-    var goldenHourPos           = SunCalc.getPosition(times.goldenHour, latitude, longitude);
-    var goldenHourAltitude      = goldenHourPos.altitude * degreesConversion;
-    var goldenHourAzimuth       = goldenHourPos.azimuth * degreesConversion;
-//  sunsetStart
-var sunsetStartTime             = times.sunsetStart.toLocaleString();
-    var sunsetStartPos          = SunCalc.getPosition(times.sunsetStart, latitude, longitude);
-    var sunsetStartAltitude     = sunsetStartPos.altitude * degreesConversion;
-    var sunsetStartAzimuth      = sunsetStartPos.azimuth * degreesConversion;
-//  sunset
-var sunsetTime                  = times.sunset.toLocaleString();
-    var sunsetPos               = SunCalc.getPosition(times.sunset, latitude, longitude);
-    var sunsetAltitude          = sunsetPos.altitude * degreesConversion;
-    var sunsetAzimuth           = sunsetPos.azimuth * degreesConversion;
-//  dusk
-var duskTime                    = times.dusk.toLocaleString();
-    var duskPos                 = SunCalc.getPosition(times.dusk, latitude, longitude);
-    var duskAltitude            = duskPos.altitude * degreesConversion;
-    var duskAzimuth             = duskPos.azimuth * degreesConversion;
-//  nauticalDusk
-var nauticalDuskTime            = times.nauticalDusk.toLocaleString();
-    var nauticalDuskPos         = SunCalc.getPosition(times.nauticalDusk, latitude, longitude);
-    var nauticalDuskAltitude    = nauticalDuskPos.altitude * degreesConversion;
-    var nauticalDuskAzimuth     = nauticalDuskPos.azimuth * degreesConversion;
-//  night
-var nightTime                   = times.night.toLocaleString();
-    var nightPos                = SunCalc.getPosition(times.night, latitude, longitude);
-    var nightAltitude           = nightPos.altitude * degreesConversion;
-    var nightAzimuth            = nightPos.azimuth * degreesConversion;
-//  nadir
-var nadirTime                   = times.nadir.toLocaleString();
-    var nadirPos                = SunCalc.getPosition(times.nadir, latitude, longitude);
-    var nadirAltitude           = nadirPos.altitude * degreesConversion;
-    var nadirAzimuth            = nadirPos.azimuth * degreesConversion;
-//  nightEnd
-var nightEndTime                = times.nightEnd.toLocaleString();
-    var nightEndPos             = SunCalc.getPosition(times.nightEnd, latitude, longitude);
-    var nightEndAltitude        = nightEndPos.altitude * degreesConversion;
-    var nightEndAzimuth         = nightEndPos.azimuth * degreesConversion;
-//  moonPosition
-var moonPosition                = SunCalc.getMoonPosition(datetime, latitude, longitude);
-    var moonAltitude            = moonPosition.altitude * degreesConversion;
-    var moonAzimuth             = moonPosition.azimuth * degreesConversion;
-    var moonDistance            = moonPosition.distance + "km";
-//  moonLumens
-var moonLumens                  = SunCalc.getMoonIllumination(datetime);
-    var moonAngle               = moonLumens.angle;
-    var moonFraction            = moonLumens.fraction;
-    var moonPhase               = moonLumens.phase * degreesConversion;
-//  moonTimes
-var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longitude);
-    var moonRise                = moonTimes.rise.toLocaleString();
-    var moonSet                 = moonTimes.set.toLocaleString();
-/**/
-    </script>
 </head>
 <body>
-    <div class="sun"></div>
+    <div id="sun"></div>
+    <div id="moon" class="moonlight"></div>
     <canvas id="starfield" class="starfield"></canvas>
-<div id="clock">
-    <div id="info">
+    <div id="content">
         <div id="time">
-            <span id="hour"></span><span class="colon">:</span><span id="minute"></span>
+            <span id="hour"></span>
+            <span id="colon" class="blink"></span>
+            <span id="minute"></span>
             <div id="side">
                 <span id="second"></span>
                 <span id="meridian"></span>
@@ -119,23 +31,21 @@ var moonTimes                   = SunCalc.getMoonTimes(datetime, latitude, longi
         </div>
         <div id="date"></div>
         <div id="weather">
-            <div id="degree"></div>
-            <div id="temp"></div>
+            <div id="degrees"></div>
+            <div id="temperature"></div>
             <div id="city"></div>
-            <div id="verb"></div>
+            <div id="description"></div>
             <div id="geolocation"></div>
         </div>
     </div>
-</div>
-    
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
-<!--<script src="https://raw.githubusercontent.com/mourner/suncalc/master/suncalc.js"></script>-->
-<!--<script src="http://suncalc.net/scripts/suncalc.js"></script>-->
-<!--<script src="js/skyproperties.js"></script>-->
-<script src="js/time.js"></script>
-<!--<script src="js/suncalc.js"></script>-->
+<!-- JAVASCRIPTS -->
+<script src="js/jquery.min.js"></script>
+<script src="js/geolocation.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/velocity.min.js"></script>
+<script src="js/suncalc.js"></script>
+<!--<script type="text/javascript" src="http://cdn.tonejs.org/latest/Tone.min.js"></script>-->
+<script src="js/script.js"></script>
 <script src="js/stars.js"></script>
-
 </body>
 </html>

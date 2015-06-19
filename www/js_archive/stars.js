@@ -1,8 +1,9 @@
-//"use strict";
+"use strict";
 window.onload = function() {
-    setTimeout(starfield, 200);
+    setTimeout(start, 200);
 };
-function starfield() {
+
+function start() {
     //Helpers
     function lineToAngle(x1, y1, length, radians) {
         var x2 = x1 + length * Math.cos(radians),
@@ -76,7 +77,7 @@ function starfield() {
         starsAngle = 145,
         shootingStarSpeed = {
             min: 15,
-            max: 25
+            max: 20
         },
         shootingStarOpacityDelta = 0.01,
         trailLengthDelta = 0.01,
