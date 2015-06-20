@@ -33,6 +33,25 @@ function blink(){
     });
 }
 /**/////////////////////
+// GRADIENT BACKGROUND
+// gradient.js
+/**/////////////////////
+function gradient() {
+    var hh = datetime.getHours();
+    var mm = datetime.getMinutes();
+    var percentTime = (mm-60)/mm*.1;
+    var percentOpacity = percentTime*-1;
+    console.log(mm +" "+percentTime+" "+percentOpacity);
+    $("#skyTop").animate (
+        { opacity: percentOpacity }
+    );
+    $("#skyTop").addClass("sky-gradient-"+hh);
+    $("#skyBot").animate (
+        { opacity: 1 }
+    );
+    $("#skyBot").addClass("sky-gradient-"+(hh+1));
+}gradient();
+/**/////////////////////
 // GEO LOCATION
 // geo.js
 /**/////////////////////
@@ -289,24 +308,6 @@ function shadowMove() {
 //    window.setTimeout("skyconditions()", 1000*10);
 //}
 //    );
-/**/////////////////////
-// GRADIENT BACKGROUND
-// gradient.js
-/**/////////////////////
-function gradient() {
-    var hh = datetime.getHours();
-    var mm = datetime.getMinutes();
-    var percentTime = (mm-60)/mm;
-    var percentOpacity = percentTime*-1;
-    $("#skyTop").animate (
-        { opacity: percentOpacity }
-    );
-    $("#skyTop").addClass("sky-gradient-"+hh);
-    $("#skyBot").animate (
-        { opacity: 1 }
-    );
-    $("#skyBot").addClass("sky-gradient-"+(hh+1));
-} gradient();
 /** /////////////////////
 //var datetime= new Date();
 function gradient(){
