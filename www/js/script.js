@@ -234,7 +234,7 @@ function getStellar() {
      // LAUNCH STARFIELD
         if (datetime /*>= nauticalDuskTime /*&& datetime <= dawnTime*/) {
             $(".starfield").show();
-            starfield();
+//            starfield();
         } else {
             $(".starfield").hide();
         }
