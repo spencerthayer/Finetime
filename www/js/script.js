@@ -6,12 +6,13 @@ Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
 }
-datetime= new Date()./*FOR*/addHours(4)/*DEBUGGING*/;
+datetime = new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
 function zeropadder(n) {
   return (parseInt(n,10) < 10 ? '0' : '')+n;
 }
 function updateTime(){
-        hh = datetime.getHours();
+        var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
+        var hh = datetime.getHours();
         var mm = datetime.getMinutes();
         var ss = datetime.getSeconds();
         var meridian = (hh >= 12?'pm':'am');
@@ -56,7 +57,7 @@ function geoSuccess(position) {
         getWeather();
         getSky();
         getStellar();
-        sound();
+        //sound();
 }
 function geoError() {
     console.log("WARNING: NO GPS DATA RETURNED!");
@@ -153,13 +154,12 @@ function getSky() {
         nauticalDuskTime            = times.nauticalDusk;
         nightTime                   = times.night
         nadirTime                   = times.nadir
-        nightEndTime                = times.nightEnd;
-    
-    sunRise                     = times.sunrise;
-    sunSet                      = times.sunset;
-    moonTimes                   = SunCalc.getMoonTimes(datetime, lat, lon);
-    moonRise                    = moonTimes.rise;
-    moonSet                     = moonTimes.set;
+        nightEndTime                = times.nightEnd;    
+        sunRise                     = times.sunrise;
+        sunSet                      = times.sunset;
+        moonTimes                   = SunCalc.getMoonTimes(datetime, lat, lon);
+        moonRise                    = moonTimes.rise;
+        moonSet                     = moonTimes.set;
     //var timex = moment(datetime).format(x);
     //console.log("TIME! " + timex);
     //  getTimes
@@ -179,11 +179,12 @@ function getSky() {
 function getStellar() {
     var r                           = 1.75;
     var x                           = 1;
-    var hx = hh % 12 || 12;
+    //var hh = datetime.getHours();
+    //var hx = hh % 12 || 12;
     //var meridian = (hh >= 12?'pm':'am');
     var stellarOpacity                  = .8
                                         //if(hh >= 12) { (hh-12)/hh*10; } else { (hh-12)/hh*-10; };
-    console.log("SUNOP:"+ hh +" / "+ hx +" / "+ stellarOpacity);
+//    console.log("SUNOP:"+ hh +" / "+ hx +" / "+ stellarOpacity);
     //  sunPosition
     var sunPosition                 = SunCalc.getPosition(datetime, lat, lon);
         var sunAltitude180          = sunPosition.altitude * 180 / Math.PI;
@@ -217,7 +218,7 @@ function getStellar() {
         var moony                   = r * moonAltitude180*-2;
         console.log("dawnTime: " + dawnTime);
     // LAUNCH MOON
-        if(datetime >= duskTime /*&& datetime <= sunriseEndTime*/) {
+        if(datetime /*>= duskTime /*&& datetime <= sunriseEndTime*/) {
             $("#moon").velocity(
                 {
                     translateX: moonx + "%",
@@ -231,7 +232,7 @@ function getStellar() {
             );
         } else {};
      // LAUNCH STARFIELD
-        if (datetime >= nauticalDuskTime /*&& datetime <= dawnTime*/) {
+        if (datetime /*>= nauticalDuskTime /*&& datetime <= dawnTime*/) {
             $(".starfield").show();
             starfield();
         } else {
@@ -292,66 +293,82 @@ function shadowMove() {
 // GRADIENT BACKGROUND
 // gradient.js
 /**/////////////////////
-//var datetime= new Date();
+function gradient() {
     var hh = datetime.getHours();
     var mm = datetime.getMinutes();
-    var ss = datetime.getSeconds();
-    var grad_count = 24;
-    var index = hh;
-    var layer1 = document.createElement("div");
-    var layer2 = document.createElement("div");
-    var SPEED = ((60*60)*1000)-((mm*60)*1000);
-console.log("Speed: " + SPEED);
-init();
-function init() {
-    layer1.className = "sky-gradient-" + key (index);
-    layer2.className = "sky-gradient-" + key (index + 1);
-    apply_styles([layer1, layer2], {
-        "position":"absolute",
-        "top": "0px",
-        "left": "0px",
-        "bottom": "0px",
-        "right": "0px",
-        "z-index": "0"
-    });
-    layer2.style.opacity = 0;
-    document.body.appendChild (layer1);
-    document.body.appendChild (layer2);
-    fade();
-}
-function fade() {
-    var o = window.getComputedStyle(layer2).opacity;
-    if( o < 1 ) {
-        layer2.style.opacity = + o + .05;
-        setTimeout(fade, SPEED);
-    } else {
-        layer2.style.opacity = 1;
-        setTimeout(flip, SPEED);
+    var percentTime = (mm-60)/mm;
+    var percentOpacity = percentTime*-1;
+    $("#skyTop").animate (
+        { opacity: percentOpacity }
+    );
+    $("#skyTop").addClass("sky-gradient-"+hh);
+    $("#skyBot").animate (
+        { opacity: 1 }
+    );
+    $("#skyBot").addClass("sky-gradient-"+(hh+1));
+} gradient();
+/** /////////////////////
+//var datetime= new Date();
+function gradient(){
+        var hh = datetime.getHours();
+        var mm = datetime.getMinutes();
+        var ss = datetime.getSeconds();
+        var grad_count = 24;
+        var index = hh;
+        var layer1 = document.createElement("div");
+        var layer2 = document.createElement("div");
+        var SPEED = ((60*60)*1000)-((mm*60)*1000);
+    //console.log("Speed: " + SPEED);
+    init();
+    function init() {
+        layer1.className = "sky-gradient-" + key (index);
+        layer2.className = "sky-gradient-" + key (index + 1);
+        apply_styles([layer1, layer2], {
+            "position":"absolute",
+            "top": "0px",
+            "left": "0px",
+            "bottom": "0px",
+            "right": "0px",
+            "z-index": "0"
+        });
+        layer2.style.opacity = 0;
+        document.body.appendChild (layer1);
+        document.body.appendChild (layer2);
+        fade();
     }
-}
-function flip() {
-    if( index >= grad_count-1 ) {
-        index = 0;
+    function fade() {
+        var o = window.getComputedStyle(layer2).opacity;
+        if( o < 1 ) {
+            layer2.style.opacity = + o + .05;
+            setTimeout(fade, SPEED);
+        } else {
+            layer2.style.opacity = 1;
+            setTimeout(flip, SPEED);
+        }
     }
-    layer2.style.opacity = 0;
-    layer1.className = "sky-gradient-" + key(++index);
-    layer2.className = "sky-gradient-" + key(index+1);
-    fade();
-}
-function apply_styles(elms, styles) {
-    !Array.isArray(elms) && (elms = [elms]);
-    for( var i = 0; i < elms.length; i++ ) {
-        for( var key in styles ) {
-            if( styles.hasOwnProperty(key) ) {
-                elms[i].style[key] = styles[key];
+    function flip() {
+        if( index >= grad_count-1 ) {
+            index = 0;
+        }
+        layer2.style.opacity = 0;
+        layer1.className = "sky-gradient-" + key(++index);
+        layer2.className = "sky-gradient-" + key(index+1);
+        fade();
+    }
+    function apply_styles(elms, styles) {
+        !Array.isArray(elms) && (elms = [elms]);
+        for( var i = 0; i < elms.length; i++ ) {
+            for( var key in styles ) {
+                if( styles.hasOwnProperty(key) ) {
+                    elms[i].style[key] = styles[key];
+                }
             }
         }
     }
-}
-function key(n) {
-    return n < 10 ? "0" + n : n;
-}
-
+    function key(n) {
+        return n < 10 ? "0" + n : n;
+    }
+}gradient();
 /**/////////////////////
 // SOUND GENERATION
 // sound.js
@@ -372,10 +389,11 @@ var vibrato = new Tone.LFO(6, -25, 25)
 setInterval(function(){
     updateTime();
     blink();
-},1000/4);
+},1000/2);
 setInterval(function(){
     getStellar();
     shadowMove();
+    gradient();
 },1000*10);
 setInterval(function(){
     getSky();
