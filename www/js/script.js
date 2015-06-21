@@ -1,5 +1,5 @@
 /**/////////////////////
-// TIME
+// TIME CLOCK
 // time.js
 /**/////////////////////
 Date.prototype.addHours= function(h){
@@ -7,6 +7,8 @@ Date.prototype.addHours= function(h){
     return this;
 }
 datetime = new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
+tomorrowTime = new Date().addHours(24)
+yesterdayTime = new Date().addHours(-24);
 function zeropadder(n) {
   return (parseInt(n,10) < 10 ? '0' : '')+n;
 }
@@ -36,21 +38,27 @@ function blink(){
 // GRADIENT BACKGROUND
 // gradient.js
 /**/////////////////////
-function gradient() {
+function gradientSky() {
+    var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
     var mm = datetime.getMinutes();
-    var percentTime = (mm-60)/mm*.1;
-    var percentOpacity = percentTime*-1;
-    console.log(mm +" "+percentTime+" "+percentOpacity);
-    $("#skyTop").animate (
-        { opacity: percentOpacity }
-    );
+    var ss = datetime.getSeconds();
+    var mmss = mm+(ss/60);
+    var percentRemain = mmss/60;
+    var percentTime = 1-(mmss/60);
+    //console.log("%: "+ mmss +" / "+ percentTime +" / "+ percentRemain +" / "+ (percentTime+percentRemain));
+    $("#skyTop").velocity (
+        { opacity: percentTime }
+    ); 
+    $("#skyTop").removeClass("sky-gradient-"+(hh-1));
     $("#skyTop").addClass("sky-gradient-"+hh);
-    $("#skyBot").animate (
-        { opacity: 1 }
+    $("#skyBot").velocity (
+        { opacity: percentRemain-.05 }
     );
+    $("#skyBot").removeClass("sky-gradient-"+hh);
     $("#skyBot").addClass("sky-gradient-"+(hh+1));
-}gradient();
+    //setTimeout(gradientSky,1000*10);
+}gradientSky();
 /**/////////////////////
 // GEO LOCATION
 // geo.js
@@ -161,6 +169,8 @@ function getWeather() {
 function getSky() {
     unixtime                    = moment.unix(datetime);
     times                       = SunCalc.getTimes(datetime, lat, lon);
+    tomorrow                    = SunCalc.getTimes(tomorrowTime, lat, lon);
+    yesterday                   = SunCalc.getTimes(yesterdayTime, lat, lon);
         nauticalDawnTime            = times.nauticalDawn;
         dawnTime                    = times.dawn;
         sunriseTime                 = times.sunrise;
@@ -187,6 +197,7 @@ function getSky() {
 //    new Date(sunsetTime).getTime() / 1000).toFixed(0);
 //    new Date(sunriseTime).getTime() / 1000).toFixed(0);
     console.log(times);
+    conoles.log(tomorrow);
     console.log("Sun Rise: "+sunRise);
     console.log("Sun Set: "+sunSet);
     console.log("Moon Rise: "+moonRise);
@@ -235,9 +246,8 @@ function getStellar() {
         var moonDistance            = moonPosition.distance * 180 / Math.PI;
         var moonx                   = x * moonAzimuth180*-2;
         var moony                   = r * moonAltitude180*-2;
-        console.log("dawnTime: " + dawnTime);
     // LAUNCH MOON
-        if(datetime /*>= duskTime /*&& datetime <= sunriseEndTime*/) {
+        if(datetime >= yesterday.dusk && datetime <= tomorrow.sunriseEnd) {
             $("#moon").velocity(
                 {
                     translateX: moonx + "%",
@@ -251,9 +261,8 @@ function getStellar() {
             );
         } else {};
      // LAUNCH STARFIELD
-        if (datetime /*>= nauticalDuskTime /*&& datetime <= dawnTime*/) {
+        if (datetime >= yesterday.nauticalDusk && datetime <= tomorrow.dawn) {
             $(".starfield").show();
-//            starfield();
         } else {
             $(".starfield").hide();
         }
@@ -283,10 +292,10 @@ function shadowMove() {
     var deltaY = textCenterTop+suny;
     var shadowBlur = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
     shadowObject.css({
-        "text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.75)",
-        "-webkit-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.75)",
-        "-moz-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.75)",
-        "-o-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.75)"
+        "text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
+        "-webkit-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
+        "-moz-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
+        "-o-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)"
     });
 }
 /////////////////////
@@ -394,7 +403,7 @@ setInterval(function(){
 setInterval(function(){
     getStellar();
     shadowMove();
-    gradient();
+    gradientSky();
 },1000*10);
 setInterval(function(){
     getSky();

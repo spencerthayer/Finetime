@@ -1,7 +1,9 @@
 //"use strict";
 window.onload = function() {
-    setTimeout(starfield, 200);
+    setTimeout(starfield, 1000);
 };
+starfield();
+
 function starfield() {
     //Helpers
     function lineToAngle(x1, y1, length, radians) {
@@ -79,9 +81,9 @@ function starfield() {
             max: 25
         },
         shootingStarOpacityDelta = 0.01,
-        trailLengthDelta = 0.01,
-        shootingStarEmittingInterval = 2000,
+        shootingStarEmittingInterval = 1000*60,
         shootingStarLifeTime = 500,
+        trailLengthDelta = 0.01,
         maxTrailLength = 300,
         starBaseRadius = 2,
         shootingStarRadius = 3,

@@ -15,12 +15,7 @@
     <link rel="apple-touch-icon-precomposed" href=" img/favicon.png"/>
     <!--link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css"-->
 </head>
-<body>
-    <div id="skyTop"></div>
-    <div id="skyBot"></div>
-    <div id="sun"></div>
-    <div id="moon" class="moonlight"></div>
-    <canvas id="starfield" class="starfield"></canvas>
+<body><!--class="sky-gradient-default"-->
     <div id="content">
         <div id="time">
             <span id="hour"></span>
@@ -40,6 +35,12 @@
             <div id="geolocation"></div>
         </div>
     </div>
+    <div id="sun"></div>
+    <div id="moon" class="moonlight"></div>
+    <canvas id="starfield" class="starfield"></canvas>
+<!--    <canvas id="terrain"></canvas>-->
+    <div id="skyTop"></div>
+    <div id="skyBot"></div>
 <!-- JAVASCRIPTS -->
 <script src="js/jquery.min.js"></script>
 <script src="js/geolocation.js"></script>
@@ -49,5 +50,6 @@
 <!--<script type="text/javascript" src="http://cdn.tonejs.org/latest/Tone.min.js"></script>-->
 <script src="js/script.js"></script>
 <script src="js/stars.js"></script>
+<!--<script src="js/terrain.js"></script>-->
 </body>
 </html>
