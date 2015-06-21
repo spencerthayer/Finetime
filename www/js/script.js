@@ -53,7 +53,7 @@ function gradientSky() {
     $("#skyTop").removeClass("sky-gradient-"+(hh-1));
     $("#skyTop").addClass("sky-gradient-"+hh);
     $("#skyBot").velocity (
-        { opacity: percentRemain-.05 }
+        { opacity: percentRemain }
     );
     $("#skyBot").removeClass("sky-gradient-"+hh);
     $("#skyBot").addClass("sky-gradient-"+(hh+1));
@@ -203,6 +203,7 @@ function getSky() {
     getStellar();
 }
 function getStellar() {
+    var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
     var r                           = 1.75;
     var x                           = 1;
