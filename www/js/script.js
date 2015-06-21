@@ -205,7 +205,7 @@ function getSky() {
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
-    var r                           = 1.75;
+    var r                           = alt +1.5;
     var x                           = 1;
     //var hh = datetime.getHours();
     //var hx = hh % 12 || 12;
@@ -227,13 +227,18 @@ function getStellar() {
                     {
                         translateX: sunx + "%",
                         translateY: suny + "%",
+                        scale: 1,
                     }
                 );
                 $("#sun").velocity(
-                    { opacity: stellarOpacity },
-                    { display: "block" }
+                    { opacity: stellarOpacity }
+//                  { display: "block" }
                 );
-            } else { };
+            } else {
+                $("#sun").velocity(
+                    { display: "none" }
+                );
+            };
     //  moonPosition
     var moonPosition                = SunCalc.getMoonPosition(datetime, lat, lon);
         var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
@@ -241,8 +246,8 @@ function getStellar() {
         var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
         var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
         var moonDistance            = moonPosition.distance * 180 / Math.PI;
-        var moonx                   = (x * moonAzimuth180)*-2;
-        var moony                   = (r * moonAltitude180)*-2;
+        var moonx                   = (r * moonAzimuth180)*-2;
+        var moony                   = (r * moonAltitude180)*-4;
     // LAUNCH MOON
         if(hh >= -0.1 && datetime <= sunriseEndTime || datetime >= duskTime && hh <= 25) {
             $("#moon").velocity(
@@ -252,10 +257,14 @@ function getStellar() {
                 }
             );
             $("#moon").velocity(
-                    { opacity: stellarOpacity },
-                    { display: "block" }
+                    { opacity: stellarOpacity }
+//                    { display: "block" }
             );
-        } else {};
+        } else {
+                $("#moon").velocity(
+                    { display: "none" }
+                );
+            };
      // LAUNCH STARFIELD
         if (hh >= -0.1 && datetime <= dawnTime || datetime >= nauticalDuskTime && hh <= 25) {
             $(".starfield").show();
@@ -308,7 +317,7 @@ function shadowMove() {
 //  var mx = e.clientX;
 //  var my = e.clientY;
     var deltaX = (textCenterLeft+sunx)*-1;
-    var deltaY = textCenterTop+suny;
+    var deltaY = (textCenterTop+suny)*-1;
     var shadowBlur = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
     shadowObject.css({
         "text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",

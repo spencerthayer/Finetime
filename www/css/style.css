@@ -134,8 +134,8 @@ html, body {
 /**************/
 
 #sun {
-    position: static;
-    display: none;
+/*    position: relative;*/
+/*    display: none;*/
     opacity: 0;
     margin: 0 auto;
     top: 0;
@@ -151,11 +151,11 @@ html, body {
     box-shadow: inset 0vmin 0vmin 5vmin 1vmin #fe8, 0vmin 0vmin 8vmin 3vmin #ff9;
 }
 #moon {
-    position: static;
-    display: none;
+    position: absolute;
+/*    display: none;*/
     opacity: 0;
     margin: 0 auto;
-    top: 40%;
+    top: 50%;
     left: 0;
     bottom: 0;
     right: 0;
