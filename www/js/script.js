@@ -7,8 +7,8 @@ Date.prototype.addHours= function(h){
     return this;
 }
 datetime = new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
-tomorrowTime = new Date().addHours(24)
-yesterdayTime = new Date().addHours(-24);
+//tomorrowTime = new Date().addHours(24)
+//yesterdayTime = new Date().addHours(-24);
 function zeropadder(n) {
   return (parseInt(n,10) < 10 ? '0' : '')+n;
 }
@@ -169,8 +169,8 @@ function getWeather() {
 function getSky() {
     unixtime                    = moment.unix(datetime);
     times                       = SunCalc.getTimes(datetime, lat, lon);
-    tomorrow                    = SunCalc.getTimes(tomorrowTime, lat, lon);
-    yesterday                   = SunCalc.getTimes(yesterdayTime, lat, lon);
+//    tomorrow                    = SunCalc.getTimes(tomorrowTime, lat, lon);
+//    yesterday                   = SunCalc.getTimes(yesterdayTime, lat, lon);
         nauticalDawnTime            = times.nauticalDawn;
         dawnTime                    = times.dawn;
         sunriseTime                 = times.sunrise;
@@ -197,16 +197,16 @@ function getSky() {
 //    new Date(sunsetTime).getTime() / 1000).toFixed(0);
 //    new Date(sunriseTime).getTime() / 1000).toFixed(0);
     console.log(times);
-    conoles.log(tomorrow);
-    console.log("Sun Rise: "+sunRise);
-    console.log("Sun Set: "+sunSet);
-    console.log("Moon Rise: "+moonRise);
-    console.log("Moon Set: "+moonSet);
+//    console.log("Sun Rise: "+sunRise);
+//    console.log("Sun Set: "+sunSet);
+//    console.log("Moon Rise: "+moonRise);
+//    console.log("Moon Set: "+moonSet);
 //    console.log("Test: "+ (sunSet - sunRise)/sunRise *100);
     // EXPLICITLY DEFINE FUNCTIONS
     getStellar();
 }
 function getStellar() {
+    var hh = datetime.getHours();
     var r                           = 1.75;
     var x                           = 1;
     //var hh = datetime.getHours();
@@ -247,7 +247,7 @@ function getStellar() {
         var moonx                   = x * moonAzimuth180*-2;
         var moony                   = r * moonAltitude180*-2;
     // LAUNCH MOON
-        if(datetime >= yesterday.dusk && datetime <= tomorrow.sunriseEnd) {
+        if(hh >= -0.1 && datetime <= sunriseEndTime || datetime >= duskTime && hh <= 25) {
             $("#moon").velocity(
                 {
                     translateX: moonx + "%",
@@ -261,7 +261,7 @@ function getStellar() {
             );
         } else {};
      // LAUNCH STARFIELD
-        if (datetime >= yesterday.nauticalDusk && datetime <= tomorrow.dawn) {
+        if (hh >= -0.1 && datetime <= dawnTime || datetime >= nauticalDuskTime && hh <= 25) {
             $(".starfield").show();
         } else {
             $(".starfield").hide();
@@ -272,6 +272,29 @@ function getStellar() {
     //$("#starfield").show();
     shadowMove();
     return;
+}
+
+/**////////////////////
+// ACTIVATE STARFIELD
+/** ////////////////////
+function skyconditions() {
+    if (hour > -0.1 && hour < 5 || hour > 20 && hour < 25) {
+        $(".starfield").show();
+    } else {
+        $(".starfield").hide();
+    }
+    if (hour > 6 && hour < 18) {
+        $(".sun").show();
+    } else {
+        $(".sun").hide();
+    }
+    if (hour > 5 && hour < 9) {
+        $(".sun").show();
+        $("#clock").css("color", "#20202c")
+    } else {
+        $("#clock").css("color", "#FFF")
+    }
+    window.setTimeout("skyconditions()", 1000*10);
 }
 /**////////////////////
 // MOON PHASE
@@ -298,87 +321,6 @@ function shadowMove() {
         "-o-text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)"
     });
 }
-/////////////////////
-// ACTIVATE SUN & STARFIELD
-/////////////////////
-//function skyconditions() {
-
-//    if (hour > 6 && hour < 18) {
-//        $(".sun").show();
-//    } else {
-//        $(".sun").hide();
-//    }
-//    if (hour > 5 && hour < 9) {
-//        $(".sun").show();
-//        $("#clock").css("color", "#20202c")
-//    } else {
-//        $("#clock").css("color", "#FFF")
-//    }
-//    window.setTimeout("skyconditions()", 1000*10);
-//}
-//    );
-/** /////////////////////
-//var datetime= new Date();
-function gradient(){
-        var hh = datetime.getHours();
-        var mm = datetime.getMinutes();
-        var ss = datetime.getSeconds();
-        var grad_count = 24;
-        var index = hh;
-        var layer1 = document.createElement("div");
-        var layer2 = document.createElement("div");
-        var SPEED = ((60*60)*1000)-((mm*60)*1000);
-    //console.log("Speed: " + SPEED);
-    init();
-    function init() {
-        layer1.className = "sky-gradient-" + key (index);
-        layer2.className = "sky-gradient-" + key (index + 1);
-        apply_styles([layer1, layer2], {
-            "position":"absolute",
-            "top": "0px",
-            "left": "0px",
-            "bottom": "0px",
-            "right": "0px",
-            "z-index": "0"
-        });
-        layer2.style.opacity = 0;
-        document.body.appendChild (layer1);
-        document.body.appendChild (layer2);
-        fade();
-    }
-    function fade() {
-        var o = window.getComputedStyle(layer2).opacity;
-        if( o < 1 ) {
-            layer2.style.opacity = + o + .05;
-            setTimeout(fade, SPEED);
-        } else {
-            layer2.style.opacity = 1;
-            setTimeout(flip, SPEED);
-        }
-    }
-    function flip() {
-        if( index >= grad_count-1 ) {
-            index = 0;
-        }
-        layer2.style.opacity = 0;
-        layer1.className = "sky-gradient-" + key(++index);
-        layer2.className = "sky-gradient-" + key(index+1);
-        fade();
-    }
-    function apply_styles(elms, styles) {
-        !Array.isArray(elms) && (elms = [elms]);
-        for( var i = 0; i < elms.length; i++ ) {
-            for( var key in styles ) {
-                if( styles.hasOwnProperty(key) ) {
-                    elms[i].style[key] = styles[key];
-                }
-            }
-        }
-    }
-    function key(n) {
-        return n < 10 ? "0" + n : n;
-    }
-}gradient();
 /**/////////////////////
 // SOUND GENERATION
 // sound.js
