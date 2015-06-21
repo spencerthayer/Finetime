@@ -134,14 +134,13 @@ html, body {
 /**************/
 
 #sun {
-/*    position: absolute;*/
-/*    display: none;*/
-/*    visibility: hidden;*/
+    position: static;
+    display: none;
     opacity: 0;
     margin: 0 auto;
     top: 0;
     left: 0;
-/*    bottom: 0;*/
+    bottom: 0;
     right: 0;
     width:20vmin;
     height:20vmin;
@@ -152,14 +151,13 @@ html, body {
     box-shadow: inset 0vmin 0vmin 5vmin 1vmin #fe8, 0vmin 0vmin 8vmin 3vmin #ff9;
 }
 #moon {
-/*    position: absolute;*/
-/*    display: none;*/
-/*    visibility: hidden;*/
+    position: static;
+    display: none;
     opacity: 0;
     margin: 0 auto;
     top: 40%;
     left: 0;
-/*    bottom: 0;*/
+    bottom: 0;
     right: 0;
     width:10vmin;
     height:10vmin;

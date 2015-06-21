@@ -230,9 +230,8 @@ function getStellar() {
                     }
                 );
                 $("#sun").velocity(
-                    {
-                        opacity: stellarOpacity,
-                    }
+                    { opacity: stellarOpacity },
+                    { display: "block" }
                 );
             } else { };
     //  moonPosition
@@ -253,9 +252,8 @@ function getStellar() {
                 }
             );
             $("#moon").velocity(
-                {
-                    opacity: stellarOpacity
-                }
+                    { opacity: stellarOpacity },
+                    { display: "block" }
             );
         } else {};
      // LAUNCH STARFIELD
