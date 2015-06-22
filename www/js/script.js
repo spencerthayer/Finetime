@@ -205,7 +205,7 @@ function getSky() {
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
-    var r                           = alt +1.5;
+    var r                           = 2;
     var x                           = 1;
     //var hh = datetime.getHours();
     //var hx = hh % 12 || 12;
@@ -219,8 +219,8 @@ function getStellar() {
         var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
         var sunAzimuth180           = sunPosition.azimuth * 180 / Math.PI;
         var sunAzimuth360           = (sunPosition.azimuth * 180 / Math.PI + 180) % 360;
-        sunx = -1*(r * sunAzimuth180);
-        suny = -1*(r * sunAltitude180);
+        sunx = (r * sunAzimuth180)*-1;
+        suny = (r * sunAltitude180)*-1;
     // LAUNCH SOL
             if(datetime >= sunRise && datetime <= sunSet) {
                 $("#sun").velocity(
@@ -246,8 +246,8 @@ function getStellar() {
         var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
         var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
         var moonDistance            = moonPosition.distance * 180 / Math.PI;
-        var moonx                   = (r * moonAzimuth180)*-2;
-        var moony                   = (r * moonAltitude180)*-4;
+        var moonx                   = (r * moonAzimuth180)*-1;
+        var moony                   = (r * moonAltitude180)*-1;
     // LAUNCH MOON
         if(hh >= -0.1 && datetime <= sunriseEndTime || datetime >= duskTime && hh <= 25) {
             $("#moon").velocity(

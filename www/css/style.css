@@ -326,3 +326,116 @@ i {
   [{color:"090401",position:50},{color:"4B1D06",position:100}],
   [{color:"000019",position:80},{color:"190900",position:100}],
 /**/
+/*** CLOUDS ***/
+div.clouds div {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  background: -webkit-linear-gradient(lightblue, #666666);
+  background: -o-linear-gradient(lightblue, #666666);
+  background: -moz-linear-gradient(lightblue, #666666);
+  background: linear-gradient(lightblue, #666666);
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+  border: 25px solid white;
+  border-width: 0px 0px 25px 0px;
+  box-shadow: 10px 10px 20px rbga(0, 0, 0, 1);
+  opacity: .5;
+    z-index: 10;
+}
+div.clouds div:nth-child(1) {
+  animation: moving 20s;
+  animation-iteration-coint: infinite;
+  animation-delay: 0s;
+  -webkit-animation: moving 20s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 0s;
+  bottom: 150px;
+}
+div.clouds div:nth-child(2) {
+  animation: moving 16s;
+  animation-iteration-coint: infinite;
+  animation-delay: 8s;
+  -webkit-animation: moving 16s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 8s;
+  bottom: 60px;
+}
+div.clouds div:nth-child(3) {
+  animation: moving 12s;
+  animation-iteration-coint: infinite;
+  animation-delay: 0s;
+  -webkit-animation: moving 12s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 0s;
+  bottom: 110px;
+}
+div.clouds div:nth-child(4) {
+  animation: moving 24s;
+  animation-iteration-coint: infinite;
+  animation-delay: 2s;
+  -webkit-animation: moving 24s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 2s;
+  bottom: 130px;
+}
+div.clouds div:nth-child(5) {
+  animation: moving 20s;
+  animation-iteration-coint: infinite;
+  animation-delay: 5s;
+  -webkit-animation: moving 20s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 5s;
+  bottom: 200px;
+}
+div.clouds div:nth-child(6) {
+  animation: moving 18s;
+  animation-iteration-coint: infinite;
+  animation-delay: 1s;
+  -webkit-animation: moving 18s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 1s;
+  bottom: 90px;
+}
+div.clouds div:nth-child(7) {
+  animation: moving 25s;
+  animation-iteration-coint: infinite;
+  animation-delay: 7s;
+  -webkit-animation: moving 25s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 7s;
+  bottom: 50px;
+}
+@-webkit-keyframes moving {
+  0% {
+    left: -25%;
+    transform: rotateY(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    left: 0%;
+    transform: rotateY(7deg);
+    -webkit-transform: rotate(7deg);
+  }
+  100% {
+    left: -25%;
+    transform: rotateY(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+}
+@keyframes moving {
+  0% {
+    transform: rotateY(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    transform: rotateY(7deg);
+    -webkit-transform: rotate(7deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+}
