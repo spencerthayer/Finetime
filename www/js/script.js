@@ -205,7 +205,7 @@ function getSky() {
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
-    var r                           = 2;
+    var r                           = 1.5;
     var x                           = 1;
     //var hh = datetime.getHours();
     //var hx = hh % 12 || 12;
@@ -219,7 +219,7 @@ function getStellar() {
         var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
         var sunAzimuth180           = sunPosition.azimuth * 180 / Math.PI;
         var sunAzimuth360           = (sunPosition.azimuth * 180 / Math.PI + 180) % 360;
-        sunx = (r * sunAzimuth180)*-1;
+        sunx = (r * sunAzimuth180)*-2;
         suny = (r * sunAltitude180)*-1;
     // LAUNCH SOL
             if(datetime >= sunRise && datetime <= sunSet) {
