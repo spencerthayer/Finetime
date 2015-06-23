@@ -205,6 +205,7 @@ function getSky() {
 //    console.log("Test: "+ (sunSet - sunRise)/sunRise *100);
     // EXPLICITLY DEFINE FUNCTIONS
     getStellar();
+    runStarMap();
 }
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
@@ -219,26 +220,21 @@ function getStellar() {
         //var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
         var sunMath                 = Math.abs( (sunAzimuthX + sunAltitudeY) / Math.PI ) %2;
         var sunSize                 = Math.min(Math.max(parseInt(Math.abs( (sunAzimuthX / sunAltitudeY) / Math.PI ) *.5), 1), 1.75);
-        var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .5), .95);;
+        var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .65), .95);;
         sunx = sunAzimuthX;
         suny = sunAltitudeY;
     // LAUNCH SOL
             if(datetime >= sunRise && datetime <= sunSet) {
-                $("#sun").velocity(
-                    {
-                        translateX: sunx + "vw",
-                        translateY: suny + "vh",
-                        scale: sunSize,
-                    }
-                );
-                $("#sun").velocity(
-                    { opacity: sunOpacity }
-//                  { display: "block" }
-                );
+                $("#sun").velocity({
+                    translateX: sunx + "vw",
+                    translateY: suny + "vh",
+                    scale: sunSize,
+                    opacity: sunOpacity
+                });
             } else {
-                $("#sun").velocity(
-                    { display: "none" }
-                );
+                $("#sun").velocity({
+                    display: "none"
+                });
             };
       moonPosition
     var moonPosition                = SunCalc.getMoonPosition(datetime, lat, lon);
@@ -286,8 +282,7 @@ function getStellar() {
 // STARMAP
 /**////////////////////
 function starMap() {
-
-        var planetarium = $.virtualsky({
+        $.virtualsky({
             id: "starmap",
             projection: "stereo",
             live: true,
@@ -327,6 +322,19 @@ function starMap() {
             showgalaxy: false,
             /**/
         });
+}
+function runStarMap() {
+        var datetime= new Date();
+        if (datetime >= moonRise && datetime <= moonSet) {
+            $("#starmap").velocity(
+                  { display: "block" }
+            );
+        } else {
+            window.starMap=function(){return false;};
+            $("#starmap").velocity(
+                  { display: "none" }
+            );
+        }
 }
 /**////////////////////
 // MOON PHASE
@@ -379,6 +387,7 @@ setInterval(function(){
     getStellar();
 //    starMap();
     shadowMove();
+    runStarMap();
 },1000*10);
 setInterval(function(){
     getSky();
