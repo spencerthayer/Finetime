@@ -220,7 +220,7 @@ function getStellar() {
         //var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
         var sunMath                 = Math.abs( (sunAzimuthX + sunAltitudeY) / Math.PI ) %2;
         var sunSize                 = Math.min(Math.max(parseInt(Math.abs( (sunAzimuthX / sunAltitudeY) / Math.PI ) *.5), 1), 1.75);
-        var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .65), .95);;
+        var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .5), .9);;
         sunx = sunAzimuthX;
         suny = sunAltitudeY;
     // LAUNCH SOL
@@ -229,8 +229,12 @@ function getStellar() {
                     translateX: sunx + "vw",
                     translateY: suny + "vh",
                     scale: sunSize,
-                    opacity: sunOpacity
+                    opacity: .95
                 });
+                $("#sun").css(
+                    'background',
+                    "linear-gradient(to bottom, rgba(255,255,119,1) 50%,rgba(255,225,130,"+sunOpacity+") 100%)"
+                );
             } else {
                 $("#sun").velocity({
                     display: "none"

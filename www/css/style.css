@@ -119,7 +119,7 @@ html, body {
     width:20vmin;
     height:20vmin;
     z-index: 12;
-    background: linear-gradient(to bottom, #ff8 50%,#fe8 100%);
+    background: linear-gradient(to bottom, rgba(255,255,119,1) 50%,rgba(255,238,136,1) 100%);
     border-radius:100%;
     box-shadow:0 0 10vvmin #ff9;
     box-shadow: inset 0vmin 0vmin 5vmin 1vmin #fe8, 0vmin 0vmin 8vmin 3vmin #ff9;
