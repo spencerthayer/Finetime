@@ -58,7 +58,7 @@ function gradientSky() {
     $("#skyBot").removeClass("sky-gradient-"+hh);
     $("#skyBot").addClass("sky-gradient-"+(hh+1));
     //setTimeout(gradientSky,1000*10);
-}gradientSky();
+}
 /**/////////////////////
 // GEO LOCATION
 // geo.js
@@ -84,6 +84,7 @@ function geoSuccess(position) {
         getWeather();
         getSky();
         getStellar();
+        starMap();
         //sound();
 }
 function geoError() {
@@ -194,10 +195,10 @@ function getSky() {
 //    new Date(sunsetTime).getTime() / 1000).toFixed(0);
 //    new Date(sunriseTime).getTime() / 1000).toFixed(0);
     console.log(times);
-//    console.log("Sun Rise: "+sunRise);
-//    console.log("Sun Set: "+sunSet);
-//    console.log("Moon Rise: "+moonRise);
-//    console.log("Moon Set: "+moonSet);
+    console.log("Sun Rise: "+sunRise);
+    console.log("Sun Set: "+sunSet);
+    console.log("Moon Rise: "+moonRise);
+    console.log("Moon Set: "+moonSet);
 //    console.log("Test: "+ (sunSet - sunRise)/sunRise *100);
     // EXPLICITLY DEFINE FUNCTIONS
     getStellar();
@@ -205,33 +206,30 @@ function getSky() {
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
-    var r                           = 1.5;
-    var x                           = 1;
-    //var hh = datetime.getHours();
-    //var hx = hh % 12 || 12;
-    //var meridian = (hh >= 12?'pm':'am');
-    var stellarOpacity                  = .8
-                                        //if(hh >= 12) { (hh-12)/hh*10; } else { (hh-12)/hh*-10; };
-//    console.log("SUNOP:"+ hh +" / "+ hx +" / "+ stellarOpacity);
     //  sunPosition
     var sunPosition                 = SunCalc.getPosition(datetime, lat, lon);
-        var sunAltitude180          = sunPosition.altitude * 180 / Math.PI;
-        var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
-        var sunAzimuth180           = sunPosition.azimuth * 180 / Math.PI;
-        var sunAzimuth360           = (sunPosition.azimuth * 180 / Math.PI + 180) % 360;
-        sunx = (r * sunAzimuth180)*-2;
-        suny = (r * sunAltitude180)*-1;
+        var sunAzimuthX             = (sunPosition.azimuth * 75 / Math.PI)*-1;
+        //var sunAzimuth180           = sunPosition.azimuth * 180 / Math.PI;
+        //var sunAzimuth360           = (sunPosition.azimuth * 180 / Math.PI + 180) % 360
+        var sunAltitudeY            = (sunPosition.altitude * 75 / Math.PI)*-1;
+        //var sunAltitude180          = sunPosition.altitude * 180 / Math.PI;
+        //var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
+        var sunMath                 = Math.abs( (sunAzimuthX + sunAltitudeY) / Math.PI ) %2;
+        var sunSize                 = Math.min(Math.max(parseInt(Math.abs( (sunAzimuthX / sunAltitudeY) / Math.PI ) *.5), 1), 1.75);
+        var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .5), .95);;
+        sunx = sunAzimuthX;
+        suny = sunAltitudeY;
     // LAUNCH SOL
             if(datetime >= sunRise && datetime <= sunSet) {
                 $("#sun").velocity(
                     {
-                        translateX: sunx + "%",
-                        translateY: suny + "%",
-                        scale: 1,
+                        translateX: sunx + "vw",
+                        translateY: suny + "vh",
+                        scale: sunSize,
                     }
                 );
                 $("#sun").velocity(
-                    { opacity: stellarOpacity }
+                    { opacity: sunOpacity }
 //                  { display: "block" }
                 );
             } else {
@@ -239,26 +237,29 @@ function getStellar() {
                     { display: "none" }
                 );
             };
-    //  moonPosition
+      moonPosition
     var moonPosition                = SunCalc.getMoonPosition(datetime, lat, lon);
-        var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
-        var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
-        var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
-        var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
-        var moonDistance            = moonPosition.distance * 180 / Math.PI;
-        var moonx                   = (r * moonAzimuth180)*-1;
-        var moony                   = (r * moonAltitude180)*-1;
+        var moonAzimuthX            = (moonPosition.azimuth * 75 / Math.PI)*-.8;
+//        var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
+//        var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
+        var moonAltitudeY            = (moonPosition.altitude * 75 / Math.PI)*-.8;
+//        var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
+//        var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
+//        var moonDistance            = moonPosition.distance * 180 / Math.PI;
+        var moonx                   = moonAzimuthX;
+        var moony                   = moonAltitudeY;
     // LAUNCH MOON
-        if(hh >= -0.1 && datetime <= sunriseEndTime || datetime >= duskTime && hh <= 25) {
+//        if(hh >= -0.1 && datetime <= sunriseEndTime || datetime >= duskTime && hh <= 25) {
+        if(datetime >= moonRise && datetime <= moonSet) {
             $("#moon").velocity(
                 {
-                    translateX: moonx + "%",
-                    translateY: moony + "%",
+                    translateX: moonx + "vw",
+                    translateY: moony + "vh",
                 }
             );
             $("#moon").velocity(
-                    { opacity: stellarOpacity }
-//                    { display: "block" }
+                    { opacity: .8 }
+//                  { display: "block" }
             );
         } else {
                 $("#moon").velocity(
@@ -278,28 +279,51 @@ function getStellar() {
     shadowMove();
     return;
 }
-
 /**////////////////////
-// ACTIVATE STARFIELD
-/** ////////////////////
-function skyconditions() {
-    if (hour > -0.1 && hour < 5 || hour > 20 && hour < 25) {
-        $(".starfield").show();
-    } else {
-        $(".starfield").hide();
-    }
-    if (hour > 6 && hour < 18) {
-        $(".sun").show();
-    } else {
-        $(".sun").hide();
-    }
-    if (hour > 5 && hour < 9) {
-        $(".sun").show();
-        $("#clock").css("color", "#20202c")
-    } else {
-        $("#clock").css("color", "#FFF")
-    }
-    window.setTimeout("skyconditions()", 1000*10);
+// STARMAP
+/**////////////////////
+function starMap() {
+
+        var planetarium = $.virtualsky({
+            id: "starmap",
+            projection: "stereo",
+            live: true,
+            /**/
+            latitude: lat,
+            longitude: lon,
+            az: 0,
+            showposition: false,
+            /**/
+            gradient: false,
+            transparent: true,
+            negative: false,
+            magnitude: 3,
+            scalestars: 1,
+            /**/
+            mouse: false,
+            keyboard: false,
+            /**/
+            ground: true,
+            cardinalpoints: false,
+            constellations: true,
+            constellationlabels: false,
+            constellationboundaries: false,
+            meteorshowers: false,
+            showplanets: true,
+            showplanetlabels: false,
+            showorbits: false,
+            showstars: true,
+            showstarlabels: false,
+            showdate: false,
+            gridlines_az: false,
+            gridlines_eq: false,
+            gridlines_gal: false,
+            gridstep: 30,
+            ecliptic: false,
+            meridian: false,
+            showgalaxy: false,
+            /**/
+        });
 }
 /**////////////////////
 // MOON PHASE
@@ -311,13 +335,13 @@ function skyconditions() {
 // shadow.js
 /**////////////////////
 function shadowMove() {
-    var shadowObject = $('#content')
+    var shadowObject = $('.shadow')
     var textCenterTop = (shadowObject.offset().top + (shadowObject.height() /2))/2.5;
     var textCenterLeft = (shadowObject.offset().left + (shadowObject.width() /2))/2.5;
 //  var mx = e.clientX;
 //  var my = e.clientY;
-    var deltaX = (textCenterLeft+sunx)*-1;
-    var deltaY = (textCenterTop+suny)*-1;
+    var deltaX = (/*textCenterLeft+*/sunx)*-1;
+    var deltaY = (/*textCenterTop+*/suny)*-1;
     var shadowBlur = Math.sqrt((deltaX * deltaX) + (deltaY * deltaY));
     shadowObject.css({
         "text-shadow" : deltaX / 20 + "px " + deltaY / 20 + "px " + shadowBlur / 20 +"px " + "rgba(0,0,50,.5)",
@@ -346,11 +370,12 @@ var vibrato = new Tone.LFO(6, -25, 25)
 setInterval(function(){
     updateTime();
     blink();
+    gradientSky();
 },1000/2);
 setInterval(function(){
     getStellar();
+//    starMap();
     shadowMove();
-    gradientSky();
 },1000*10);
 setInterval(function(){
     getSky();
