@@ -79,6 +79,9 @@ function geoSuccess(position) {
         lon = longitude;
     var altitude = position.coords.altitude;
         alt = altitude;
+    var heading = position.coords.heading;
+        heading = heading || 0;
+        NSEW = heading;
     // EXPLICITLY DEFINE FUNCTIONS
         geoPrompt();
         getWeather();
@@ -291,7 +294,7 @@ function starMap() {
             /**/
             latitude: lat,
             longitude: lon,
-            az: 0,
+            az: NSEW,
             showposition: false,
             /**/
             gradient: false,
