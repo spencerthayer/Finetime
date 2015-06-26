@@ -22,7 +22,6 @@ html, body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #000;
 }
 /**************/
 .left   { float: left; }
@@ -304,7 +303,32 @@ i {
 .icon-45:before { content: "S"; }
 .icon-46:before { content: "U"; }
 .icon-47:before { content: "S"; }
-
+/**/
+.background-0 { background-color: #000000;}
+.background-1 { background-color: #171717;}
+.background-2 { background-color: #2E2E2E;}
+.background-3 { background-color: #464646;}
+.background-4 { background-color: #5D5D5D;}
+.background-5 { background-color: #747474;}
+.background-6 { background-color: #8B8B8B;}
+.background-7 { background-color: #A2A2A2;}
+.background-8 { background-color: #B9B9B9;}
+.background-9 { background-color: #D1D1D1;}
+.background-10 { background-color: #E8E8E8;}
+.background-11 { background-color: #FFFFFF;}
+.background-12 { background-color: #FFFFFF;}
+.background-13 { background-color: #FFFFFF;}
+.background-14 { background-color: #E8E8E8;}
+.background-15 { background-color: #D1D1D1;}
+.background-16 { background-color: #B9B9B9;}
+.background-17 { background-color: #A2A2A2;}
+.background-18 { background-color: #8B8B8B;}
+.background-19 { background-color: #747474;}
+.background-20 { background-color: #5D5D5D;}
+.background-21 { background-color: #464646;}
+.background-22 { background-color: #2E2E2E;}
+.background-23 { background-color: #171717;}
+.background-24 { background-color: #000000;}
 /**/
 .sky-gradient-default { background: radial-gradient(200% 100% at bottom center, #f7f7b6, #e96f92, #75517d, #1b2947); background: radial-gradient(220% 105% at top center, #1b2947 10%, #75517d 40%, #e96f92 65%, #f7f7b6); }
 .sky-gradient-00,.sky-gradient-0,.sky-gradient-24 { background: linear-gradient(to bottom, #00000c 85%,#000019 100%); }

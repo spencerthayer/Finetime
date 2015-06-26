@@ -1,9 +1,6 @@
-//"use strict";
-window.onload = function() {
-    setTimeout(starfield, 1000);
-};
-starfield();
-
+/**////////////////////
+// STAR FIELD
+/**////////////////////
 function starfield() {
     //Helpers
     function lineToAngle(x1, y1, length, radians) {
@@ -225,3 +222,56 @@ function starfield() {
       paused = true;
     };
 }
+/**////////////////////
+// STAR MAP
+/**////////////////////
+function starMap() {
+        $.virtualsky({
+            id: "starmap",
+            projection: "stereo",
+            live: true,
+            /**/
+            latitude: lat,
+            longitude: lon,
+            az: NSEW,
+            showposition: false,
+            /**/
+            gradient: false,
+            transparent: true,
+            negative: false,
+            magnitude: 3,
+            scalestars: 1,
+            /**/
+            mouse: false,
+            keyboard: false,
+            /**/
+            ground: false,
+            cardinalpoints: false,
+            constellations: true,
+            constellationlabels: false,
+            constellationboundaries: false,
+            meteorshowers: false,
+            showplanets: true,
+            showplanetlabels: false,
+            showorbits: false,
+            showstars: true,
+            showstarlabels: false,
+            showdate: false,
+            gridlines_az: false,
+            gridlines_eq: false,
+            gridlines_gal: false,
+            gridstep: 30,
+            ecliptic: false,
+            meridian: false,
+            showgalaxy: false,
+            /**/
+        });
+}
+/**////////////////////
+// COMMANDS
+/**////////////////////
+//"use strict";
+window.onload = function() {
+    setTimeout(starfield, 1000);
+};
+starfield();

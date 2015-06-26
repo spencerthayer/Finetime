@@ -4,7 +4,7 @@
 // stellar.js
 /**/////////////////////
 function getStellar() {
-    var datetime= new Date()./*FOR*/addHours(10)/*DEBUGGING*/;
+    var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
     times                       = SunCalc.getTimes(datetime, lat, lon);
         nauticalDawnTime            = times.nauticalDawn;
@@ -124,50 +124,4 @@ function getStellar() {
     console.log("Sun Set: "+sunSet);
     console.log("Moon Rise: "+moonRise);
     console.log("Moon Set: "+moonSet);
-}
-
-/**////////////////////
-// STARMAP
-/**////////////////////
-function starMap() {
-        $.virtualsky({
-            id: "starmap",
-            projection: "stereo",
-            live: true,
-            /**/
-            latitude: lat,
-            longitude: lon,
-            az: NSEW,
-            showposition: false,
-            /**/
-            gradient: false,
-            transparent: true,
-            negative: false,
-            magnitude: 3,
-            scalestars: 1,
-            /**/
-            mouse: false,
-            keyboard: false,
-            /**/
-            ground: false,
-            cardinalpoints: false,
-            constellations: true,
-            constellationlabels: false,
-            constellationboundaries: false,
-            meteorshowers: false,
-            showplanets: true,
-            showplanetlabels: false,
-            showorbits: false,
-            showstars: true,
-            showstarlabels: false,
-            showdate: false,
-            gridlines_az: false,
-            gridlines_eq: false,
-            gridlines_gal: false,
-            gridstep: 30,
-            ecliptic: false,
-            meridian: false,
-            showgalaxy: false,
-            /**/
-        });
 }

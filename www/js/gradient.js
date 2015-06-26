@@ -3,7 +3,7 @@
 // gradient.js
 /**/////////////////////
 function gradientSky() {
-    var datetime= new Date()./*FOR*/addHours(10)/*DEBUGGING*/;
+    var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
     var mm = datetime.getMinutes();
     var ss = datetime.getSeconds();
@@ -12,6 +12,7 @@ function gradientSky() {
     var percentTime = 1-(mmss/60);
     var nightMod = 0;
     //console.log("%: "+ mmss +" / "+ percentTime +" / "+ percentRemain +" / "+ (percentTime+percentRemain));
+    $("body").addClass("background-"+hh);
     $("#skyTop").velocity (
         { opacity: percentTime }
     ); 
