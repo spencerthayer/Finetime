@@ -6,14 +6,14 @@ Date.prototype.addHours= function(h){
     this.setHours(this.getHours()+h);
     return this;
 }
-datetime = new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
+//datetime = new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
 //tomorrowTime = new Date().addHours(24)
 //yesterdayTime = new Date().addHours(-24);
 function zeropadder(n) {
   return (parseInt(n,10) < 10 ? '0' : '')+n;
 }
 function updateTime(){
-        var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
+        var datetime= new Date()./*FOR*/addHours(10)/*DEBUGGING*/;
         var hh = datetime.getHours();
         var mm = datetime.getMinutes();
         var ss = datetime.getSeconds();

@@ -265,8 +265,7 @@ function VirtualSky(input){
 	this.gradient = true;				// Show the sky gradient
 	this.magnitude = 5;					// Limit for stellar magnitude
 	this.background = "rgba(0,0,0,0)";	// Default background colour is transparent
-//	this.background = "transparent";	// Default background colour is transparent
-	this.color = "";					// Default background colour is chosen automatically
+	this.color = "rgba(0,0,0,0)";		// Default background colour is chosen automatically
 	this.wide = 0;						// Default width if not set in the <canvas> <div> or input argument
 	this.tall = 0;
 
@@ -735,7 +734,7 @@ function VirtualSky(input){
 	this.colours = {
 		'normal' : {
 			'txt' : "rgb(255,255,255)",
-			'black':"rgb(0,0,0)",
+			'black':"rgba(0,0,0,0)",
 			'white':"rgb(255,255,255)",
 			'grey':"rgb(100,100,100)",
 			'stars':'rgb(255,255,255)',
@@ -756,7 +755,7 @@ function VirtualSky(input){
 		'negative':{
 			'txt' : "rgb(0,0,0)",
 			'black':"rgb(0,0,0)",
-			'white':"rgb(255,255,255)",
+			'white':"rgba(255,255,255,0)",
 			'grey':"rgb(100,100,100)",
 			'stars':'rgb(0,0,0)',
 			'sun':'rgb(0,0,0)',

@@ -4,7 +4,7 @@
 // stellar.js
 /**/////////////////////
 function getStellar() {
-    var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
+    var datetime= new Date()./*FOR*/addHours(10)/*DEBUGGING*/;
     var hh = datetime.getHours();
     times                       = SunCalc.getTimes(datetime, lat, lon);
         nauticalDawnTime            = times.nauticalDawn;
