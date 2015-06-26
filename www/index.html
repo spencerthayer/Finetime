@@ -15,45 +15,55 @@
     <link rel="apple-touch-icon-precomposed" href=" img/favicon.png"/>
     <!--link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.2/css/weather-icons.min.css"-->
     
-    <!-- JAVASCRIPTS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/geolocation.js"></script>
-    <script src="js/moment.js"></script>
-    <script src="js/velocity.min.js"></script>
-    <script src="js/suncalc.js"></script>
-    <script src="js/virtualsky/excanvas.min.js"></script>
-    <script src="js/virtualsky/virtualsky.js"></script>
+    <!-- JAVASCRIPT LIBRARY -->
+    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/geolocation.js"></script>
+    <script src="js/lib/moment.js"></script>
+    <script src="js/lib/velocity.min.js"></script>
+    <script src="js/lib/suncalc.js"></script>
+    <script src="js/lib/virtualsky/virtualsky.js"></script>
+    <script src="js/lib/virtualsky/excanvas.min.js"></script>
+    <!-- JAVASCRIPT -->
     <!--<script type="text/javascript" src="http://cdn.tonejs.org/latest/Tone.min.js"></script>-->
-    <script src="js/script.js"></script>
+    <script src="js/geo.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/gradient.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/shadow.js"></script>
+    <script src="js/stellar.js"></script>
     <script src="js/stars.js"></script>
+    <script src="js/intervalometer.js"></script>
+<!--    <script src="js/terrain.js"></script>-->
 </head>
 <body><!--class="sky-gradient-default"-->
     <div class="testCircle"></div>
     
     <div id="content" class="shadow">
-        <div id="time">
-            <span id="hour"></span>
-            <span id="colon" class="blink"></span>
-            <span id="minute"></span>
-            <div id="side">
-                <span id="second"></span>
-                <span id="meridian"></span>
+        <div id="scaffold">
+            <div id="time">
+                <span id="hour"></span>
+                <span id="colon" class="blink"></span>
+                <span id="minute"></span>
+                <div id="side">
+                    <span id="second"></span>
+                    <span id="meridian"></span>
+                </div>
             </div>
-        </div>
-        <div id="date"></div>
-        <div id="weather">
-            <div id="degrees"></div>
-            <div id="temperature"></div>
-            <div id="city"></div>
-            <div id="description"></div>
-            <div id="geolocation"></div>
+            <div id="date"></div>
+            <div id="weather">
+                <div id="degrees"></div>
+                <div id="temperature"></div>
+                <div id="city"></div>
+                <div id="description"></div>
+                <div id="geolocation"></div>
+            </div>
         </div>
     </div>
     <div id="sun"></div>
     <div id="moon" class="moonlight"></div>
-    <canvas id="starfield" class="starfield"></canvas>
-    <div id="starmap"></div>
+    <canvas id="starfield"></canvas>
     <div id="skyTop"></div>
     <div id="skyBot"></div>
+    <div id="starmap"></div>
 </body>
 </html>

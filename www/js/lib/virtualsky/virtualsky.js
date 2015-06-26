@@ -259,7 +259,7 @@ function VirtualSky(input){
 	@*/
 
 	this.q = $.query();    // Query string
-	this.langurl = "js/virtualsky/lang/%LANG%.json";	// The location of the language files
+	this.langurl = "js/lib/virtualsky/lang/%LANG%.json";	// The location of the language files
 
 	this.id = '';						// The ID of the canvas/div tag - if none given it won't display
 	this.gradient = true;				// Show the sky gradient

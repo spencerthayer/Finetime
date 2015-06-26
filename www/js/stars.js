@@ -27,7 +27,6 @@ function starfield() {
         vx: 0,
         vy: 0,
         radius: 0,
-
         create: function(x, y, speed, direction) {
             var obj = Object.create(this);
             obj.x = x;
@@ -36,27 +35,22 @@ function starfield() {
             obj.vy = Math.sin(direction) * speed;
             return obj;
         },
-
         getSpeed: function() {
             return Math.sqrt(this.vx * this.vx + this.vy * this.vy);
         },
-
         setSpeed: function(speed) {
             var heading = this.getHeading();
             this.vx = Math.cos(heading) * speed;
             this.vy = Math.sin(heading) * speed;
         },
-
         getHeading: function() {
             return Math.atan2(this.vy, this.vx);
         },
-
         setHeading: function(heading) {
             var speed = this.getSpeed();
             this.vx = Math.cos(heading) * speed;
             this.vy = Math.sin(heading) * speed;
         },
-
         update: function() {
             this.x += this.vx;
             this.y += this.vy;
@@ -167,7 +161,6 @@ function starfield() {
                     drawShootingStar(shootingStar);
                 }
             }
-
             //Delete dead shooting shootingStars
             for (i = shootingStars.length -1; i >= 0 ; i--){
                 if (shootingStars[i].isDead){
@@ -190,7 +183,6 @@ function starfield() {
             y = p.y,
             currentTrailLength = (maxTrailLength * p.trailLengthDelta),
             pos = lineToAngle(x, y, -currentTrailLength, p.getHeading());
-
         context.fillStyle = "rgba(255, 255, 255, " + p.opacity + ")";
         // context.beginPath();
         //context.arc(x, y, p.radius, 0, Math.PI * 2, false);
@@ -198,25 +190,18 @@ function starfield() {
         var starLength = 5;
         context.beginPath();
         context.moveTo(x - 1, y + 1);
-
         context.lineTo(x, y + starLength);
         context.lineTo(x + 1, y + 1);
-
         context.lineTo(x + starLength, y);
         context.lineTo(x + 1, y - 1);
-
         context.lineTo(x, y + 1);
         context.lineTo(x, y - starLength);
-
         context.lineTo(x - 1, y - 1);
         context.lineTo(x - starLength, y);
-
         context.lineTo(x - 1, y + 1);
         context.lineTo(x - starLength, y);
-
         context.closePath();
         context.fill();
-
         //trail
         context.fillStyle = "rgba(255, 221, 157, " + p.opacity + ")";
         context.beginPath();
@@ -226,22 +211,17 @@ function starfield() {
         context.closePath();
         context.fill();
     }
-
     //Run
     update();
-
     //Shooting stars
     setInterval(function() {
         if (paused) return;
         createShootingStar();
     }, shootingStarEmittingInterval);
-
     window.onfocus = function () {
       paused = false;
     };
-
     window.onblur = function () {
       paused = true;
     };
-
 }
