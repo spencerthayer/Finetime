@@ -1,4 +1,3 @@
-
 /**/////////////////////
 // STELLAR CALCULATIONS
 // stellar.js
@@ -13,54 +12,53 @@ function getStellar() {
                 return true;
             };
         };
-    times                       = SunCalc.getTimes(datetime, lat, lon);
-        nauticalDawnTime            = times.nauticalDawn;
-        dawnTime                    = times.dawn;
-        sunriseTime                 = times.sunrise;
-        sunriseEndTime              = times.sunriseEnd;
-        solarNoonTime               = times.solarNoon;
-        goldenHourTime              = times.goldenHour;
-        sunsetStartTime             = times.sunsetStart;
-        sunsetTime                  = times.sunset;
-        duskTime                    = times.dusk;
-        nauticalDuskTime            = times.nauticalDusk;
-        nightTime                   = times.night
-        nadirTime                   = times.nadir
-        nightEndTime                = times.nightEnd;    
-        sunRise                     = times.sunrise;
-        sunSet                      = times.sunset;
-        moonTimes                   = SunCalc.getMoonTimes(datetime, lat, lon);
-        moonRise                    = moonTimes.rise;
-        moonSet                     = moonTimes.set;
-    //  sunPosition
-    var sunPosition                 = SunCalc.getPosition(datetime, lat, lon);
-        var sunAzimuthX             = (sunPosition.azimuth * 75 / Math.PI)*-1;
-        //var sunAzimuth180           = sunPosition.azimuth * 180 / Math.PI;
-        //var sunAzimuth360           = (sunPosition.azimuth * 180 / Math.PI + 180) % 360
-        var sunAltitudeY            = (sunPosition.altitude * 75 / Math.PI)*-1;
-        //var sunAltitude180          = sunPosition.altitude * 180 / Math.PI;
-        //var sunAltitude360          = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
-        var sunMath                 = Math.abs( (sunAzimuthX + sunAltitudeY) / Math.PI ) %2;
-        var sunSize                 = Math.min(Math.max(parseInt(Math.abs( (sunAzimuthX / sunAltitudeY) / Math.PI ) *.5), 1), 1.75);
-        var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .5), .9);;
+// stellarTimes
+    times                   = SunCalc.getTimes(datetime, lat, lon);
+        nauticalDawnTime    = times.nauticalDawn;
+        dawnTime            = times.dawn;
+        sunRise             = times.sunrise;
+        sunriseEnd          = times.sunriseEnd;
+        solarNoon           = times.solarNoon;
+        goldenHour          = times.goldenHour;
+        sunsetStart         = times.sunsetStart;
+        sunSet              = times.sunset;
+        dusk                = times.dusk;
+        nauticalDusk        = times.nauticalDusk;
+        night               = times.night
+        nadir               = times.nadir
+        nightEnd            = times.nightEnd;
+        moonTimes           = SunCalc.getMoonTimes(datetime, lat, lon);
+        moonRise            = moonTimes.rise;
+        moonSet             = moonTimes.set;
+//  sunPosition
+    var sunPosition         = SunCalc.getPosition(datetime, lat, lon);
+        var sunAzimuthX     = (sunPosition.azimuth * 75 / Math.PI)*-1;
+        //var sunAzimuth180 = sunPosition.azimuth * 180 / Math.PI;
+        //var sunAzimuth360 = (sunPosition.azimuth * 180 / Math.PI + 180) % 360
+        var sunAltitudeY    = (sunPosition.altitude * 75 / Math.PI)*-1;
+        //var sunAltitude180    = sunPosition.altitude * 180 / Math.PI;
+        //var sunAltitude360    = (sunPosition.altitude * 180 / Math.PI + 180) % 360;
+        var sunMath         = Math.abs( (sunAzimuthX + sunAltitudeY) / Math.PI ) %2;
+        var sunSize         = Math.min(Math.max(parseInt(Math.abs( (sunAzimuthX / sunAltitudeY) / Math.PI ) *.5), 1), 1.75);
+        var sunOpacity      = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .5), .9);;
         sunx = sunAzimuthX;
         suny = sunAltitudeY;
-    // moonPosition
-        var moonPosition            = SunCalc.getMoonPosition(datetime, lat, lon);
-        var moonAzimuthX            = (moonPosition.azimuth * 75 / Math.PI)*-.8;
-        //var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
-        //var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
-        var moonAltitudeY           = (moonPosition.altitude * 75 / Math.PI)*-.8;
-        //var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
-        //var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
-        //var moonDistance            = moonPosition.distance * 180 / Math.PI;
-        var getMoonIllumination     = SunCalc.getMoonIllumination(datetime);
-        var moonFraction            = getMoonIllumination.fraction;
-        var moonPhase               = 1-getMoonIllumination.phase;
-        var moonAngle               = isPositive(getMoonIllumination.angle);
-        moonx                   = moonAzimuthX;
-        moony                   = moonAltitudeY;
-    // LAUNCH SOL
+// moonPosition
+        var moonPosition    = SunCalc.getMoonPosition(datetime, lat, lon);
+        var moonAzimuthX    = (moonPosition.azimuth * 75 / Math.PI)*-.8;
+        //var moonAzimuth180    = moonPosition.azimuth * 180 / Math.PI;
+        //var moonAzimuth360    = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
+        var moonAltitudeY   = (moonPosition.altitude * 75 / Math.PI)*-.8;
+        //var moonAltitude180   = moonPosition.altitude * 180 / Math.PI;
+        //var moonAltitude360   = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
+        //var moonDistance  = moonPosition.distance * 180 / Math.PI;
+        var getMoonIllumination = SunCalc.getMoonIllumination(datetime);
+        var moonFraction    = getMoonIllumination.fraction;
+        var moonPhase   = 1-getMoonIllumination.phase;
+        var moonAngle   = isPositive(getMoonIllumination.angle);
+        moonx           = moonAzimuthX;
+        moony           = moonAltitudeY;
+// LAUNCH SOL
         if(datetime >= sunRise && datetime <= sunSet) {
             $("#sun").velocity({
                 translateX: sunx + "vw",
@@ -77,7 +75,7 @@ function getStellar() {
                 display: "none"
             });
         };
-    // LAUNCH MOON
+// LAUNCH MOON
         if(!(datetime >= sunRise && datetime <= sunSet)) {
 			drawPlanetPhase(
                 document.body, moonPhase, moonAngle, {
@@ -100,8 +98,8 @@ function getStellar() {
         } else {
             $("#moon").hide();
             };
-     // LAUNCH STARFIELD
-        if (!(datetime >= nightEndTime && datetime <= nauticalDuskTime)) {
+// LAUNCH STARFIELD
+        if (!(datetime >= nightEnd && datetime <= nauticalDusk)) {
             if(!starfield.called) {
                 starfield.called = true;
                 starfield();
@@ -115,8 +113,8 @@ function getStellar() {
             window.starfield=function(){return false;};
             $("#starfield").hide();
         }
-    // LAUNCH STARMAP
-        if (!(datetime >= nightEndTime && datetime <= nauticalDuskTime)) {
+// LAUNCH STARMAP
+        if (!(datetime >= nightEnd && datetime <= nauticalDusk)) {
             $("#starmap").velocity(
                 { display: "block" }
             );
@@ -129,14 +127,14 @@ function getStellar() {
             $("#starfield").hide();
         }
     shadowMove();
-    /**/////////////////////
-    // CONSOLE LOG INFO
-    /**/////////////////////
+/**/////////////////////
+// CONSOLE LOG INFO
+/**/////////////////////
     //console.log(times);
     //console.log("moonFraction:"+moonFraction+"/"+"moonPhase:"+moonPhase+"/"+"moonAngle:"+moonAngle);
     //console.log("Sun Rise: "+sunRise);
     //console.log("Sun Set: "+sunSet);
     //console.log("Moon Rise: "+moonRise);
     //console.log("Moon Set: "+moonSet);
-    /**/////////////////////
+/**/////////////////////
 }
