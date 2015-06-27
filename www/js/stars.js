@@ -62,9 +62,9 @@ function starfield() {
     var stars = [];
     var shootingStars = [];
     var layers = [
-            { speed: 0.02, scale: 0.2, count: 300 },
+            { speed: 0.02, scale: 0.2, count: 150 },
             { speed: 0.03, scale: 0.4, count: 50 },
-            { speed: 0.04, scale: 0.6, count: 50 }
+            { speed: 0.04, scale: 0.6, count: 25 },
         ];
     var starsAngle = 145;
     var shootingStarSpeed = {
@@ -267,11 +267,3 @@ function starMap() {
             /**/
         });
 }
-/**////////////////////
-// COMMANDS
-/**////////////////////
-//"use strict";
-window.onload = function() {
-    setTimeout(starfield, 1000);
-};
-starfield();
