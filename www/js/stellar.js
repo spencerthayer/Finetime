@@ -6,6 +6,12 @@
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
+    function isPositive(num) {
+        if(num > 0)
+            return false;
+        else
+            return true;
+        };
     times                       = SunCalc.getTimes(datetime, lat, lon);
         nauticalDawnTime            = times.nauticalDawn;
         dawnTime                    = times.dawn;
@@ -25,8 +31,6 @@ function getStellar() {
         moonTimes                   = SunCalc.getMoonTimes(datetime, lat, lon);
         moonRise                    = moonTimes.rise;
         moonSet                     = moonTimes.set;
-    //
-    //getStellar();
     //  sunPosition
     var sunPosition                 = SunCalc.getPosition(datetime, lat, lon);
         var sunAzimuthX             = (sunPosition.azimuth * 75 / Math.PI)*-1;
@@ -40,6 +44,21 @@ function getStellar() {
         var sunOpacity              = Math.min(Math.max(parseInt( Math.abs( (sunAltitudeY / sunAzimuthX) ) ), .5), .9);;
         sunx = sunAzimuthX;
         suny = sunAltitudeY;
+    // moonPosition
+        var moonPosition            = SunCalc.getMoonPosition(datetime, lat, lon);
+        var moonAzimuthX            = (moonPosition.azimuth * 75 / Math.PI)*-.8;
+        //var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
+        //var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
+        var moonAltitudeY           = (moonPosition.altitude * 75 / Math.PI)*-.8;
+        //var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
+        //var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
+        //var moonDistance            = moonPosition.distance * 180 / Math.PI;
+        var getMoonIllumination     = SunCalc.getMoonIllumination(datetime);
+        var moonFraction            = getMoonIllumination.fraction;
+        var moonPhase               = 1-getMoonIllumination.phase;
+        var moonAngle               = isPositive(getMoonIllumination.angle);
+        var moonx                   = moonAzimuthX;
+        var moony                   = moonAltitudeY;
     // LAUNCH SOL
             if(datetime >= sunRise && datetime <= sunSet) {
                 $("#sun").velocity({
@@ -57,27 +76,6 @@ function getStellar() {
                     display: "none"
                 });
             };
-    // moonPosition
-        var moonPosition            = SunCalc.getMoonPosition(datetime, lat, lon);
-        var moonAzimuthX            = (moonPosition.azimuth * 75 / Math.PI)*-.8;
-        //var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
-        //var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
-        var moonAltitudeY           = (moonPosition.altitude * 75 / Math.PI)*-.8;
-        //var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
-        //var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
-        //var moonDistance            = moonPosition.distance * 180 / Math.PI;
-        var getMoonIllumination     = SunCalc.getMoonIllumination(datetime);
-        var moonFraction            = getMoonIllumination.fraction;
-        var moonPhase               = 1-getMoonIllumination.phase;
-            function isPositive(num) {
-                if(num > 0)
-                    return false;
-                else
-                    return true;
-            };
-        var moonAngle               = isPositive(getMoonIllumination.angle);
-        var moonx                   = moonAzimuthX;
-        var moony                   = moonAltitudeY;
     // LAUNCH MOON
         if(!(datetime >= sunRise && datetime <= sunSet)) {
 			drawPlanetPhase(
@@ -97,7 +95,6 @@ function getStellar() {
             );
             $("#moon").velocity(
                     { opacity: .8 }
-//                  { display: "block" }
             );
         } else {
                 $("#moon").velocity(
@@ -116,9 +113,6 @@ function getStellar() {
         }
     // LAUNCH STARMAP
         if (!(datetime >= nightEndTime && datetime <= nauticalDuskTime)) {
-//            if (typeof starMap == 'function') { 
-//                starMap(); 
-//            }
             $("#starmap").velocity(
                 { display: "block" }
             );
@@ -132,10 +126,6 @@ function getStellar() {
                   { display: "none" }
             );
         }
-    //window.onload = function() {
-    //    setTimeout(starfield, 200);
-    //};
-    //$("#starfield").show();
     shadowMove();
     //return;
     /**/////////////////////
