@@ -78,7 +78,6 @@ function getStellar() {
         var moonAngle               = isPositive(getMoonIllumination.angle);
         var moonx                   = moonAzimuthX;
         var moony                   = moonAltitudeY;
-        console.log("moonFraction:"+moonFraction+"/"+"moonPhase:"+moonPhase+"/"+"moonAngle:"+moonAngle);
     // LAUNCH MOON
         if(!(datetime >= sunRise && datetime <= sunSet)) {
 			drawPlanetPhase(
@@ -87,7 +86,7 @@ function getStellar() {
                     earthshine: .1,
                     blur: 1-moonPhase,
                     lightColour: "rgba(235, 245, 255, 1)",
-                    shadowColour: "rgba(15, 0, 25, .5)"
+                    shadowColour: "rgba(25, 10, 45, .75)"
                 }
             );
             $("#moon").velocity(
@@ -139,10 +138,14 @@ function getStellar() {
     //$("#starfield").show();
     shadowMove();
     //return;
-    //
+    /**/////////////////////
+    // CONSOLE LOG INFO
+    /** /////////////////////
     console.log(times);
+    console.log("moonFraction:"+moonFraction+"/"+"moonPhase:"+moonPhase+"/"+"moonAngle:"+moonAngle);
     console.log("Sun Rise: "+sunRise);
     console.log("Sun Set: "+sunSet);
     console.log("Moon Rise: "+moonRise);
     console.log("Moon Set: "+moonSet);
+    /**/////////////////////
 }

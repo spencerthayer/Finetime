@@ -6,32 +6,37 @@
 function getWeather() {
     var apiURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon;
     $.getJSON(apiURL, function(data) {
-        console.log(apiURL);
-        console.log(data);
         var city = (data.name);
-            console.log("Name: " + city);
             $("#city").html(city);
         var code = (data.weather[0].id);
-            console.log("Code: " + code);
             $("#code").html(code);
         var icon = (data.weather[0].icon);
-            console.log("Icon: " + icon);
             $("#icon").html(icon)
         var main = (data.weather[0].main);
-            console.log("Main: " + main);
             $("#main").html(main);
         var description = (data.weather[0].description);
-            console.log("Description: " + description);
             $("#description").html(description);
         var degrees = "\xB0";
         var kelvin = (data.main.temp)
-            console.log("Kelvin: " + kelvin + degrees);
         var celsius = Math.round(kelvin - 273.15);
-            console.log("Celsius: " + celsius + degrees);
         var fahrenheit = Math.round(((kelvin - 273.15)*9/5)+32)
-            console.log("Fahrenheit: " + fahrenheit + degrees);
         var temperature = (fahrenheit);
-            $("#temperature").html(temperature + degrees);
+        $("#temperature").html(temperature + degrees);
+/**/////////////////////
+// CONSOLE LOG INFO
+/** /////////////////////
+console.log(apiURL);
+console.log(data);
+console.log("Name: " + city);
+console.log("Code: " + code);
+console.log("Icon: " + icon);
+console.log("Main: " + main);
+console.log("Description: " + description);
+console.log("Kelvin: " + kelvin + degrees);
+console.log("Celsius: " + celsius + degrees);
+console.log("Fahrenheit: " + fahrenheit + degrees);
+$("#temperature").html(temperature + degrees);
+/**/////////////////////
 //        var checkTemp = function() {
 //            if(fahrenheit < 49) {
 //                $("#temperature").css("color", "#3A539B");

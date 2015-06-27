@@ -11,7 +11,6 @@ if (geoPosition.init()) {
   );
 }
 function geoSuccess(position) {
-    console.log(position);
     var latitude = position.coords.latitude;
         lat = latitude;
     var longitude = position.coords.longitude;
@@ -26,14 +25,23 @@ function geoSuccess(position) {
         getWeather();
         getStellar();
         starMap();
+    /**/////////////////////
+    // CONSOLE LOG INFO
+    /** /////////////////////
+    console.log(position);
+    /**/////////////////////
 }
 function geoError() {
     console.log("WARNING: NO GPS DATA RETURNED!");
 }
 function geoPrompt() {
+    /**/////////////////////
+    // CONSOLE LOG INFO
+    /** /////////////////////
     console.log(
         "Latitude: " + lat + 
         ", Longitude: " + lon + 
         ", Altitude: " + alt
     );
+    /**/////////////////////
 }
