@@ -55,30 +55,30 @@ function starfield() {
     };
 
     //Canvas and settings
-    var canvas = document.getElementById("starfield"),
-        context = canvas.getContext("2d"),
-        width = canvas.width = window.innerWidth,
-        height = canvas.height = window.innerHeight,
-        stars = [],
-        shootingStars = [],
-        layers = [
+    var canvas = document.getElementById("starfield");
+    var context = canvas.getContext("2d");
+    var width = canvas.width = window.innerWidth;
+    var height = canvas.height = window.innerHeight;
+    var stars = [];
+    var shootingStars = [];
+    var layers = [
             { speed: 0.02, scale: 0.2, count: 300 },
             { speed: 0.03, scale: 0.4, count: 50 },
             { speed: 0.04, scale: 0.6, count: 50 }
-        ],
-        starsAngle = 145,
-        shootingStarSpeed = {
+        ];
+    var starsAngle = 145;
+    var shootingStarSpeed = {
             min: 15,
             max: 25
-        },
-        shootingStarOpacityDelta = 0.01,
-        shootingStarEmittingInterval = 1000*60,
-        shootingStarLifeTime = 500,
-        trailLengthDelta = 0.01,
-        maxTrailLength = 300,
-        starBaseRadius = 2,
-        shootingStarRadius = 3,
-        paused = false;
+        };
+    var shootingStarOpacityDelta = 0.01;
+    var shootingStarEmittingInterval = 1000*60;
+    var shootingStarLifeTime = 500;
+    var trailLengthDelta = 0.01;
+    var maxTrailLength = 300;
+    var starBaseRadius = 2;
+    var shootingStarRadius = 3;
+    var paused = false;
 
     //Create all stars
     for (var j = 0; j < layers.length; j += 1) {

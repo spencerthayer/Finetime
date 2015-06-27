@@ -14,6 +14,5 @@ setInterval(function(){
     //runStarMap();
 },1000*10);
 setInterval(function(){
-    getSky();
     getWeather();
 },(1000*60)*10);

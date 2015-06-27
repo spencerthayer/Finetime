@@ -19,7 +19,7 @@ function gradientSky() {
     $("#skyTop").removeClass("sky-gradient-"+(hh-1));
     $("#skyTop").addClass("sky-gradient-"+hh);
     $("#skyBot").velocity (
-        { opacity: percentRemain+nightMod }
+        { opacity: 1 /*percentRemain+nightMod*/ }
     );
     $("#skyBot").removeClass("sky-gradient-"+hh);
     $("#skyBot").addClass("sky-gradient-"+(hh+1));
