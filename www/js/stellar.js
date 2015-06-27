@@ -7,10 +7,11 @@ function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
     function isPositive(num) {
-        if(num > 0)
-            return false;
-        else
-            return true;
+        if (num > 0) {
+                return false;
+            } else {
+                return true;
+            };
         };
     times                       = SunCalc.getTimes(datetime, lat, lon);
         nauticalDawnTime            = times.nauticalDawn;
@@ -98,9 +99,6 @@ function getStellar() {
             );
         } else {
             $("#moon").hide();
-            /*$("#moon").velocity(
-                { display: "none" }
-            );*/
             };
      // LAUNCH STARFIELD
         if (!(datetime >= nightEndTime && datetime <= nauticalDuskTime)) {
@@ -129,9 +127,6 @@ function getStellar() {
         } else {
             window.starMap=function(){return false;};
             $("#starfield").hide();
-            /*$("#starmap").velocity(
-                  { display: "none" }
-            );*/
         }
     shadowMove();
     /**/////////////////////
