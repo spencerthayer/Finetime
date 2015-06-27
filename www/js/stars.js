@@ -236,16 +236,17 @@ function starMap() {
             az: NSEW,
             showposition: false,
             /**/
+            fontsize: 1,
             gradient: false,
             transparent: true,
             negative: false,
-            magnitude: 3,
+            magnitude: 10,
             scalestars: 1,
             /**/
             mouse: false,
             keyboard: false,
             /**/
-            ground: false,
+            ground: true,
             cardinalpoints: false,
             constellations: true,
             constellationlabels: false,
