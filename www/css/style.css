@@ -141,7 +141,8 @@ html, body {
 #moon {
     background: #ffffff;
     border-radius: 100%;
-    box-shadow: inset 0vmin 0vmin 5vmin 1vmin #ccc, 0vmin 0vmin 8vmin 3vmin rgba(150, 200, 250, .5);
+/*    box-shadow: inset 0vmin 0vmin 5vmin 1vmin #ccc, 0vmin 0vmin 8vmin 3vmin rgba(150, 200, 250, .5);*/
+    box-shadow: 0vmin 0vmin 8vmin 3vmin rgba(150, 200, 250, .5);
 }
 #starfield {
     position: absolute;

@@ -68,9 +68,9 @@ function getStellar() {
         //var moonDistance            = moonPosition.distance * 180 / Math.PI;
         var getMoonIllumination     = SunCalc.getMoonIllumination(datetime);
         var moonFraction            = getMoonIllumination.fraction;
-        var moonPhase               = getMoonIllumination.phase;
+        var moonPhase               = 1-getMoonIllumination.phase;
             function isPositive(num) {
-                if(num < 0)
+                if(num > 0)
                     return false;
                 else
                     return true;
@@ -84,10 +84,10 @@ function getStellar() {
 			drawPlanetPhase(
                 document.body, moonPhase, moonAngle, {
                     diameter: 10,
-                    earthshine: moonPhase-moonFraction,
-                    blur: moonPhase,
-                    lightColour: "rgba(150, 200, 250, 1)",
-                    shadowColour: "rgba(10, 0, 25, 1)"
+                    earthshine: .1,
+                    blur: 1-moonPhase,
+                    lightColour: "rgba(235, 245, 255, 1)",
+                    shadowColour: "rgba(15, 0, 25, .5)"
                 }
             );
             $("#moon").velocity(
