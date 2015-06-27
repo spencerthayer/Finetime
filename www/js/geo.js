@@ -18,7 +18,7 @@ function geoSuccess(position) {
     var altitude = position.coords.altitude;
         alt = altitude;
     var heading = position.coords.heading;
-        heading = heading || 0;
+    var heading = heading || 0;
         NSEW = heading;
     // EXPLICITLY DEFINE FUNCTIONS
         geoPrompt();
