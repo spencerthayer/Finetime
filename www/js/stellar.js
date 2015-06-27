@@ -57,20 +57,39 @@ function getStellar() {
                     display: "none"
                 });
             };
-      moonPosition
-    var moonPosition                = SunCalc.getMoonPosition(datetime, lat, lon);
+    // moonPosition
+        var moonPosition            = SunCalc.getMoonPosition(datetime, lat, lon);
         var moonAzimuthX            = (moonPosition.azimuth * 75 / Math.PI)*-.8;
-//        var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
-//        var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
-        var moonAltitudeY            = (moonPosition.altitude * 75 / Math.PI)*-.8;
-//        var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
-//        var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
-//        var moonDistance            = moonPosition.distance * 180 / Math.PI;
+        //var moonAzimuth180          = moonPosition.azimuth * 180 / Math.PI;
+        //var moonAzimuth360          = (moonPosition.azimuth * 180 / Math.PI + 180) % 360;
+        var moonAltitudeY           = (moonPosition.altitude * 75 / Math.PI)*-.8;
+        //var moonAltitude180         = moonPosition.altitude * 180 / Math.PI;
+        //var moonAltitude360         = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
+        //var moonDistance            = moonPosition.distance * 180 / Math.PI;
+        var getMoonIllumination     = SunCalc.getMoonIllumination(datetime);
+        var moonFraction            = getMoonIllumination.fraction;
+        var moonPhase               = getMoonIllumination.phase;
+            function isPositive(num) {
+                if(num < 0)
+                    return false;
+                else
+                    return true;
+            };
+        var moonAngle               = isPositive(getMoonIllumination.angle);
         var moonx                   = moonAzimuthX;
         var moony                   = moonAltitudeY;
+        console.log("moonFraction:"+moonFraction+"/"+"moonPhase:"+moonPhase+"/"+"moonAngle:"+moonAngle);
     // LAUNCH MOON
-//        if(hh >= -0.1 && datetime <= sunriseEndTime || datetime >= duskTime && hh <= 25) {
         if(!(datetime >= sunRise && datetime <= sunSet)) {
+			drawPlanetPhase(
+                document.body, moonPhase, moonAngle, {
+                    diameter: 10,
+                    earthshine: moonPhase-moonFraction,
+                    blur: moonPhase,
+                    lightColour: "rgba(150, 200, 250, 1)",
+                    shadowColour: "rgba(10, 0, 25, 1)"
+                }
+            );
             $("#moon").velocity(
                 {
                     translateX: moonx + "vw",
@@ -98,7 +117,9 @@ function getStellar() {
         }
     // LAUNCH STARMAP
         if (!(datetime >= nightEndTime && datetime <= nauticalDuskTime)) {
-            starMap();
+//            if (typeof starMap == 'function') { 
+//                starMap(); 
+//            }
             $("#starmap").velocity(
                 { display: "block" }
             );

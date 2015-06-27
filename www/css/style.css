@@ -28,8 +28,8 @@ html, body {
 .right  { float: right; }
 .clear  { clear: both; }
 /**************/
-.testCircle {
-    display: none;
+.testCircle, #testCircle {
+/*    display: none;*/
     position: absolute;
     margin: 0 auto;
     top: calc(50% - .5vmin);
@@ -39,7 +39,7 @@ html, body {
     width:1vmin;
     height:1vmin;
     z-index: 100;
-    background: #0F0;
+/*    background: #0F0;*/
     border-radius: 100%;
 }
 #content {
@@ -137,9 +137,11 @@ html, body {
     width:10vmin;
     height:10vmin;
     z-index: 6;
+}
+#moon {
     background: #ffffff;
     border-radius: 100%;
-    box-shadow: inset 0vmin 0vmin 5vmin 1vmin #ccc, 0vmin 0vmin 8vmin 3vmin rgba(143, 189, 255, .7);
+    box-shadow: inset 0vmin 0vmin 5vmin 1vmin #ccc, 0vmin 0vmin 8vmin 3vmin rgba(150, 200, 250, .5);
 }
 #starfield {
     position: absolute;
