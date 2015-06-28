@@ -9,13 +9,13 @@ An IOS/Android Clock.
 #ToDo
 
 ##WORKING ON NOW
-[] Moon phases script generating infinite #moon divs.
-[] *stellar.js* functions are not launching at time.
+- [ ] Moon phases script generating infinite #moon divs.
+- [ ] *stellar.js* functions are not launching at time.
 
 ##RECENTLY FINISHED
-[x] Sun and Moon positioning
-[x] Star Maps
-[x] Moon Phases
+- [x] Sun and Moon positioning
+- [x] Star Maps
+- [x] Moon Phases
 
 #Installation
 
