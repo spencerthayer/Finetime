@@ -37,7 +37,7 @@ function geoError() {
 function geoPrompt() {
     /**/////////////////////
     // CONSOLE LOG INFO
-    /** /////////////////////
+    /**/////////////////////
     console.log(
         "Latitude: " + lat + 
         ", Longitude: " + lon + 

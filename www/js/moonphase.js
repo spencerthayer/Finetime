@@ -55,10 +55,10 @@ var drawPlanetPhase = (function(){
         });    
     }
     function makeDiv(container){
-        var div = document.createElement("div");
-        container.appendChild(div);
-        div.id = "moon";
-        return div;
+            var div = document.createElement("div");
+            container.appendChild(div);
+            div.id = "moon";
+            return div;
     }
     function setPhase(outerBox, phase, isWaxing, config){
         var innerBox = makeDiv(outerBox),
@@ -97,11 +97,11 @@ var drawPlanetPhase = (function(){
     }
 
     var defaultConfig = {
-        shadowColour: "#000", // CSS background-colour value for the shaded part of the disc
-        lightColour:  "#FFF", // CSS background-colour value for the illuminated part of the disc
-        diameter:      1,    // diameter of the moon/planets disc in pixels
-        earthshine:   0.1,    // between 0 and 1, the amount of light falling on the shaded part of the disc 0=none, 1=full illumination
-        blur:          3       // amount of blur on the terminator in pixels, 0=no blur
+        shadowColour: "purple",
+        lightColour:  "lime",
+        diameter:      1,
+        earthshine:   0.1,
+        blur:          3
     };
 
     function populateMissingConfigValues(config){
@@ -114,7 +114,10 @@ var drawPlanetPhase = (function(){
 
     return function(containerEl, phase, isWaxing, config){
         config = populateMissingConfigValues(Object.create(config || {}));
-        var el = makeDiv(containerEl);
+//        if (!document.getElementById("moon")) {
+//            var el = makeDiv(containerEl);
+//        }
+            var el = makeDiv(containerEl);
         setPhase(el, phase, isWaxing, config);
     };
 
