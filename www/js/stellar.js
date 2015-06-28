@@ -80,7 +80,7 @@ function getStellar() {
     }
 // LAUNCH MOON
     function launchMoon() {
-        if(!(datetime <= moonSet && datetime >= moonRise)) {
+        if(datetime <= moonSet || datetime >= moonRise) {
 			drawPlanetPhase(
                 document.body, moonPhase, moonAngle, {
                     diameter: 10,
@@ -105,7 +105,7 @@ function getStellar() {
     }
 // LAUNCH STARFIELD
     function launchStarfield() {
-        if(!(datetime >= nightEnd && datetime <= dusk)) {
+        if(datetime <= nauticalDawn || datetime >= nauticalDusk) {
             if(!starfield.called) {
                 starfield.called = true;
                 starfield();
@@ -122,7 +122,7 @@ function getStellar() {
     }
 // LAUNCH STARMAP
     function launchStarmap() {
-        if(!(datetime >= nightEnd && datetime <= nauticalDusk)) {
+        if(datetime <= nightEnd || datetime >= night) {
             $("#starmap").velocity(
                 { display: "block" }
             );
