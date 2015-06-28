@@ -56,59 +56,70 @@ html, body {
     width: 100vmin;
 }
 #time {
-    margin-bottom: 2vmin;
 }
-#hour {
-    font-size: 400%;
-}
-#minute {
-    font-size: 400%;
-}
-#side {
-    float: right;
-    position: relative;
-    top: 5vmin;
-}
-#second {
-    display: block;
-    font-size: 100%;
-}
-#meridian {
-    display: block;
-    font-size: 90%;
-}
-#colon {
-    position: relative;
-    display: inline-block;
-    font-size: 100%;
-    bottom: 10vmin;
-}
+    #timeLeft {
+        display: inline-block;
+        float: left;
+        position: relative;
+    }
+        #hour {
+            font-size: 400%;
+        }
+        #colon {
+            position: relative;
+            display: inline-block;
+            font-size: 100%;
+            bottom: 10vmin;
+        }
+        #minute {
+            font-size: 400%;
+        }
+    #timeRight {
+        display: inline-block;
+        float: right;
+        position: relative;
+        top: 5vmin;
+    }
+        #second {
+            display: block;
+            font-size: 100%;
+        }
+        #meridian {
+            display: block;
+            font-size: 90%;
+        }
 #date {
     font-size: 85%;
     margin-bottom: 2vmin;
 }
-#city {
-    font-size: 60%;
-    position: relative;
-    padding-top: 4vmin;
+#weather {
 }
-#verb {
-    font-size: 75%;
-    position: relative;
-    margin-top: 2vmin;
-}
-#temperature {
-    float: right;
-    font-size: 250%;
-    margin-top: 0vmin;
-    margin-left: 4vmin;
-}
-#degrees {
-    float: right;
-    font-size: 175%;
-    position: relative;
-    margin-top: 1vmin;
-}
+    #city {
+        font-size: 70%;
+        text-transform: capitalize;
+        position: relative;
+        width:65vmin;
+        padding-top: 4vmin;
+    }
+    #description {
+        font-size: 80%;
+        text-transform: capitalize;
+        position: relative;
+        width:65vmin;
+        margin-top: 2vmin;
+    }
+    #temperature {
+        float: right;
+        font-size: 250%;
+        margin-top: 0vmin;
+        margin-left: 4vmin;
+    }
+    #degrees {
+        float: right;
+        font-size: 175%;
+        position: relative;
+        margin-top: 1vmin;
+    }
 /**************/
 #sun {
     position: absolute;

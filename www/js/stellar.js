@@ -62,6 +62,7 @@ function getStellar() {
 // LAUNCH SUN
     function launchSun() {
         if(datetime >= sunRise && datetime <= sunSet) {
+            $("#sun").show();
             $("#sun").velocity({
                 translateX: sunx + "vw",
                 translateY: suny + "vh",
@@ -73,9 +74,10 @@ function getStellar() {
                 "linear-gradient(to bottom, rgba(255,255,119,1) 50%,rgba(255,225,130,"+sunOpacity+") 100%)"
             );
         } else {
-            $("#sun").velocity({
+            /*$("#sun").velocity({
                 display: "none"
-            });
+            });*/
+            $("#sun").hide();
         };
     }
 // LAUNCH MOON

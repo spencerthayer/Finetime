@@ -27,12 +27,12 @@ if (geoPosition.init()) {
         ); 
         $("#skyTop").removeClass("sky-gradient-"+(hh-1));
         $("#skyTop").addClass("sky-gradient-"+hh);
-        $("#skyBot").velocity (
-            { opacity: percentRemain+nightMod }
-        );
         $("body").removeClass("sky-gradient-"+hh);
         $("body").addClass("sky-gradient-"+(hh+1));
         $("#skyBot").removeClass("sky-gradient-"+hh);
         $("#skyBot").addClass("sky-gradient-"+(hh+1));
+        /*$("#skyBot").velocity (
+            { opacity: /*percentRemain+nightMod* / }
+        );*/
         //setTimeout(gradientSky,1000*10);
     }

@@ -3,8 +3,11 @@
 // weather.js
 // Notes on conditions and codes, http://openweathermap.org/weather-conditions
 /**/////////////////////
+
 function getWeather() {
+    $("#weather").hide();
     var apiURL = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon;
+    $("#weather").show();
     $.getJSON(apiURL, function(data) {
         var city = (data.name);
             $("#city").html(city);
