@@ -5,6 +5,7 @@
 343645
 281D2D
 */
+/*@import url('//fonts.googleapis.com/css?family=Julius+Sans+One');*/
 @import url("http://fonts.googleapis.com/css?family=Lato:100");
 * {
     font-family: Lato, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
@@ -137,24 +138,30 @@ html, body {
     box-shadow:0 0 10vvmin #ff9;
     box-shadow: inset 0vmin 0vmin 5vmin 1vmin #fe8, 0vmin 0vmin 8vmin 3vmin #ff9;
 }
-#moon {
-    position: absolute;
-    opacity: 0;
-    margin: 0 auto;
-    top: calc(50% - 5vmin);
-    left: calc(50% - 5vmin);
-    bottom: calc(50% - 5vmin);
-    right: calc(50% - 5vmin);
-    width:10vmin;
-    height:10vmin;
-    z-index: 6;
+#moon, .light, .shadow {
+  /*backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  background-clip: content-box;
+  -webkit-background-clip: content-box;*/
 }
 #moon {
-    background: #ffffff;
-    border-radius: 100%;
-/*    box-shadow: inset 0vmin 0vmin 5vmin 1vmin #ccc, 0vmin 0vmin 8vmin 3vmin rgba(150, 200, 250, .5);*/
-    box-shadow: 0vmin 0vmin 8vmin 3vmin rgba(150, 200, 250, .5);
+    animation: shadowThrob 3s infinite;
+    animation-direction: normal;
+    -webkit-animation: shadowThrob 3s ease-out infinite;
+    -webkit-animation-direction: normal;
 }
+    @keyframes shadowThrob {
+        0% {box-shadow: 0vmin 0vmin 0vmin 0vmin rgba(150,200,250,0);}
+        75% {box-shadow: 0vmin 0vmin 0vmin 0vmin rgba(150,200,250,0);}
+        80% {box-shadow: 0vmin 0vmin 5vmin 1vmin rgba(150,200,250,0.75);}
+        100% {box-shadow: 0vmin 0vmin 20vmin 1vmin rgba(150,200,250,0);}
+    }
+    @-webkit-keyframes shadowThrob {
+        0% {box-shadow: 0vmin 0vmin 0vmin 0vmin rgba(150,200,250,0);}
+        75% {box-shadow: 0vmin 0vmin 0vmin 0vmin rgba(150,200,250,0);}
+        80% {box-shadow: 0vmin 0vmin 5vmin 1vmin rgba(150,200,250,0.75);}
+        100% {box-shadow: 0vmin 0vmin 20vmin 1vmin rgba(150,200,250,0);}
+    }
 #starfield {
     position: absolute;
     top: 0;

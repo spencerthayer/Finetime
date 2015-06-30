@@ -5,13 +5,17 @@
 function getStellar() {
     var datetime= new Date()./*FOR*/addHours(0)/*DEBUGGING*/;
     var hh = datetime.getHours();
+//    function isPositive(num) {
+//        if (num > 0) {
+//                return false;
+//            } else {
+//                return true;
+//            };
+//        };
     function isPositive(num) {
-        if (num > 0) {
-                return false;
-            } else {
-                return true;
-            };
-        };
+      if (num > 0) { return 1; /*waning*/}
+      else if (num < 0) { return -1; /*waxing*/};
+    };
 // stellarTimes
     var times                   = SunCalc.getTimes(datetime, lat, lon);
         var nauticalDawn        = times.nauticalDawn;
@@ -53,12 +57,20 @@ function getStellar() {
         //var moonAltitude180   = moonPosition.altitude * 180 / Math.PI;
         //var moonAltitude360   = (moonPosition.altitude * 180 / Math.PI + 180) % 360;
         //var moonDistance      = moonPosition.distance * 180 / Math.PI;
-        var getMoonIllumination = SunCalc.getMoonIllumination(datetime);
-        var moonFraction        = getMoonIllumination.fraction;
-        var moonPhase           = 1-getMoonIllumination.phase;
-        var moonAngle           = isPositive(getMoonIllumination.angle);
         moonx                   = moonAzimuthX;
         moony                   = moonAltitudeY;
+        var getMoonIllumination = SunCalc.getMoonIllumination(datetime);
+        var moonFraction        = getMoonIllumination.fraction;
+        var moonPhase           = getMoonIllumination.phase;
+        var moonAngle           = getMoonIllumination.angle;
+        isWaxing                = isPositive(moonAngle);
+        moonSize                = 8;
+        zIndex                  = 6;
+        shadowWidth             = moonSize;
+        shadowHeight            = moonSize;
+        shadowRadius            = Math.abs(50-(moonFraction*100));
+        lightMove               = (100-(moonFraction*100))*isWaxing;
+        shadowMove              = ((moonFraction*100))*isWaxing;
 // LAUNCH SUN
     function launchSun() {
         if(datetime >= sunRise && datetime <= sunSet) {
@@ -74,35 +86,75 @@ function getStellar() {
                 "linear-gradient(to bottom, rgba(255,255,119,1) 50%,rgba(255,225,130,"+sunOpacity+") 100%)"
             );
         } else {
-            /*$("#sun").velocity({
-                display: "none"
-            });*/
             $("#sun").hide();
         };
     }
 // LAUNCH MOON
     function launchMoon() {
-        if(datetime <= moonSet || datetime >= moonRise) {
-			drawPlanetPhase(
-                document.body, moonPhase, moonAngle, {
-                    diameter: 10,
-                    earthshine: 0.1,
-                    blur: 1-moonPhase,
-                    lightColour: "rgba(235, 245, 255, 1)",
-                    shadowColour: "rgba(15, 10, 25, 1)"
-                }
-            );
-            $("#moon").velocity(
-                {
-                    translateX: moonx + "vw",
-                    translateY: moony + "vh",
-                }
-            );
-            $("#moon").velocity(
-                    { opacity: .8 }
-            );
-        } else {
-            $("#moon").hide();
+        if (moonPhase > 0 && moonPhase < 0.25) {
+            $("#moon").css({"background":"linear-gradient(to bottom,rgba(210,220,230,1) 25%,rgba(200,210,250,1) 100%)"});
+            console.log("New Moon // Waxing Crescent"+"\n");
+        } else if (moonPhase > 0.25 && moonPhase < 0.5) {
+            $("#moon").css({"background":"linear-gradient(to bottom,rgba(10,20,30,1) 25%,rgba(20,40,60,1) 100%)"});
+            console.log("First Quarter // Waxing Gibbous"+"\n");
+        } else if (moonPhase > 0.5 && moonPhase < 0.75) {
+            $("#moon").css({"background":"linear-gradient(to bottom,rgba(10,20,30,1) 25%,rgba(20,40,60,1) 100%)"});
+            console.log("Full Moon // Waning Gibbous"+"\n");
+        } else if (moonPhase > 0.75 && moonPhase < 1) {
+            $("#moon").css({"background":"linear-gradient(to bottom,rgba(210,220,230,1) 25%,rgba(200,210,250,1) 100%)"});
+            console.log("Last Quarter // Waning Crescent"+"\n");
+        };
+        $("#moon").css({
+            "position":"absolute",
+            "overflow":"hidden",
+            "margin":"0 auto",
+            "z-index":zIndex,
+            "border-radius":"50%",
+            "width":moonSize+"vmin",
+            "height":moonSize+"vmin",
+            "top":"calc(50% - "+moonSize/2+"vmin)",
+            "left":"calc(50% - "+moonSize/2+"vmin)",
+            "bottom":"calc(50% - "+moonSize/2+"vmin)",
+            "right":"calc(50% - "+moonSize/2+"vmin)",
+            "mix-blend-mode":"lighten",
+            //"box-shadow": ""+0+"vmin "+0+"vmin "+(moonSize*.25)+"vmin "+(moonSize*.05)+"vmin rgba(150, 200, 250, .5)"
+        });
+        $(".lightside").css({
+            "position":"absolute",
+            "overflow":"hidden",
+            "margin":"0 auto",
+            "z-index":zIndex+1,
+            "border-radius":shadowRadius+"%/50%",
+            "width":shadowWidth+"vmin",
+            "height":shadowHeight+"vmin",
+            "top":"calc(50% - "+shadowHeight/2+"vmin)",
+            "left":"calc( (50% - "+shadowWidth/2+"vmin) - "+lightMove+"%)",
+            "background":"linear-gradient(to bottom,rgba(210,220,230,1) 25%,rgba(200,210,250,1) 100%)",
+            "box-shadow": "inset "+0+"vmin "+0+"vmin "+(moonSize*.25)+"vmin "+(moonSize*.01)+"vmin rgba(75,50,100,.5)",
+            "mix-blend-mode":"lighten"
+        });
+        $(".darkside").css({
+            "position":"absolute",
+            "overflow":"hidden",
+            "margin":"0 auto",
+            "z-index":zIndex+2,
+            "border-radius":shadowRadius+"%/50%",
+            "width":shadowWidth+"vmin",
+            "height":shadowHeight+"vmin",
+            "top":"calc(50% - "+shadowHeight/2+"vmin)",
+            "right":"calc( (50% - "+shadowWidth/2+"vmin) - "+shadowMove+"%)",
+            "background":"linear-gradient(to bottom,rgba(10,20,30,1) 25%,rgba(20,40,60,1) 100%)"
+        });
+            if(datetime <= moonSet || datetime >= moonRise) {
+                $("#moon").show();
+                $("#moon").velocity(
+                    {
+                        translateX: moonx + "vw",
+                        translateY: moony + "vh"
+                    }
+                );
+            } else {
+                $("#moon").hide();
             };
     }
 // LAUNCH STARFIELD
@@ -143,7 +195,7 @@ function getStellar() {
     launchStarfield();
     launchStarmap();
     // DEFINE FUNCTIONS
-    shadowMove();
+    //shadowMove();
 /**/////////////////////
 // CONSOLE LOG INFO
 /**/////////////////////
