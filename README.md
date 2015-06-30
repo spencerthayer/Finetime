@@ -1,4 +1,4 @@
-# Finetime 0.2.2 [DEMO](http://finetimeios.heroku.com) [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/spencerthayer/Finetime)
+# Finetime 0.6.1 [DEMO](http://finetimeios.heroku.com) [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/spencerthayer/Finetime)
 
 [![Finetime](https://raw.githubusercontent.com/spencerthayer/Finetime/master/www/img/favicon.png?raw=true "TorchNoteJS")](http://finetimeios.heroku.com)
 
