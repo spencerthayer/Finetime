@@ -13,21 +13,28 @@ An IOS/Android Clock.
 - [ ] Stars do not redraw when IOS viewport flips to horizontal and vise versa.
 
 ## DESIGN
+- [ ] Starfield sparkles in Safari, not Firefox & Chrome.
+- [ ] Rain effect
+- [ ] Storm effect
+- [ ] Snow / Hale effect
+- [ ] Wind effect
+- [ ] Humid effect
+- [ ] Thunder/Lightning
+- [ ] Gradient based on sky time, clock time as GPS fallback.
 - [x] Sun and Moon positioning
 - [x] Star Maps
 - [x] Moon Phases
 - [x] Make text dependent on browser sizing.
 - [x] Starfield only active between 9pm-4am. (**Line 74** */js/time.js*)
 - [x] Safari browser display is totally fucked update and not absolutely centered.
-- [x] Moon phases script generating infinite #moon divs.
 - [x] *stellar.js* functions are not launching when their corresponding time is active.
-- [ ] Starfield sparkles in Safari, not Firefox & Chrome.
 - [x] Text shadow should follow path of sun no mouse.
 
 ## Server
 - [x] Heroku deployment debug.
 
 ## Scripts
+- [x] Break each script into a seperate JS file.
 - [x] Better GPS detection.
 - [x] Better GPS failure fallback.
 
