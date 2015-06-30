@@ -56,7 +56,10 @@ An IOS/Android Clock.
  - Brightness : Numeric (10:100)
  - Lock Landscape : Boolean
  - Show Weather : Boolean
+ 
+ ## Audio
 - [ ] Build alarm sounds DB.
+- [ ] Tone.JS integration
 
 ## Content
 - [ ] Write user instruction tutorial in app.
