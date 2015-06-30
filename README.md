@@ -7,12 +7,12 @@
 An IOS/Android Clock.
 
 #ToDo
+A list of tasks that must be done before v1 launch.
 
-
-## Critical
+### Critical
 - [ ] Stars do not redraw when IOS viewport flips to horizontal and vise versa.
 
-## DESIGN
+### DESIGN
 - [ ] Starfield sparkles in Safari, not Firefox & Chrome.
 - [ ] Rain effect
 - [ ] Storm effect
@@ -30,20 +30,20 @@ An IOS/Android Clock.
 - [x] *stellar.js* functions are not launching when their corresponding time is active.
 - [x] Text shadow should follow path of sun no mouse.
 
-## Server
+### Server
 - [x] Heroku deployment debug.
 
-## Scripts
+### Scripts
 - [x] Break each script into a seperate JS file.
 - [x] Better GPS detection.
 - [x] Better GPS failure fallback.
 
-## UI/UX
+### UI/UX
 - [ ] Build sidebar menues.
 - [ ] Slide up and down brightness.
 - [ ] Countdown timer "HH:MM until alarm."
 
-## MVC
+### MVC
 - [ ] Build “Alarm” CRUD:
  - [ ] Slide up and down timer.
  - [ ] Daily repeating alarms.
@@ -57,11 +57,11 @@ An IOS/Android Clock.
  - Lock Landscape : Boolean
  - Show Weather : Boolean
  
- ## Audio
+### Audio
 - [ ] Build alarm sounds DB.
 - [ ] Tone.JS integration
 
-## Content
+### Content
 - [ ] Write user instruction tutorial in app.
 
 #Installation
