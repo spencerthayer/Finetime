@@ -70,7 +70,7 @@ function getStellar() {
         shadowHeight            = moonSize;
         shadowRadius            = Math.abs(50-(moonFraction*100));
         lightMove               = (100-(moonFraction*100))*isWaxing;
-        shadowMove              = ((moonFraction*100))*isWaxing;
+        darksideMove              = ((moonFraction*100))*isWaxing;
 // LAUNCH SUN
     function launchSun() {
         if(datetime >= sunRise && datetime <= sunSet) {
@@ -142,7 +142,7 @@ function getStellar() {
             "width":shadowWidth+"vmin",
             "height":shadowHeight+"vmin",
             "top":"calc(50% - "+shadowHeight/2+"vmin)",
-            "right":"calc( (50% - "+shadowWidth/2+"vmin) - "+shadowMove+"%)",
+            "right":"calc( (50% - "+shadowWidth/2+"vmin) - "+darksideMove+"%)",
             "background":"linear-gradient(to bottom,rgba(10,20,30,1) 25%,rgba(20,40,60,1) 100%)"
         });
             if(datetime <= moonSet || datetime >= moonRise) {
@@ -195,7 +195,7 @@ function getStellar() {
     launchStarfield();
     launchStarmap();
     // DEFINE FUNCTIONS
-    //shadowMove();
+    shadowMove();
 /**/////////////////////
 // CONSOLE LOG INFO
 /**/////////////////////

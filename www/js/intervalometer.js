@@ -10,7 +10,7 @@ setInterval(function(){
 setInterval(function(){
     getStellar();
     //starMap();
-    //shadowMove();
+    shadowMove();
     //runStarMap();
 },1000*10);
 setInterval(function(){
