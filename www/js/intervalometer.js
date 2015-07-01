@@ -5,7 +5,7 @@
 setInterval(function(){
     updateTime();
     blink();
-    gradientSky();
+    //gradientSky();
 },1000/2);
 setInterval(function(){
     getStellar();

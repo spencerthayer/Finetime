@@ -19,7 +19,7 @@ function getStellar() {
 // stellarTimes
     var times                   = SunCalc.getTimes(datetime, lat, lon);
         var nauticalDawn        = times.nauticalDawn;
-        var dawnTime            = times.dawn;
+        var dawn                = times.dawn;
         var sunRise             = times.sunrise;
         var sunriseEnd          = times.sunriseEnd;
         var solarNoon           = times.solarNoon;
@@ -64,13 +64,11 @@ function getStellar() {
         var moonPhase           = getMoonIllumination.phase;
         var moonAngle           = getMoonIllumination.angle;
         isWaxing                = isPositive(moonAngle);
-        moonSize                = 8;
+        moonSize                = 10;
         zIndex                  = 6;
-        shadowWidth             = moonSize;
-        shadowHeight            = moonSize;
         shadowRadius            = Math.abs(50-(moonFraction*100));
         lightMove               = (100-(moonFraction*100))*isWaxing;
-        darksideMove              = ((moonFraction*100))*isWaxing;
+        darksideMove            = (3+(moonFraction*100))*isWaxing;
 // LAUNCH SUN
     function launchSun() {
         if(datetime >= sunRise && datetime <= sunSet) {
@@ -83,7 +81,7 @@ function getStellar() {
             });
             $("#sun").css(
                 "background",
-                "linear-gradient(to bottom, rgba(255,255,119,1) 50%,rgba(255,225,130,"+sunOpacity+") 100%)"
+                "linear-gradient(to bottom, rgba(255,255,119,1) 50%,rgba(255,225,130,1) 100%)"
             );
         } else {
             $("#sun").hide();
@@ -125,10 +123,10 @@ function getStellar() {
             "margin":"0 auto",
             "z-index":zIndex+1,
             "border-radius":shadowRadius+"%/50%",
-            "width":shadowWidth+"vmin",
-            "height":shadowHeight+"vmin",
-            "top":"calc(50% - "+shadowHeight/2+"vmin)",
-            "left":"calc( (50% - "+shadowWidth/2+"vmin) - "+lightMove+"%)",
+            "width":moonSize+"vmin",
+            "height":moonSize+"vmin",
+            "top":"calc(50% - "+moonSize/2+"vmin)",
+            "left":"calc( (50% - "+moonSize/2+"vmin) - "+lightMove+"%)",
             "background":"linear-gradient(to bottom,rgba(210,220,230,1) 25%,rgba(200,210,250,1) 100%)",
             "box-shadow": "inset "+0+"vmin "+0+"vmin "+(moonSize*.25)+"vmin "+(moonSize*.01)+"vmin rgba(75,50,100,.5)",
             "mix-blend-mode":"lighten"
@@ -139,10 +137,10 @@ function getStellar() {
             "margin":"0 auto",
             "z-index":zIndex+2,
             "border-radius":shadowRadius+"%/50%",
-            "width":shadowWidth+"vmin",
-            "height":shadowHeight+"vmin",
-            "top":"calc(50% - "+shadowHeight/2+"vmin)",
-            "right":"calc( (50% - "+shadowWidth/2+"vmin) - "+darksideMove+"%)",
+            "width":moonSize+"vmin",
+            "height":moonSize+"vmin",
+            "top":"calc(50% - "+moonSize/2+"vmin)",
+            "right":"calc( (50% - "+moonSize/2+"vmin) - "+darksideMove+"%)",
             "background":"linear-gradient(to bottom,rgba(10,20,30,1) 25%,rgba(20,40,60,1) 100%)"
         });
             if(datetime <= moonSet || datetime >= moonRise) {
@@ -196,6 +194,7 @@ function getStellar() {
     launchStarmap();
     // DEFINE FUNCTIONS
     shadowMove();
+    gradientSkyGPS();
 /**/////////////////////
 // CONSOLE LOG INFO
 /**/////////////////////
@@ -206,7 +205,7 @@ function getStellar() {
 //    console.log("Moon Rise: "+moonRise);
     console.log(datetime);
     console.log("nauticalDawn: "+nauticalDawn);
-    console.log("dawnTime: "+dawnTime);
+    console.log("dawn: "+dawn);
     console.log("sunRise: "+sunRise);
     console.log("sunriseEnd: "+sunriseEnd);
     console.log("solarNoon: "+solarNoon);
